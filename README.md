@@ -6,7 +6,7 @@
 Prior to starting these labs, you must have the following operating system and software configured on your local machine:
 
 #### Operating System
-- 64-bit Windows 10 Operating System
+    - 64-bit Windows 10 Operating System
 
 Software
 |Software|Download Link|
