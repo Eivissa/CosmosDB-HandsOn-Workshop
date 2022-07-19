@@ -25,6 +25,10 @@
 [2. Java SDK_FAQ](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-sdk-java-v4#faq)   
 [3. Java Workshop Schedule](https://azurecosmosdb.github.io/CosmosDBWorkshops/#schedule)   
 
+### Workshop Github 소스 다운로드
+[Example Github SDK resource download](git clone https://github.com/Azure-Samples/azure-cosmos-java-getting-started.git)
+[Example Github Workshop resource download](git clone https://github.com/AzureCosmosDB/labs.git)
+
 ### Workshop deck
 [1. Overview, Value Proposition & Use Cases](https://azurecosmosdb.github.io/labs/decks/Overview-Value-Proposition-Use-Cases.pptx)   
 [2. Resource Model](https://azurecosmosdb.github.io/labs/decks/Resource-Model.pptx)   
@@ -40,7 +44,6 @@
 [12. Security](https://azurecosmosdb.github.io/labs/decks/Security.pptx)
 
 ### Java Lab Guides
-
 [Pre-lab: Creating an Azure Cosmos DB account]   
 [Lab 1: Creating a container in Azure Cosmos DB]   
 [Lab 2: Importing Data into Azure Cosmos DB with Azure Data Factory]   
