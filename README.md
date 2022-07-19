@@ -22,8 +22,8 @@
 
 ### Workshop list
 [1. Java SDK V4](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-sdk-java-v4)   
-[2. Java SDK_FAQ](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-sdk-java-v4#faq)
-[3. Java_Workshop_Schedule](https://azurecosmosdb.github.io/CosmosDBWorkshops/#schedule)   
+[2. Java SDK_FAQ](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-sdk-java-v4#faq)   
+[3. Java Workshop Schedule](https://azurecosmosdb.github.io/CosmosDBWorkshops/#schedule)   
 
 ### Workshop deck
 [1. Overview, Value Proposition & Use Cases](https://azurecosmosdb.github.io/labs/decks/Overview-Value-Proposition-Use-Cases.pptx)   
