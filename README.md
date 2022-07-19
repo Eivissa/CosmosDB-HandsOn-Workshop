@@ -17,7 +17,7 @@
 |Maven|[/maven.apache.org/](https://maven.apache.org/)|
 |Java 8 JDK(or greater)|[/jdk8-downloads](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)|   
    
-* VSCode 환경설정   
+* Visual Studio Code 환경설정   
     * Java Home 설정   
 <img src="Images/javahome2.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>       
     *  Maven 경로 설정   
