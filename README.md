@@ -39,5 +39,18 @@
 [11. Global Distribution](https://azurecosmosdb.github.io/labs/decks/Global-Distribution.pptx)   
 [12. Security](https://azurecosmosdb.github.io/labs/decks/Security.pptx)
 
+### Java Lab Guides
 
+[Pre-lab: Creating an Azure Cosmos DB account]   
+[Lab 1: Creating a container in Azure Cosmos DB]   
+[Lab 2: Importing Data into Azure Cosmos DB with Azure Data Factory]   
+[Lab 3: Querying in Azure Cosmos DB]   
+[Lab 4: Indexing in Azure Cosmos DB]   
+[Lab 5: Building a Java Console App on Azure Cosmos DB]   
+[Lab 6: Multi-Document Transactions in Azure Cosmos DB]   
+[Lab 7: Transactional Continuation in Azure Cosmos DB]   
+[Lab 8: Intro to Azure Cosmos DB Change Feed]   
+[Lab 9: Troubleshooting Performance in Azure Cosmos DB]   
+[Lab 10: Optimistic Concurrency Control in Azure Cosmos DB]   
+[Post-lab: Cleaning Up]   
 
