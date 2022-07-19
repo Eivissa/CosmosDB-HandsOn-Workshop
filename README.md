@@ -25,7 +25,7 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
 <img src="Images/vscode setting_1.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>   
 오른쪽 상단의 Open settings(JSON) 클릭   
 <img src="Images/vscode setting_2.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>   
-열린 Editor에 아래 내용 추가
+열린 Editor에 아래 내용 추가   
 ```
 {
     "maven.executable.path": "C:\\apache-maven-3.8.6-bin\\apache-maven-3.8.6\\bin\\mvn"
