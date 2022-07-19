@@ -53,18 +53,18 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
 ```   
 
 ### 7. Workshop deck
-[1. Overview, Value Proposition & Use Cases](https://azurecosmosdb.github.io/labs/decks/Overview-Value-Proposition-Use-Cases.pptx)  1day   
-[2. Resource Model](https://azurecosmosdb.github.io/labs/decks/Resource-Model.pptx)  1day   
-[3. Request Units & Billing](https://azurecosmosdb.github.io/labs/decks/Request-Units-Billing.pptx)  1day   
-[4. Data Modeling](https://azurecosmosdb.github.io/labs/decks/Data-Modeling.pptx)  1day   
-[5. Prtitioning](https://azurecosmosdb.github.io/labs/decks/Partitioning.pptx)  1day   
-[6. SQL API Query](https://azurecosmosdb.github.io/labs/decks/SQL-API-Query.pptx)   
-[7. Server Side Programming](https://azurecosmosdb.github.io/labs/decks/Server-Side-Programming.pptx)   
-[8. Troubleshooting](https://azurecosmosdb.github.io/labs/decks/Troubleshooting.pptx)   
-[9. Concurrency](https://azurecosmosdb.github.io/labs/decks/Concurrency.pptx)   
-[10. Change Feed](https://azurecosmosdb.github.io/labs/decks/Change-Feed.pptx)   
-[11. Global Distribution](https://azurecosmosdb.github.io/labs/decks/Global-Distribution.pptx)   
-[12. Security](https://azurecosmosdb.github.io/labs/decks/Security.pptx)
+1. [Overview, Value Proposition & Use Cases](https://azurecosmosdb.github.io/labs/decks/Overview-Value-Proposition-Use-Cases.pptx)  1day   
+2. [Resource Model](https://azurecosmosdb.github.io/labs/decks/Resource-Model.pptx)  1day   
+3. [Request Units & Billing](https://azurecosmosdb.github.io/labs/decks/Request-Units-Billing.pptx)  1day   
+4. [Data Modeling](https://azurecosmosdb.github.io/labs/decks/Data-Modeling.pptx)  1day   
+5. [Prtitioning](https://azurecosmosdb.github.io/labs/decks/Partitioning.pptx)  1day   
+6. [SQL API Query](https://azurecosmosdb.github.io/labs/decks/SQL-API-Query.pptx)   
+7. [Server Side Programming](https://azurecosmosdb.github.io/labs/decks/Server-Side-Programming.pptx)   
+8. [Troubleshooting](https://azurecosmosdb.github.io/labs/decks/Troubleshooting.pptx)   
+9. [Concurrency](https://azurecosmosdb.github.io/labs/decks/Concurrency.pptx)   
+10. [Change Feed](https://azurecosmosdb.github.io/labs/decks/Change-Feed.pptx)   
+11. [Global Distribution](https://azurecosmosdb.github.io/labs/decks/Global-Distribution.pptx)   
+12. [Security](https://azurecosmosdb.github.io/labs/decks/Security.pptx)
 
 ### 8. Java Lab Guides
 1. [Pre-lab: Lab 환경 배포](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/e6a22821e390bcd4dec814309b43ca29a2ab9039/HandsonLabs/PreLab_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1.md)  
