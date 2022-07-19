@@ -19,7 +19,7 @@
    
 * VSCode 환경설정   
     * Java Home 설정   
-<img src="Images/javahome.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>       
+<img src="Images/javahome2.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>       
     *  Maven 경로 설정   
 Visual Studio 메뉴에서 File->Preferences->settings 클릭
 <img src="Images/vscode setting_1.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>   
