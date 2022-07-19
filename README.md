@@ -22,6 +22,7 @@
     
     *  Maven 경로 설정   
 <img src="Images/vscode setting_1.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>   
+오른쪽 상단의 Open settings(JSON) 클릭
 <img src="Images/vscode setting_2.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>   
 
 ### 4. Use case
