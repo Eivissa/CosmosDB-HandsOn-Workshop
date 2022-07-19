@@ -21,7 +21,8 @@
     * Java Home 설정   
     
     *  Maven 경로 설정   
-<img src="/path/to/img.jpg" width="450px" height="300px" title="px(픽셀) 크기 설정" alt="RubberDuck"></img><br/>
+<img src="Images/vscode setting_1.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>   
+<img src="Images/vscode setting_2.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>   
 
 ### 4. Use case
 - [Use-Case cheat sheet (1-pager)](https://azurecosmosdb.github.io/labs/decks/1Pager-Use-Cases.pptx) 
