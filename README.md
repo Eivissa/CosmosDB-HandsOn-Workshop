@@ -74,7 +74,7 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
 [Lab08](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab08.md)   
 [Lab09](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab09.md)   
 
-[Lab 1: Creating a container in Azure Cosmos DB]   
+<!--[Lab 1: Creating a container in Azure Cosmos DB]   
 [Lab 2: Importing Data into Azure Cosmos DB with Azure Data Factory]   
 [Lab 3: Querying in Azure Cosmos DB]   
 [Lab 4: Indexing in Azure Cosmos DB]   
@@ -85,7 +85,7 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
 [Lab 9: Troubleshooting Performance in Azure Cosmos DB]   
 [Lab 10: Optimistic Concurrency Control in Azure Cosmos DB]   
 [Post-lab: Cleaning Up]   
-
+-->
 ### 9. Benchmark tool
 [Benchmark tool test](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-cosmos-benchmark)   
 [Performance tips](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/performance-tips-java-sdk-v4-sql)   
