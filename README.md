@@ -13,9 +13,9 @@
 |---|---|
 |Git|[/git-scm.com/downloads](https://git-scm.com/downloads)|
 |Visual Studio Code|[/code.visualstudio.com/download](https://go.microsoft.com/fwlink/?Linkid=852157)|
+|Java Extension Pack|[/vscode-java-pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)|
 |Maven|[/maven.apache.org/](https://maven.apache.org/)|
 |Java 8 JDK(or greater)|[/jdk8-downloads](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)|
-|Java Extension Pack|[/vscode-java-pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)|
 
 ### Reference
 - [Use-Case cheat sheet (1-pager)](https://azurecosmosdb.github.io/labs/decks/1Pager-Use-Cases.pptx) 
