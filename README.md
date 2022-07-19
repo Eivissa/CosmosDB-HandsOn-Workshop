@@ -22,7 +22,7 @@
 <img src="Images/javahome2.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>       
     * Maven 윈도우 Path 추가   
 <img src="Images/mvn_path.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>   
-    * Maven 경로 설정   
+    * Visual Studio Maven 경로 설정   
 Visual Studio 메뉴에서 File->Preferences->settings 클릭
 <img src="Images/vscode setting_1.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>   
 오른쪽 상단의 Open settings(JSON) 클릭   
