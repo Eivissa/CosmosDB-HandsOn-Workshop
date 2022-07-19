@@ -28,7 +28,7 @@
 ### 6. Workshop Github 소스 다운로드
 ####    - Example Github SDK resource download   
 ```
-    git clone https://github.com/Azure-Samples/azure-cosmos-java-getting-started.git
+    git clone https://github.com/Azure/azure-sdk-for-java
 ```   
 ####    - Example Github Workshop resource download   
 ```
