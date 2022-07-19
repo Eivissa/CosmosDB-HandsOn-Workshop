@@ -68,11 +68,11 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
 
 ### 8. Java Lab Guides
 [Pre-lab: Lab 환경 배포](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/e6a22821e390bcd4dec814309b43ca29a2ab9039/HandsonLabs/PreLab_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1.md)  
-[Lab01](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab01.md)   
-[Lab02](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab02.md)   
-[Lab05](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab05.md)   
-[Lab08](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab08.md)   
-[Lab09](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab09.md)   
+[Lab01 Creating a container in Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab01.md)   
+[Lab02 Importing Data into Azure Cosmos DB with Azure Data Factory](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab02.md)   
+[Lab05 Building a Java Console App on Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab05.md)   
+[Lab08 Intro to Azure Cosmos DB Change Feed](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab08.md)   
+[Lab09 Troubleshooting Performance in Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab09.md)   
 
 <!--[Lab 1: Creating a container in Azure Cosmos DB]   
 [Lab 2: Importing Data into Azure Cosmos DB with Azure Data Factory]   
