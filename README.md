@@ -80,3 +80,5 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
 [Lab 10: Optimistic Concurrency Control in Azure Cosmos DB]   
 [Post-lab: Cleaning Up]   
 
+### 9. Benchmark tool
+[Benchmark tool test](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-cosmos-benchmark)
