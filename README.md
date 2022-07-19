@@ -67,7 +67,7 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
 [12. Security](https://azurecosmosdb.github.io/labs/decks/Security.pptx)
 
 ### 8. Java Lab Guides
-[Pre-lab: Lab 환경 배포](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/153e17632d6ca66bb9e1ad9a1120471df4f5d1bc/HandsonLabs/Pre-lab-Creating%20an%20Azure%20Cosmos%20DB%20account.md)   
+[Pre-lab: Lab 환경 배포](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/e6a22821e390bcd4dec814309b43ca29a2ab9039/HandsonLabs/PreLab_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1.md)  
 [Lab 1: Creating a container in Azure Cosmos DB]   
 [Lab 2: Importing Data into Azure Cosmos DB with Azure Data Factory]   
 [Lab 3: Querying in Azure Cosmos DB]   
