@@ -22,6 +22,7 @@ Prior to starting these labs, you must have the following operating system and s
 
 ### Workshop list
 [1. Java SDK V4](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-sdk-java-v4)
+[2. Java SDK_FAQ](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-sdk-java-v4#faq)
 
 ### Workshop deck
 [1. Overview, Value Proposition & Use Cases](https://azurecosmosdb.github.io/labs/decks/Overview-Value-Proposition-Use-Cases.pptx)
