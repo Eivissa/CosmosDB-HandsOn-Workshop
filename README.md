@@ -31,14 +31,14 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
 ```
         {"maven.executable.path": "C:\\apache-maven-3.8.6-bin\\apache-maven-3.8.6\\bin\\mvn"}
 ```
-### 4. 파워쉘 모듈 설치
-Azure 파워쉘 모듈이 설치되지 않은 경우 설치 해야 함 
+### 4. 파워쉘 모듈 설치   
+Azure 파워쉘 모듈이 설치되지 않은 경우 설치 해야 함   
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
-```
-Link: https://docs.microsoft.com/en-us/powershell/azure/install-az-ps
+```   
+* Link: https://docs.microsoft.com/en-us/powershell/azure/install-az-ps   
 
 
 ### 5. Use case
