@@ -21,7 +21,7 @@ Prior to starting these labs, you must have the following operating system and s
 - [Use-Case cheat sheet (1-pager)](https://azurecosmosdb.github.io/labs/decks/1Pager-Use-Cases.pptx) 
 
 ### Workshop list
-[1. Java SDK V4](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-sdk-java-v4)
+[1. Java SDK V4](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-sdk-java-v4)   
 [2. Java SDK_FAQ](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-sdk-java-v4#faq)
 
 ### Workshop deck
