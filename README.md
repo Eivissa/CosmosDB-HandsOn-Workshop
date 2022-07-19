@@ -26,8 +26,10 @@
 [3. Java Workshop Schedule](https://azurecosmosdb.github.io/CosmosDBWorkshops/#schedule)   
 
 ### Workshop Github 소스 다운로드
-[Example Github SDK resource download](git clone https://github.com/Azure-Samples/azure-cosmos-java-getting-started.git)
-[Example Github Workshop resource download](git clone https://github.com/AzureCosmosDB/labs.git)
+####    Example Github SDK resource download   
+    ```git clone https://github.com/Azure-Samples/azure-cosmos-java-getting-started.git```   
+####    Example Github Workshop resource download   
+    ```git clone https://github.com/AzureCosmosDB/labs.git```
 
 ### Workshop deck
 [1. Overview, Value Proposition & Use Cases](https://azurecosmosdb.github.io/labs/decks/Overview-Value-Proposition-Use-Cases.pptx)   
