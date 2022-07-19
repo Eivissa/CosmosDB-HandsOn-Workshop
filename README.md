@@ -2,13 +2,13 @@
 
 ## Java Labs
 
-### 사전요구 사항
+### 1. 사전요구 사항
 이 실습을 시작하기 전에 로컬 컴퓨터에 다음 운영 체제와 소프트웨어가 구성되어 있어야 합니다.
 
-### 운영체제
+### 2. 운영체제
     - 64-bit Windows 10 Operating System
 
-### 소프트웨어
+### 3. 소프트웨어
 |Software|Download Link|
 |---|---|
 |Git|[/git-scm.com/downloads](https://git-scm.com/downloads)|
@@ -17,19 +17,23 @@
 |Maven|[/maven.apache.org/](https://maven.apache.org/)|
 |Java 8 JDK(or greater)|[/jdk8-downloads](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)|
 
-### Reference
+### 4. Use case
 - [Use-Case cheat sheet (1-pager)](https://azurecosmosdb.github.io/labs/decks/1Pager-Use-Cases.pptx) 
 
-### Workshop list
+### 5. Workshop list
 [1. Java SDK V4](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-sdk-java-v4)   
 [2. Java SDK_FAQ](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-sdk-java-v4#faq)   
 [3. Java Workshop Schedule](https://azurecosmosdb.github.io/CosmosDBWorkshops/#schedule)   
 
-### Workshop Github 소스 다운로드
-####    Example Github SDK resource download   
-    ```git clone https://github.com/Azure-Samples/azure-cosmos-java-getting-started.git```   
-####    Example Github Workshop resource download   
-    ```git clone https://github.com/AzureCosmosDB/labs.git```
+### 6. Workshop Github 소스 다운로드
+####    - Example Github SDK resource download   
+```
+    git clone https://github.com/Azure-Samples/azure-cosmos-java-getting-started.git
+```   
+####    - Example Github Workshop resource download   
+```
+    git clone https://github.com/AzureCosmosDB/labs.git
+```   
 
 ### Workshop deck
 [1. Overview, Value Proposition & Use Cases](https://azurecosmosdb.github.io/labs/decks/Overview-Value-Proposition-Use-Cases.pptx)   
