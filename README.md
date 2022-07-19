@@ -31,18 +31,25 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
 ```
         {"maven.executable.path": "C:\\apache-maven-3.8.6-bin\\apache-maven-3.8.6\\bin\\mvn"}
 ```
+### 4. 파워쉘 모듈 설치
+Azure 파워쉘 모듈이 설치되지 않은 경우 설치 해야 함 
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
+```
+Link: https://docs.microsoft.com/en-us/powershell/azure/install-az-ps
 
 
-
-### 4. Use case
+### 5. Use case
 - [Use-Case cheat sheet (1-pager)](https://azurecosmosdb.github.io/labs/decks/1Pager-Use-Cases.pptx) 
 
-### 5. Workshop list
+### 6. Workshop list
 1. [Java SDK V4](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/sql-api-sdk-java-v4)   
 2. [Java SDK_FAQ](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/sql-api-sdk-java-v4#faq)   
 3. [Java Workshop Schedule](https://azurecosmosdb.github.io/CosmosDBWorkshops/#schedule)   
 
-### 6. Workshop Github 소스 다운로드
+### 7. Workshop Github 소스 다운로드
 ####    - Example Github SDK resource download   
 ```
     git clone https://github.com/Azure/azure-sdk-for-java
@@ -52,7 +59,7 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
     git clone https://github.com/AzureCosmosDB/labs.git
 ```   
 
-### 7. Workshop deck
+### 8. Workshop deck
 1. [Overview, Value Proposition & Use Cases](https://azurecosmosdb.github.io/labs/decks/Overview-Value-Proposition-Use-Cases.pptx)  1day   
 2. [Resource Model](https://azurecosmosdb.github.io/labs/decks/Resource-Model.pptx)  1day   
 3. [Request Units & Billing](https://azurecosmosdb.github.io/labs/decks/Request-Units-Billing.pptx)  1day   
@@ -66,7 +73,7 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
 11. [Global Distribution](https://azurecosmosdb.github.io/labs/decks/Global-Distribution.pptx)   
 12. [Security](https://azurecosmosdb.github.io/labs/decks/Security.pptx)
 
-### 8. Java Lab Guides
+### 9. Java Lab Guides
 1. [Pre-lab: Lab 환경 배포](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/e6a22821e390bcd4dec814309b43ca29a2ab9039/HandsonLabs/PreLab_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1.md)  
 2. [Lab01 Creating a container in Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab01.md)   
 3. [Lab02 Importing Data into Azure Cosmos DB with Azure Data Factory](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab02.md)   
@@ -86,7 +93,8 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
 [Lab 10: Optimistic Concurrency Control in Azure Cosmos DB]   
 [Post-lab: Cleaning Up]   
 -->
-### 9. Benchmark tool
+
+### 10. Benchmark tool
 [Benchmark tool test](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-cosmos-benchmark)   
 [Performance tips](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/performance-tips-java-sdk-v4-sql)   
 [Troubleshooting](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/troubleshoot-java-sdk-v4-sql)   
