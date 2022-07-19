@@ -20,6 +20,8 @@
 * Visual Studio Code 환경설정   
     * Java Home 설정   
 <img src="Images/javahome2.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>       
+    * mvn 윈도우 Path 추가   
+<img src="Images/mvn_path.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>   
     *  Maven 경로 설정   
 Visual Studio 메뉴에서 File->Preferences->settings 클릭
 <img src="Images/vscode setting_1.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>   
@@ -29,6 +31,8 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
 ```
         {"maven.executable.path": "C:\\apache-maven-3.8.6-bin\\apache-maven-3.8.6\\bin\\mvn"}
 ```
+
+
 
 ### 4. Use case
 - [Use-Case cheat sheet (1-pager)](https://azurecosmosdb.github.io/labs/decks/1Pager-Use-Cases.pptx) 
