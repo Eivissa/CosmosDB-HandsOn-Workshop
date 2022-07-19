@@ -25,28 +25,17 @@ Prior to starting these labs, you must have the following operating system and s
 [2. Java SDK_FAQ](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-api-sdk-java-v4#faq)
 
 ### Workshop deck
-[1. Overview, Value Proposition & Use Cases](https://azurecosmosdb.github.io/labs/decks/Overview-Value-Proposition-Use-Cases.pptx)
-
-[2. Resource Model](https://azurecosmosdb.github.io/labs/decks/Resource-Model.pptx)
-
-[3. Request Units & Billing](https://azurecosmosdb.github.io/labs/decks/Request-Units-Billing.pptx)
-
-[4. Data Modeling](https://azurecosmosdb.github.io/labs/decks/Data-Modeling.pptx)
-
-[5. Prtitioning](https://azurecosmosdb.github.io/labs/decks/Partitioning.pptx)
-
-[6. SQL API Query](https://azurecosmosdb.github.io/labs/decks/SQL-API-Query.pptx)
-
-[7. Server Side Programming](https://azurecosmosdb.github.io/labs/decks/Server-Side-Programming.pptx)
-
-[8. Troubleshooting](https://azurecosmosdb.github.io/labs/decks/Troubleshooting.pptx)
-
-[9. Concurrency](https://azurecosmosdb.github.io/labs/decks/Concurrency.pptx)
-
-[10. Change Feed](https://azurecosmosdb.github.io/labs/decks/Change-Feed.pptx)
-
-[11. Global Distribution](https://azurecosmosdb.github.io/labs/decks/Global-Distribution.pptx)
-
+[1. Overview, Value Proposition & Use Cases](https://azurecosmosdb.github.io/labs/decks/Overview-Value-Proposition-Use-Cases.pptx)   
+[2. Resource Model](https://azurecosmosdb.github.io/labs/decks/Resource-Model.pptx)   
+[3. Request Units & Billing](https://azurecosmosdb.github.io/labs/decks/Request-Units-Billing.pptx)   
+[4. Data Modeling](https://azurecosmosdb.github.io/labs/decks/Data-Modeling.pptx)   
+[5. Prtitioning](https://azurecosmosdb.github.io/labs/decks/Partitioning.pptx)   
+[6. SQL API Query](https://azurecosmosdb.github.io/labs/decks/SQL-API-Query.pptx)   
+[7. Server Side Programming](https://azurecosmosdb.github.io/labs/decks/Server-Side-Programming.pptx)   
+[8. Troubleshooting](https://azurecosmosdb.github.io/labs/decks/Troubleshooting.pptx)   
+[9. Concurrency](https://azurecosmosdb.github.io/labs/decks/Concurrency.pptx)   
+[10. Change Feed](https://azurecosmosdb.github.io/labs/decks/Change-Feed.pptx)   
+[11. Global Distribution](https://azurecosmosdb.github.io/labs/decks/Global-Distribution.pptx)   
 [12. Security](https://azurecosmosdb.github.io/labs/decks/Security.pptx)
 
 
