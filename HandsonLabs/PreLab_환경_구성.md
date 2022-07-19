@@ -8,4 +8,24 @@ Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 Link: https://docs.microsoft.com/en-us/powershell/azure/install-az-ps
 -->
 
+## 1. Lab에 사용될 코드 복사
+```
+cd .\java\setup\
+
+Set-ExecutionPolicy Unrestricted -Scope Process
+
+.\labCodeSetup.ps1
+```
+
+## 2. Lab에 사용될 리소스 배포
+```
+Connect-AzAccount
+
+or
+
+Connect-AzAccount -subscription <subscription id>
+```
+```powershell
+.\labSetup.ps1 -location 'Korea Central' -resourceGroupName 'name' # name을 원하는 이름으로 수정하세요
+```
 
