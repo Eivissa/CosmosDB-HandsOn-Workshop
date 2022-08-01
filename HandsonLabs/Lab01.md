@@ -4,11 +4,16 @@
 이 실습에서는 다양한 파티션 키와 설정을 사용하여 여러 Azure Cosmos DB 컨테이너를 만듭니다. 
 
 ## 1. Visual Studio Code에서 Cosmos DB Lab 환경 폴더 오픈   
-1. Visual Studio Code 실행   
-2. your\home\directory\Documents\CosmosLabs 경로 폴더 오픈   
+
+1. Lab01외에 다른 Lab은 최상위 폴더로 잠시 이동 시켜둡니다.   
+    ![image](https://user-images.githubusercontent.com/44718680/182098597-58150a8d-b017-4b45-94b4-ac54a3e22aa8.png)   
+    ![image](https://user-images.githubusercontent.com/44718680/182098884-b80b96b3-fc10-4e8c-a4dd-519420fe7e4e.png)   
+
+2. Visual Studio Code 실행   
+3. your\home\directory\Documents\CosmosLabs 경로 폴더 오픈   
     <img src="https://user-images.githubusercontent.com/44718680/182083771-7fdd3600-882f-4ca9-945e-a79629791b31.png"  width="400" height="600"/>
 
-3. pom.xml 파일에서 azure-cosmos의 dependency의 버전을 *LATEST* 로 변경   
+4. pom.xml 파일에서 azure-cosmos의 dependency의 버전을 *LATEST* 로 변경   
 
     변경전   
      ![image](https://user-images.githubusercontent.com/44718680/182099756-ccc4c95b-9c45-4039-9533-b8c35b459a15.png)   
@@ -16,15 +21,11 @@
      ![image](https://user-images.githubusercontent.com/44718680/182100655-4d913de1-c949-4c50-a60b-321c5db2c2ac.png)   
 
 
-4. 로딩된 프로젝트 파일 확인
-![image](https://user-images.githubusercontent.com/44718680/182084520-576f2ff3-091d-4b1a-b52f-162c95f507cb.png)   
-
-5. Lab01외에 다른 Lab은 최상위 폴더로 잠시 이동 시켜둡니다.   
-    ![image](https://user-images.githubusercontent.com/44718680/182098597-58150a8d-b017-4b45-94b4-ac54a3e22aa8.png)   
-    ![image](https://user-images.githubusercontent.com/44718680/182098884-b80b96b3-fc10-4e8c-a4dd-519420fe7e4e.png)   
+5. 로딩된 프로젝트 파일 확인   
+    <img src="https://user-images.githubusercontent.com/44718680/182101365-03086fbf-d394-4489-bdbd-fa4c401fbfb7.png"  width="600" height="500"/>   
 
 6. handsonlabs\lab01\ 폴더의 Lab01Main.java 파일 오픈
-![image](https://user-images.githubusercontent.com/44718680/182088478-72367395-6d0f-4953-a1c5-5562ad1e6dce.png)
+    ![image](https://user-images.githubusercontent.com/44718680/182088478-72367395-6d0f-4953-a1c5-5562ad1e6dce.png)   
 <br></br>
 
 ## 2. CosmosAsyncClient 인스턴스 생성 
