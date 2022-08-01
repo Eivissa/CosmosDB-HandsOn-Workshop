@@ -29,7 +29,7 @@ Set-ExecutionPolicy Unrestricted -Scope Process
 
 <br></br>
 ## 3. 리소스 배포 스크립트 수정
-1번에서 git clone https://github.com/AzureCosmosDB/labs.git 한 리포지터리 labs\java\setup\labSetup.ps1 스크립트를 아래 링크의 내용으로 변경   
+1번에서 git clone 한 리포지터리 labs\java\setup\labSetup.ps1 스크립트를 아래 링크의 내용으로 변경   
    
 - https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/tree/main/HandsonLabs/Files/labSetup.ps1
 
