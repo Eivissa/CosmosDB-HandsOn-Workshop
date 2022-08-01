@@ -199,4 +199,20 @@ logger.info("Container Id:\t{}",customContainer.getId());
 5. 변경된 부분을 확인하기 위해 Azure portal에서 Cosmos DB리소스의 EntertainmentDatabase 데이터베이스를 삭제 후 해당 코드를 다시 수행해 봅니다. (Run Java)
 <br></br>
 <br></br>
-# 예제 2. Creating a container in Azure Cosmos DB
+# 예제 2. Populate a Container with Items using the SDK
+1. Lab01Main.java 파일을 열어서 아래와 같이 CosmosAsyncClient 인스턴스 생성 코드와 client.close(); 사이의 코드를 모두 삭제 합니다.
+```java
+CosmosAsyncClient client = new CosmosClientBuilder()
+           .endpoint(endpointUri)
+           .key(primaryKey)
+           .consistencyLevel(ConsistencyLevel.EVENTUAL)
+           .contentResponseOnWriteEnabled(true)
+           .buildAsyncClient();     
+client.close();  
+```
+ 
+ 2. 아래 코드를 CosmosAsyncClient 인스턴스 생성 코드와 client.close(); 사이에 추가 합니다.
+```java
+targetDatabase = client.getDatabase("EntertainmentDatabase");
+customContainer = targetDatabase.getContainer("CustomCollection");
+```
