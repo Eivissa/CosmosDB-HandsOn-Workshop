@@ -22,8 +22,8 @@ Set-ExecutionPolicy Unrestricted -Scope Process
 
 .\labCodeSetup.ps1
 ```
+![image](https://user-images.githubusercontent.com/44718680/182066913-759cfdc9-4407-4cf9-a47f-b16d5112a40d.png)
 
-![image](https://user-images.githubusercontent.com/44718680/182064874-fe967e8e-87f4-4e70-8364-4593b7ac669b.png)
 
 
 <br></br>
