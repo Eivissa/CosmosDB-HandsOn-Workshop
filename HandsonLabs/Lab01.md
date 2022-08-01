@@ -5,8 +5,11 @@
 
 ## 1. Visual Studio Code에서 Cosmos DB Lab 환경 폴더 오픈   
 
-1. Visual Studio Code 실행 전 Lab01외에 다른 Lab은 최상위 폴더로 잠시 이동 시켜둡니다.   
+1. Visual Studio Code 실행 전 Lab01외에 다른 Lab은 최상위 폴더로 잠시 이동 시켜둡니다.  
+Lab0x 폴더들의 경로는 C:\Users\xoonho\Documents\CosmosLabs\src\main\java\com\azure\cosmos\handsonlabs 아래에 있습니다.   
+
     ![image](https://user-images.githubusercontent.com/44718680/182098597-58150a8d-b017-4b45-94b4-ac54a3e22aa8.png)   
+    
     ![image](https://user-images.githubusercontent.com/44718680/182098884-b80b96b3-fc10-4e8c-a4dd-519420fe7e4e.png)   
 
 2. Visual Studio Code 실행   
