@@ -323,7 +323,7 @@ function Add-StreamProcessor($resourceGroupName, $location, $eventHubNS, $jobNam
     $jobDefinition | Out-File JobDefinition.json
 
 #    New-AzStreamAnalyticsJob -ResourceGroupName $resourceGroupName -File "JobDefinition.json" -Name $jobName
-    New-AzStreamAnalyticsJob -ResourceGroupName $resourceGroupName -Name $jobName -Location $location -SkuName Standard -eventsOutOfOrderPolicy "adjust" -eventsOutOfOrderMaxDelayInSeconds 10 -CompatibilityLevel 1.1
+    New-AzStreamAnalyticsJob -ResourceGroupName $resourceGroupName -Name $jobName -Location $location -SkuName Standard -eventsOutOfOrderPolicy "adjust" -eventsOutOfOrderMaxDelayInSecond 10 -CompatibilityLevel 1.1
     $inputDefintion = @"
     {
         "properties": {
@@ -351,7 +351,7 @@ function Add-StreamProcessor($resourceGroupName, $location, $eventHubNS, $jobNam
 
     $inputDefintion | Out-File InputDefinition.json
 
-    New-AzStreamAnalyticsInput -ResourceGroupName $resourceGroupName -JobName $jobName -File "InputDefinition.json"  
+    New-AzStreamAnalyticsInput -ResourceGroupName $resourceGroupName -JobName $jobName -File "InputDefinition.json" -name "cartInput" 
 
     $transformationDefintiion = @"
     {
