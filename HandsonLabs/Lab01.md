@@ -31,7 +31,7 @@ Lab0x 폴더들의 경로는 C:\Users\\[*사용자명*]\Documents\CosmosLabs\src
     ![image](https://user-images.githubusercontent.com/44718680/182088478-72367395-6d0f-4953-a1c5-5562ad1e6dce.png)   
 <br></br>
 
-## 2. CosmosAsyncClient 인스턴스 생성 
+## 2. Lab01Main.java 편집 및 CosmosAsyncClient 인스턴스 생성 
 CosmosAsyncClient 클래스는 Azure Cosmos DB에서 SQL API를 사용하기 위한 기본 "진입점"입니다. 
 1. Lab01Main.java 편집기 탭 내에서 파일 상단에 다음 코드를 추가합니다.
 ```java
