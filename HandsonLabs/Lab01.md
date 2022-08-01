@@ -125,7 +125,7 @@ private static AtomicBoolean resourcesCreated = new AtomicBoolean(false);
 ```
 
 2. 아래의 코드를 main 메소드의 CosmosAsyncClient 생성과 client.close(); 코드 사이에 추가 합니다.
-```
+```java
 client.createDatabaseIfNotExists("EntertainmentDatabase").flatMap(databaseResponse -> {
     targetDatabase = client.getDatabase(databaseResponse.getProperties().getId());
     CosmosContainerProperties containerProperties = 
@@ -142,7 +142,7 @@ while (!resourcesCreated.get());
 ```
 
 3. while 반복문 아래에 아래 코드를 추가 합니다.
-```
+```java
 logger.info("Database Id:\t{}",targetDatabase.getId());
 logger.info("Container Id:\t{}",customContainer.getId()); 
 ```
@@ -151,9 +151,13 @@ logger.info("Container Id:\t{}",customContainer.getId());
     <img src="https://user-images.githubusercontent.com/44718680/182108533-31bbd764-c71f-4639-b747-aa53b5679b64.png"  width="400" height="600"/>
     
 5. 실행 결과를 확인 합니다.   
-    - 출력된 로그를 확인   
     - Azure Portal에서 Cosmos DB 리소스에 데이터베이스 및 컨테이너 생성 여부 확인   
 
-
-
+## 4. 컨테이너 사용자 지정 설정 적용 
+1. 우리는 작성한 코드 중에서 아래 코드를 통해 컨테이너의 이름이 CustomCollection 이고 파티션키가 type 값이며 RU가 1,000으로 설정된 것을 확인 할 수 있습니다.
+```java
+ CosmosContainerProperties containerProperties = 
+     new CosmosContainerProperties("CustomCollection", "/type");
+ return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(400));
+```
     
