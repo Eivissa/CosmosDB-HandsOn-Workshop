@@ -5,12 +5,13 @@
 
 ## 1. Visual Studio Code에서 Cosmos DB Lab 환경 폴더 오픈   
 
-1. Lab01외에 다른 Lab은 최상위 폴더로 잠시 이동 시켜둡니다.   
+1. Visual Studio Code 실행 전 Lab01외에 다른 Lab은 최상위 폴더로 잠시 이동 시켜둡니다.   
     ![image](https://user-images.githubusercontent.com/44718680/182098597-58150a8d-b017-4b45-94b4-ac54a3e22aa8.png)   
     ![image](https://user-images.githubusercontent.com/44718680/182098884-b80b96b3-fc10-4e8c-a4dd-519420fe7e4e.png)   
 
 2. Visual Studio Code 실행   
-3. your\home\directory\Documents\CosmosLabs 경로 폴더 오픈   
+
+4. your\home\directory\Documents\CosmosLabs 경로 폴더 오픈   
     <img src="https://user-images.githubusercontent.com/44718680/182083771-7fdd3600-882f-4ca9-945e-a79629791b31.png"  width="400" height="600"/>
 
 4. pom.xml 파일에서 azure-cosmos의 dependency의 버전을 *LATEST* 로 변경   
