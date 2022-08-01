@@ -11,7 +11,11 @@
 3. 로딩된 프로젝트 파일 확인
 ![image](https://user-images.githubusercontent.com/44718680/182084520-576f2ff3-091d-4b1a-b52f-162c95f507cb.png)   
 
-4. handsonlabs\lab01\ 폴더의 Lab01Main.java 파일 오픈
+4. Lab01외에 다른 Lab은 최상위 폴더로 잠시 이동 시켜둡니다.   
+    ![image](https://user-images.githubusercontent.com/44718680/182098597-58150a8d-b017-4b45-94b4-ac54a3e22aa8.png)   
+    ![image](https://user-images.githubusercontent.com/44718680/182098884-b80b96b3-fc10-4e8c-a4dd-519420fe7e4e.png)   
+
+5. handsonlabs\lab01\ 폴더의 Lab01Main.java 파일 오픈
 ![image](https://user-images.githubusercontent.com/44718680/182088478-72367395-6d0f-4953-a1c5-5562ad1e6dce.png)
 <br></br>
 
