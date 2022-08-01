@@ -61,10 +61,7 @@ Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 ```
     git clone https://github.com/Azure/azure-sdk-for-java
 ```   
-####    - Example Github Workshop resource download   
-```
-    git clone https://github.com/AzureCosmosDB/labs.git
-```   
+ 
 <br></br>
 ### 6. Use case
 - [Use-Case cheat sheet (1-pager)](https://azurecosmosdb.github.io/labs/decks/1Pager-Use-Cases.pptx) 
