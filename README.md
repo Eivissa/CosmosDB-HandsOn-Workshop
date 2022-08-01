@@ -115,7 +115,7 @@ Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 [Benchmark tool test](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-cosmos-benchmark)   
 [Performance tips](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/performance-tips-java-sdk-v4-sql)   
 [Troubleshooting](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/troubleshoot-java-sdk-v4-sql)   
-
+<br></br>
 ### 10. 종료 후 체크리스트
 - 테스트에 사용된 리소스를 모두 삭제합니다. (리소스 그룹을 삭제하면 한번에 모두 삭제됩니다.)
 - 추가 테스트를 진행하기 위해 리소스를 남겨둘 경우 Cosmos DB의 RU값을 최소값인 400으로 낮춰두시길 권장합니다.
