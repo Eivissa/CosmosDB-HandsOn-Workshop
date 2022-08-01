@@ -196,4 +196,4 @@ logger.info("Container Id:\t{}",customContainer.getId());
  containerProperties.setIndexingPolicy(indexingPolicy);
  return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(2000));    
 ```
-
+5. 변경된 부분을 확인하기 위해 Azure portal에서 Cosmos DB리소스의 EntertainmentDatabase 데이터베이스를 삭제 후 해당 코드를 다시 수행해 봅니다. (Run Java)
