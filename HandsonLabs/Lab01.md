@@ -194,6 +194,6 @@ logger.info("Container Id:\t{}",customContainer.getId());
  CosmosContainerProperties containerProperties = 
      new CosmosContainerProperties("CustomCollection", "/type");
  containerProperties.setIndexingPolicy(indexingPolicy);
- return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(10000));    
+ return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(2000));    
 ```
 
