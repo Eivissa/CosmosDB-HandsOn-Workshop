@@ -113,4 +113,16 @@ endpointUri 변수의 경우 자리 값을 URI 값으로 바꾸고 primaryKey �
 mvn clean package
 ```
 
+## 3. SDK를 통한 데이터베이스와 컨테이너 생성 
+컨테이너를 생성하려면 이름과 파티션 키 경로를 지정해야 합니다. 이 작업에서 컨테이너를 생성할 때 해당 값을 지정합니다. 
+파티션 키는 분산된 기본 물리적 파티션 집합에 데이터를 배포하고 쿼리를 적절한 기본 파티션으로 효율적으로 라우팅하기 위한 논리적 힌트입니다. 
+
+1. Lab01Main 클래스 정의의 맨 위에 데이터베이스 및 컨테이너 인스턴스에 대한 두 개의 정적 클래스 변수를 더 추가합니다.
+```java
+private static CosmosAsyncDatabase targetDatabase;
+private static CosmosAsyncContainer customContainer;
+private static AtomicBoolean resourcesCreated = new AtomicBoolean(false);
+```
+
+
 
