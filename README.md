@@ -74,6 +74,7 @@ Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 2. [Java SDK_FAQ](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/sql-api-sdk-java-v4#faq)   
 3. [Java Workshop Schedule](https://azurecosmosdb.github.io/CosmosDBWorkshops/#schedule)   
 <br></br>
+<!--
 ### 8. Workshop deck
 1. [Overview, Value Proposition & Use Cases](https://azurecosmosdb.github.io/labs/decks/Overview-Value-Proposition-Use-Cases.pptx)  1day   
 2. [Resource Model](https://azurecosmosdb.github.io/labs/decks/Resource-Model.pptx)  1day   
@@ -88,7 +89,8 @@ Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 11. [Global Distribution](https://azurecosmosdb.github.io/labs/decks/Global-Distribution.pptx)   
 12. [Security](https://azurecosmosdb.github.io/labs/decks/Security.pptx)
 <br></br>
-### 9. Java Lab Guides
+-->
+### 8. Java Lab Guides
 1. [Pre-lab: Lab 환경 배포](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/e6a22821e390bcd4dec814309b43ca29a2ab9039/HandsonLabs/PreLab_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1.md)  
 2. [Creating a container in Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab01.md)   
 3. [Importing Data into Azure Cosmos DB with Azure Data Factory](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab02.md)   
@@ -109,7 +111,7 @@ Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 [Post-lab: Cleaning Up]   
 -->
 <br></br>
-### 10. Benchmark tool
+### 9. Benchmark tool
 [Benchmark tool test](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-cosmos-benchmark)   
 [Performance tips](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/performance-tips-java-sdk-v4-sql)   
 [Troubleshooting](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/troubleshoot-java-sdk-v4-sql)   
