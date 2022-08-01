@@ -374,7 +374,7 @@ public class Lab01Main {
      }
 
      Flux<WatchLiveTelevisionChannel> tvInteractionsFlux = Flux.fromIterable(tvInteractions);
-     List<CosmosAsyncItemResponse<WatchLiveTelevisionChannel>> results = 
+     List<CosmosItemResponse<WatchLiveTelevisionChannel>> results = 
          tvInteractionsFlux.flatMap(interaction -> customContainer.createItem(interaction)).collectList().block();
 
      results.forEach(result -> logger.info("Item Created\t{}",result.getItem().getId()));
