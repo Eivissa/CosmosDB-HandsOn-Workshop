@@ -16,7 +16,7 @@
 |Visual Studio Code|[/code.visualstudio.com/download](https://go.microsoft.com/fwlink/?Linkid=852157)|
 |Java Extension Pack|[/vscode-java-pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)|
 |Maven|[/maven.apache.org/](https://maven.apache.org/)|
-|Java 8 JDK(or greater)|[/jdk8-downloads](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)|   
+|Java 8 JDK(or greater)|[/jdk8-downloads](https://cdn.azul.com/zulu/bin/zulu8.64.0.15-ca-jdk8.0.342-win_x64.msi)|   
    
 * Visual Studio Code 환경설정   
     * Java Home 설정   
