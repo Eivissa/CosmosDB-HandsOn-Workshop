@@ -200,6 +200,7 @@ logger.info("Container Id:\t{}",customContainer.getId());
 <br></br>
 <br></br>
 # 예제 2. Populate a Container with Items using the SDK
+데이터 조회 테스트를 위해 테스트 데이터 생성 코드를 작성해 보겠습니다.
 1. Lab01Main.java 파일을 열어서 아래와 같이 CosmosAsyncClient 인스턴스 생성 코드와 client.close(); 사이의 코드를 모두 삭제 합니다.
 ```java
 CosmosAsyncClient client = new CosmosClientBuilder()
@@ -216,3 +217,114 @@ client.close();
 targetDatabase = client.getDatabase("EntertainmentDatabase");
 customContainer = targetDatabase.getContainer("CustomCollection");
 ```
+
+3. 필요한 라이브러리 사용을 위해 아래 코드를 추가 합니다.
+```java
+import com.azure.cosmos.handsonlabs.common.datatypes.PurchaseFoodOrBeverage;
+
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+```
+4. 테스트 데이터 생성 코드를 추가 합니다.
+```java
+           ArrayList<PurchaseFoodOrBeverage> foodInteractions = new ArrayList<PurchaseFoodOrBeverage>();
+            Faker faker = new Faker();    
+               
+            for (int i= 0; i < 500;i++){  
+                PurchaseFoodOrBeverage doc = new PurchaseFoodOrBeverage(); 
+                DecimalFormat df = new DecimalFormat("###.###");      
+                doc.setType("PurchaseFoodOrBeverage");            
+                doc.setQuantity(faker.random().nextInt(1, 5));            
+                String unitPrice = df.format(Double.valueOf((Double)faker.random().nextDouble()));
+                doc.setUnitPrice(new BigDecimal(unitPrice));
+                int quantity = Integer.valueOf((Integer)doc.getQuantity());        
+                String totalPrice = df.format(Double.valueOf(unitPrice) * quantity);
+                doc.setTotalPrice(new BigDecimal(totalPrice));
+                doc.setId(UUID.randomUUID().toString());
+                foodInteractions.add(doc);
+            }
+            Flux<PurchaseFoodOrBeverage> foodInteractionsFlux = Flux.fromIterable(foodInteractions);
+            List<CosmosItemResponse<PurchaseFoodOrBeverage>> results = 
+                        foodInteractionsFlux.flatMap(interaction -> customContainer.createItem(interaction)).collectList().block();
+                        
+            results.forEach(result -> logger.info("Item Created\t{}",result.getItem().getId()));
+```
+
+5. 완성 코드
+```java
+package com.azure.cosmos.handsonlabs.lab01;
+
+import com.azure.cosmos.handsonlabs.common.datatypes.PurchaseFoodOrBeverage;
+import com.azure.cosmos.handsonlabs.common.datatypes.ViewMap;
+import com.azure.cosmos.models.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import com.github.javafaker.Faker;
+
+import com.azure.cosmos.ConsistencyLevel;
+import com.azure.cosmos.CosmosAsyncClient;
+import com.azure.cosmos.CosmosAsyncDatabase;
+import com.azure.cosmos.CosmosAsyncContainer;
+import com.azure.cosmos.CosmosClientBuilder;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+
+public class Lab01Main {
+    protected static Logger logger = LoggerFactory.getLogger(Lab01Main.class.getSimpleName());
+    private static String endpointUri = "https://cosmoslab64058.documents.azure.com:443/";
+    private static String primaryKey = "7aCZkdKTr3FfNeGWMg2ZVlPU0an36qxsVSK0H3FmjMmafhqvHPFvlyOpXL0WxDPQrMrkEo2rR7jI6uPibuwA2w==";   
+    private static CosmosAsyncDatabase targetDatabase;
+    private static CosmosAsyncContainer customContainer;
+    private static AtomicBoolean resourcesCreated = new AtomicBoolean(false);
+
+    public static void main(String[] args) {
+        CosmosAsyncClient client = new CosmosClientBuilder()
+            .endpoint(endpointUri)
+            .key(primaryKey)
+            .consistencyLevel(ConsistencyLevel.EVENTUAL)
+            .contentResponseOnWriteEnabled(true)
+            .buildAsyncClient();
+            targetDatabase = client.getDatabase("EntertainmentDatabase");
+            customContainer = targetDatabase.getContainer("CustomCollection");
+
+            ArrayList<PurchaseFoodOrBeverage> foodInteractions = new ArrayList<PurchaseFoodOrBeverage>();
+            Faker faker = new Faker();    
+               
+            for (int i= 0; i < 500;i++){  
+                PurchaseFoodOrBeverage doc = new PurchaseFoodOrBeverage(); 
+                DecimalFormat df = new DecimalFormat("###.###");      
+                doc.setType("PurchaseFoodOrBeverage");            
+                doc.setQuantity(faker.random().nextInt(1, 5));            
+                String unitPrice = df.format(Double.valueOf((Double)faker.random().nextDouble()));
+                doc.setUnitPrice(new BigDecimal(unitPrice));
+                int quantity = Integer.valueOf((Integer)doc.getQuantity());        
+                String totalPrice = df.format(Double.valueOf(unitPrice) * quantity);
+                doc.setTotalPrice(new BigDecimal(totalPrice));
+                doc.setId(UUID.randomUUID().toString());
+                foodInteractions.add(doc);
+            }
+            Flux<PurchaseFoodOrBeverage> foodInteractionsFlux = Flux.fromIterable(foodInteractions);
+            List<CosmosItemResponse<PurchaseFoodOrBeverage>> results = 
+                        foodInteractionsFlux.flatMap(interaction -> customContainer.createItem(interaction)).collectList().block();
+                        
+            results.forEach(result -> logger.info("Item Created\t{}",result.getItem().getId()));
+            client.close();
+    }
+}
+```
+
+6. Lab01Main.java를 실행하여 결과를 확인 합니다.
+- Azure portal에서 데이터 건수를 확인 합니다. 
+
+
+
+
