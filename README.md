@@ -7,6 +7,7 @@
 
 ### 2. 운영체제
     - 64-bit Windows 10 Operating System
+    - 최신 보안 업데이트 적용
 
 ### 3. 소프트웨어
 |Software|Download Link|
