@@ -148,6 +148,7 @@ logger.info("Container Id:\t{}",customContainer.getId());
 ```
 
 4. Lab01Main.java 파일 우클릭 후 "Run Java" 실행
-![image](https://user-images.githubusercontent.com/44718680/182108533-31bbd764-c71f-4639-b747-aa53b5679b64.png)
-
-
+    <img src="https://user-images.githubusercontent.com/44718680/182108533-31bbd764-c71f-4639-b747-aa53b5679b64.png"  width="400" height="600"/>
+    
+    
+    
