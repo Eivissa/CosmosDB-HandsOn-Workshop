@@ -19,30 +19,22 @@
 CosmosAsyncClient 클래스는 Azure Cosmos DB에서 SQL API를 사용하기 위한 기본 "진입점"입니다. 
 1. Lab01Main.java 편집기 탭 내에서 파일 상단에 다음 코드를 추가합니다.
 ```java
- import com.azure.cosmos.implementation.ConnectionPolicy;
- import com.azure.cosmos.ConsistencyLevel;
- import com.azure.cosmos.CosmosAsyncClient;
- import com.azure.cosmos.CosmosAsyncDatabase;
- import com.azure.cosmos.CosmosAsyncContainer;
- import com.azure.cosmos.CosmosClientBuilder;
- import com.azure.cosmos.handsonlabs.common.datatypes.PurchaseFoodOrBeverage;
- import com.azure.cosmos.handsonlabs.common.datatypes.ViewMap;
- import com.azure.cosmos.handsonlabs.common.datatypes.WatchLiveTelevisionChannel;
- import com.azure.cosmos.models.CosmosAsyncItemResponse;
- import com.azure.cosmos.models.CosmosContainerProperties;
- import com.azure.cosmos.models.CosmosItemResponse;
- import com.azure.cosmos.models.IndexingMode;
- import com.azure.cosmos.models.IndexingPolicy;
- import com.azure.cosmos.models.IncludedPath;
+import com.azure.cosmos.handsonlabs.common.datatypes.ViewMap;
+import com.azure.cosmos.models.*;
 
- import reactor.core.publisher.Flux;
- import reactor.core.publisher.Mono;
+import com.azure.cosmos.ConsistencyLevel;
+import com.azure.cosmos.CosmosAsyncClient;
+import com.azure.cosmos.CosmosAsyncDatabase;
+import com.azure.cosmos.CosmosAsyncContainer;
+import com.azure.cosmos.CosmosClientBuilder;
 
- import java.util.ArrayList;
- import java.util.List;
- import java.util.UUID;
- import java.util.concurrent.atomic.AtomicBoolean;
- import com.google.common.collect.Lists;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicBoolean;
 ```
 2. Lab01Main.java 클래스 내에서 다음 코드 줄을 추가하여 연결 정보에 대한 변수를 만듭니다.
 ```java
