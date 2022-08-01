@@ -38,8 +38,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 ```
 2. Lab01Main.java 클래스 내에서 다음 코드 줄을 추가하여 연결 정보에 대한 변수를 만듭니다.
 ```java
- private static String endpointUri = "<your uri>";
- private static String primaryKey = "<your key>";
+private static String endpointUri = "<your uri>";
+private static String primaryKey = "<your key>";
 ```
 3. 앞서 만든 Cosmos DB의 접근 주소(URI)와 키값이 필요합니다.
 endpointUri 변수의 경우 자리 값을 URI 값으로 바꾸고 primaryKey 변수의 경우 값을 Azure Cosmos DB 계정의 PRIMARY KEY 값으로 바꿉니다. 
