@@ -51,4 +51,13 @@ Connect-AzAccount -subscription <subscription id>
 1. http://portal.azure.com 로그인   
 2. 리소스 그룹(Resource Group) 클릭    
 ![image](https://user-images.githubusercontent.com/44718680/182079888-16604b53-8567-4ebd-8d50-2540878cc68a.png)   
+3. Cosmos DB가 배포된 리소스 그룹 클릭   
+![image](https://user-images.githubusercontent.com/44718680/182079982-cce35025-be62-4dff-807d-05c320b886d3.png)   
+4. Cosmos DB 리소스 클릭   
+![image](https://user-images.githubusercontent.com/44718680/182080100-05b2c10b-b593-45dc-9a0e-8cb56a5b22d0.png)   
+5. Cosmos DB 설정의 키 메뉴     
+![image](https://user-images.githubusercontent.com/44718680/182080253-284c303e-a2ca-4ea8-b754-cb4fc76fab8b.png)   
+6. Cosmos DB Key 정보 확인
+![image](https://user-images.githubusercontent.com/44718680/182080319-8bda1aef-1a1e-4c10-bec6-e83a1327ab1b.png)
+ 
 
