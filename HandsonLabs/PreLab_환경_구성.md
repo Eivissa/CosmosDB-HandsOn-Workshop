@@ -32,7 +32,6 @@ C:\labs\java\setup\labSetup.ps1 스크립트를 아래 링크의 내용으로 �
    
 - https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/tree/main/HandsonLabs/Files/labSetup.ps1
 
-![image](https://user-images.githubusercontent.com/44718680/182065234-0ac4af60-7997-44aa-8f43-a1fae288b28a.png)
 
 <br></br>
 ## 4. Lab에 사용될 리소스 배포(Powershell)
@@ -47,3 +46,4 @@ Connect-AzAccount -subscription <subscription id>
 .\labSetup.ps1 -location 'Korea Central' -resourceGroupName 'name' # name을 원하는 이름으로 수정하세요
 ```
 
+![image](https://user-images.githubusercontent.com/44718680/182065234-0ac4af60-7997-44aa-8f43-a1fae288b28a.png)
