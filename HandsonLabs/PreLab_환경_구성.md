@@ -9,17 +9,21 @@ Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 ```
 Link: https://docs.microsoft.com/en-us/powershell/azure/install-az-ps
 -->
-
-## 1. Lab에 사용될 코드 복사
+## 1.Example Github Workshop resource download   
 ```
-cd .\java\setup\
+    git clone https://github.com/AzureCosmosDB/labs.git
+```  
+
+## 2. Lab에 사용될 코드 복사
+```
+cd labs\java\setup
 
 Set-ExecutionPolicy Unrestricted -Scope Process
 
 .\labCodeSetup.ps1
 ```
 
-## 2. Lab에 사용될 리소스 배포
+## 3. Lab에 사용될 리소스 배포
 ```
 Connect-AzAccount
 
