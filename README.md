@@ -57,15 +57,7 @@ Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 * Link: https://docs.microsoft.com/en-us/powershell/azure/install-az-ps   
 
 
-### 5. Use case
-- [Use-Case cheat sheet (1-pager)](https://azurecosmosdb.github.io/labs/decks/1Pager-Use-Cases.pptx) 
-
-### 6. Workshop list
-1. [Java SDK V4](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/sql-api-sdk-java-v4)   
-2. [Java SDK_FAQ](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/sql-api-sdk-java-v4#faq)   
-3. [Java Workshop Schedule](https://azurecosmosdb.github.io/CosmosDBWorkshops/#schedule)   
-
-### 7. Workshop Github 소스 다운로드
+### 5. Workshop Github 소스 다운로드
 ####    - Example Github SDK resource download   
 ```
     git clone https://github.com/Azure/azure-sdk-for-java
@@ -74,6 +66,15 @@ Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 ```
     git clone https://github.com/AzureCosmosDB/labs.git
 ```   
+
+### 6. Use case
+- [Use-Case cheat sheet (1-pager)](https://azurecosmosdb.github.io/labs/decks/1Pager-Use-Cases.pptx) 
+
+### 7. Workshop list
+1. [Java SDK V4](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/sql-api-sdk-java-v4)   
+2. [Java SDK_FAQ](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/sql-api-sdk-java-v4#faq)   
+3. [Java Workshop Schedule](https://azurecosmosdb.github.io/CosmosDBWorkshops/#schedule)   
+
 
 ### 8. Workshop deck
 1. [Overview, Value Proposition & Use Cases](https://azurecosmosdb.github.io/labs/decks/Overview-Value-Proposition-Use-Cases.pptx)  1day   
