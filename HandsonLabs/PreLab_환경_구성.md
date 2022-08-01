@@ -46,7 +46,9 @@ Connect-AzAccount -subscription <subscription id>
 ```powershell
 .\labSetup.ps1 -location 'Korea Central' -resourceGroupName 'name' # name을 원하는 이름으로 수정하세요
 ```
-
-## Azure 배포 결과 확인
+<br></br>
+## 5. Azure 배포 결과 확인
 1. http://portal.azure.com 로그인   
+2. 리소스 그룹(Resource Group) 클릭    
+![image](https://user-images.githubusercontent.com/44718680/182079888-16604b53-8567-4ebd-8d50-2540878cc68a.png)   
 
