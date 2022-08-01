@@ -91,7 +91,7 @@ Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 <br></br>
 -->
 ### 8. Java Lab Guides
-1. [Pre-lab: Lab 환경 배포](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/Lab01.md)  
+1. [Pre-lab: Lab 환경 배포](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab01.md#1)  
 2. [Creating a container in Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab01.md)   
 3. [Importing Data into Azure Cosmos DB with Azure Data Factory](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab02.md)   
 4. [Building a Java Console App on Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab05.md)   
