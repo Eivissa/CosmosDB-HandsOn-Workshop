@@ -8,7 +8,7 @@
 2. your\home\directory\Documents\CosmosLabs 경로 폴더 오픈   
     <img src="https://user-images.githubusercontent.com/44718680/182083771-7fdd3600-882f-4ca9-945e-a79629791b31.png"  width="400" height="600"/>
 
-3. 로딩된 프로젝트 파일 
+3. 로딩된 프로젝트 파일 확인
 ![image](https://user-images.githubusercontent.com/44718680/182084520-576f2ff3-091d-4b1a-b52f-162c95f507cb.png)   
 
 4. handsonlabs\lab01\ 폴더의 Lab01Main.java 파일 오픈
