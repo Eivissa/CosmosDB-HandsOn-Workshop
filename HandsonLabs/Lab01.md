@@ -201,7 +201,7 @@ logger.info("Container Id:\t{}",customContainer.getId());
 <br></br>
 # 예제 2. Populate a Container with Items using the SDK
 ## 1. 데이터 생성 
-데이터 조회 테스트를 위해 테스트 데이터 생성 코드를 작성해 보겠습니다.
+테스트 데이터 생성 코드를 작성해 보겠습니다.
 1. Lab01Main.java 파일을 열어서 아래와 같이 CosmosAsyncClient 인스턴스 생성 코드와 client.close(); 사이의 코드를 모두 삭제 합니다.
 ```java
 CosmosAsyncClient client = new CosmosClientBuilder()
@@ -329,7 +329,12 @@ public class Lab01Main {
 
 
 ## 2. 여러가지 유형의 데이터 생성 
-1. 새로운 코드 작성을 위해 main 메소의 내용을 아래와 같이 수정합니다.  
+1. 필요한 라이브러리 사용을 위해 아래 코드를 추가 합니다.
+```java
+import com.azure.cosmos.implementation.ConnectionPolicy;
+import com.azure.cosmos.handsonlabs.common.datatypes.WatchLiveTelevisionChannel;
+```
+2. main 메소의 내용을 아래와 같이 수정합니다.  
 ```java
  public static void main(String[] args) {
     
@@ -382,5 +387,6 @@ public class Lab01Main {
      client.close();        
  }
 ```
-
+3. 결과를 확인 합니다.
+- Azure portal에서 추가 입력된 데이터의 구조를 확인 합니다. 
 
