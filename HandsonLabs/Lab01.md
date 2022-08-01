@@ -154,10 +154,46 @@ logger.info("Container Id:\t{}",customContainer.getId());
     - Azure Portal에서 Cosmos DB 리소스에 데이터베이스 및 컨테이너 생성 여부 확인   
 
 ## 4. 컨테이너 사용자 지정 설정 적용 
-1. 우리는 작성한 코드 중에서 아래 코드를 통해 컨테이너의 이름이 CustomCollection 이고 파티션키가 type 값이며 RU가 1,000으로 설정된 것을 확인 할 수 있습니다.
+1. 우리는 작성한 코드 중에서 아래 코드를 통해 컨테이너의 이름이 CustomCollection 이고 파티션키가 type 값이며 RU가 1,000으로 설정된 것을 확인 할 수 있습니다.   
+**참고로 파티션 키는 대소문자를 구분하므로 주의해야 합니다.**
 ```java
  CosmosContainerProperties containerProperties = 
      new CosmosContainerProperties("CustomCollection", "/type");
  return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(400));
 ```
-    
+2. 이제 컨테이너의 설정을 변경해보기 위해 코드에서 아래와 같이 RU값을 2,000으로 변경해 봅니다.
+```java
+ CosmosContainerProperties containerProperties = 
+     new CosmosContainerProperties("CustomCollection", "/type");
+ return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(2000));
+``` 
+3. 또한 인덱싱 정책을 설정하는 코드를 위 컨테이너 설정 코드 위에 추가 합니다.
+```java
+ IndexingPolicy indexingPolicy = new IndexingPolicy();
+ indexingPolicy.setIndexingMode(IndexingMode.CONSISTENT);
+ indexingPolicy.setAutomatic(true);
+ List<IncludedPath> includedPaths = new ArrayList<>();
+ IncludedPath includedPath = new IncludedPath("/*");
+ includedPaths.add(includedPath);
+ indexingPolicy.setIncludedPaths(includedPaths);  
+
+ CosmosContainerProperties containerProperties = 
+     new CosmosContainerProperties("CustomCollection", "/type");
+ return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(2000));    
+```
+4. 인덱싱 정책을 실제 적용하기 위해 CosmosContainerProperties 부분을 수정합니다. 
+```java
+ IndexingPolicy indexingPolicy = new IndexingPolicy();
+ indexingPolicy.setIndexingMode(IndexingMode.CONSISTENT);
+ indexingPolicy.setAutomatic(true);
+ List<IncludedPath> includedPaths = new ArrayList<>();
+ IncludedPath includedPath = new IncludedPath("/*");
+ includedPaths.add(includedPath);
+ indexingPolicy.setIncludedPaths(includedPaths);  
+
+ CosmosContainerProperties containerProperties = 
+     new CosmosContainerProperties("CustomCollection", "/type");
+ containerProperties.setIndexingPolicy(indexingPolicy);
+ return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(10000));    
+```
+
