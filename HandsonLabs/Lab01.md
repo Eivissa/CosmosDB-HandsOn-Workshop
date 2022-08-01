@@ -212,19 +212,20 @@ CosmosAsyncClient client = new CosmosClientBuilder()
 client.close();  
 ```
  
- 2. 아래 코드를 CosmosAsyncClient 인스턴스 생성 코드와 client.close(); 사이에 추가 합니다.
-```java
-targetDatabase = client.getDatabase("EntertainmentDatabase");
-customContainer = targetDatabase.getContainer("CustomCollection");
-```
-
-3. 필요한 라이브러리 사용을 위해 아래 코드를 추가 합니다.
+2. 필요한 라이브러리 사용을 위해 아래 코드를 추가 합니다.
 ```java
 import com.azure.cosmos.handsonlabs.common.datatypes.PurchaseFoodOrBeverage;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 ```
+
+3. 아래 코드를 CosmosAsyncClient 인스턴스 생성 코드와 client.close(); 사이에 추가 합니다.
+```java
+targetDatabase = client.getDatabase("EntertainmentDatabase");
+customContainer = targetDatabase.getContainer("CustomCollection");
+```
+
 4. 테스트 데이터 생성 코드를 추가 합니다.
 ```java
            ArrayList<PurchaseFoodOrBeverage> foodInteractions = new ArrayList<PurchaseFoodOrBeverage>();
