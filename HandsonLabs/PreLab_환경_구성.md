@@ -11,7 +11,7 @@ Link: https://docs.microsoft.com/en-us/powershell/azure/install-az-ps
 -->
 ## 1.Example Github Workshop resource download   
 ```
-    git clone https://github.com/AzureCosmosDB/labs.git
+git clone https://github.com/AzureCosmosDB/labs.git
 ```  
 
 ## 2. Lab에 사용될 코드 복사
