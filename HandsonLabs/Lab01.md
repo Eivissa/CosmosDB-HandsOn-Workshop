@@ -1,3 +1,3 @@
 
-### 1. Pre-lab: Lab 환경 배포
+# Pre-lab: Lab 환경 배포
 
