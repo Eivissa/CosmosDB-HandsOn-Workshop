@@ -96,7 +96,7 @@ Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 3. [Importing Data into Azure Cosmos DB with Azure Data Factory](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab02.md#importing-data-into-azure-cosmos-db-with-azure-data-factory)   
 4. [Building a Java Console App on Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab05.md#building-a-java-console-app-on-azure-cosmos-db)   
 5. [Intro to Azure Cosmos DB Change Feed](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab08.md#intro-to-azure-cosmos-db-change-feed)   
-6. [Troubleshooting Performance in Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/6453b507c5df4c715ed54acef6e04452175afe6a/HandsonLabs/Lab09.md)   
+6. [Troubleshooting Performance in Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab09.md#troubleshooting-performance-in-azure-cosmos-db)   
 
 <!--[Lab 1: Creating a container in Azure Cosmos DB]   
 [Lab 2: Importing Data into Azure Cosmos DB with Azure Data Factory]   
