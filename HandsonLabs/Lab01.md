@@ -200,6 +200,7 @@ logger.info("Container Id:\t{}",customContainer.getId());
 <br></br>
 <br></br>
 # 예제 2. Populate a Container with Items using the SDK
+## 1. 데이터 생성 
 데이터 조회 테스트를 위해 테스트 데이터 생성 코드를 작성해 보겠습니다.
 1. Lab01Main.java 파일을 열어서 아래와 같이 CosmosAsyncClient 인스턴스 생성 코드와 client.close(); 사이의 코드를 모두 삭제 합니다.
 ```java
@@ -327,5 +328,59 @@ public class Lab01Main {
 - Azure portal에서 데이터 건수를 확인 합니다. 
 
 
+## 2. 여러가지 유형의 데이터 생성 
+1. 새로운 코드 작성을 위해 main 메소의 내용을 아래와 같이 수정합니다.  
+```java
+ public static void main(String[] args) {
+    
+     CosmosAsyncClient client = new CosmosClientBuilder()
+             .endpoint(endpointUri)
+             .key(primaryKey)
+             .consistencyLevel(ConsistencyLevel.EVENTUAL)
+             .buildAsyncClient();
+
+     targetDatabase = client.getDatabase("EntertainmentDatabase");
+     customContainer = targetDatabase.getContainer("CustomCollection");
+
+     client.close();        
+ }
+```
+2. 
+```java
+ public static void main(String[] args) {
+     ConnectionPolicy defaultPolicy = ConnectionPolicy.getDefaultPolicy();
+    
+     CosmosAsyncClient client = new CosmosClientBuilder()
+             .endpoint(endpointUri)
+             .key(primaryKey)
+             .consistencyLevel(ConsistencyLevel.EVENTUAL)
+             .contentResponseOnWriteEnabled(true)
+             .buildAsyncClient();
+
+     targetDatabase = client.getDatabase("EntertainmentDatabase");
+     customContainer = targetDatabase.getContainer("CustomCollection");
+
+     ArrayList<WatchLiveTelevisionChannel> tvInteractions = new ArrayList<WatchLiveTelevisionChannel>();
+     Faker faker = new Faker();
+
+     for (int i= 0; i < 500;i++){  
+         WatchLiveTelevisionChannel doc = new WatchLiveTelevisionChannel(); 
+
+         doc.setChannelName(faker.funnyName().toString());
+         doc.setMinutesViewed(faker.random().nextInt(1, 60));
+         doc.setType("WatchLiveTelevisionChannel");
+         doc.setId(UUID.randomUUID().toString());
+         tvInteractions.add(doc);
+     }
+
+     Flux<WatchLiveTelevisionChannel> tvInteractionsFlux = Flux.fromIterable(tvInteractions);
+     List<CosmosAsyncItemResponse<WatchLiveTelevisionChannel>> results = 
+         tvInteractionsFlux.flatMap(interaction -> customContainer.createItem(interaction)).collectList().block();
+
+     results.forEach(result -> logger.info("Item Created\t{}",result.getItem().getId()));
+
+     client.close();        
+ }
+```
 
 
