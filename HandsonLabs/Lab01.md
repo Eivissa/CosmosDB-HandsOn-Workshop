@@ -159,7 +159,7 @@ logger.info("Container Id:\t{}",customContainer.getId());
 ```java
  CosmosContainerProperties containerProperties = 
      new CosmosContainerProperties("CustomCollection", "/type");
- return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(400));
+ return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(1000));
 ```
 2. 이제 컨테이너의 설정을 변경해보기 위해 코드에서 아래와 같이 RU값을 2,000으로 변경해 봅니다.
 ```java
