@@ -23,6 +23,12 @@ Set-ExecutionPolicy Unrestricted -Scope Process
 .\labCodeSetup.ps1
 ```
 
+![image](https://user-images.githubusercontent.com/44718680/182064874-fe967e8e-87f4-4e70-8364-4593b7ac669b.png)
+## 3. 리소스 배포 스크립트 수정
+C:\labs\java\setup\labSetup.ps1 스크립트를 아래 링크의 내용으로 변경   
+https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/tree/main/HandsonLabs/Files/labSetup.ps1
+
+
 ## 3. Lab에 사용될 리소스 배포(Powershell)
 ```powershell
 Connect-AzAccount
