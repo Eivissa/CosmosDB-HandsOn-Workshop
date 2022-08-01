@@ -141,4 +141,9 @@ client.createDatabaseIfNotExists("EntertainmentDatabase").flatMap(databaseRespon
 while (!resourcesCreated.get());
 ```
 
+3. while 반복문 아래에 아래 코드를 추가 합니다.
+```
+logger.info("Database Id:\t{}",targetDatabase.getId());
+logger.info("Container Id:\t{}",customContainer.getId()); 
+```
 
