@@ -127,10 +127,10 @@ private static AtomicBoolean resourcesCreated = new AtomicBoolean(false);
 2. 아래의 코드를 main 메소드의 CosmosAsyncClient 생성과 client.close(); 코드 사이에 추가 합니다.
 ```
 client.createDatabaseIfNotExists("EntertainmentDatabase").flatMap(databaseResponse -> {
-    targetDatabase = databaseResponse.getDatabase();
+    targetDatabase = client.getDatabase(databaseResponse.getProperties().getId());
     CosmosContainerProperties containerProperties = 
         new CosmosContainerProperties("CustomCollection", "/type");
-    return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(400));
+    return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(1000));
 }).flatMap(containerResponse -> {
     customContainer = targetDatabase.getContainer(containerResponse.getProperties().getId());
     return Mono.empty();
