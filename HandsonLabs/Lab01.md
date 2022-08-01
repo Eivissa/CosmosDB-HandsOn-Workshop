@@ -151,8 +151,8 @@ logger.info("Container Id:\t{}",customContainer.getId());
     <img src="https://user-images.githubusercontent.com/44718680/182108533-31bbd764-c71f-4639-b747-aa53b5679b64.png"  width="400" height="600"/>
     
 5. 실행 결과를 확인 합니다.   
-- 출력된 로그를 확인   
-- Azure Portal에서 Cosmos DB 리소스에 데이터베이스 및 컨테이너 생성 여부 확인   
+    - 출력된 로그를 확인   
+    - Azure Portal에서 Cosmos DB 리소스에 데이터베이스 및 컨테이너 생성 여부 확인   
 
 
 
