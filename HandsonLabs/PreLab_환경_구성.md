@@ -14,7 +14,7 @@ Link: https://docs.microsoft.com/en-us/powershell/azure/install-az-ps
 git clone https://github.com/AzureCosmosDB/labs.git
 ```  
 
-## 2. Lab에 사용될 코드 복사
+## 2. Lab에 사용될 코드 복사(Powershell)
 ```
 cd labs\java\setup
 
@@ -23,7 +23,7 @@ Set-ExecutionPolicy Unrestricted -Scope Process
 .\labCodeSetup.ps1
 ```
 
-## 3. Lab에 사용될 리소스 배포
+## 3. Lab에 사용될 리소스 배포(Powershell)
 ```
 Connect-AzAccount
 
