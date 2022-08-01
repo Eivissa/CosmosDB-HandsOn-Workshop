@@ -35,6 +35,18 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
                                           "path": "C:\\Program Files\\Zulu\\zulu-8"}]
         }
 ```
+<!--
+####    - Test java sample download
+```
+    git clone https://github.com/Azure-Samples/azure-cosmos-java-getting-started.git
+```
+####    - Code Test 
+```
+    cd azure-cosmos-java-getting-started
+    mvn clean package
+```
+-->
+
 ### 4. 파워쉘 모듈 설치   
 Azure 파워쉘 모듈이 설치되지 않은 경우 설치 해야 함   
 ```powershell
