@@ -1,5 +1,5 @@
 
-# Creating a container in Azure Cosmos DB
+# 예제 1. Creating a container in Azure Cosmos DB
 
 이 실습에서는 다양한 파티션 키와 설정을 사용하여 여러 Azure Cosmos DB 컨테이너를 만듭니다. 
 
@@ -197,3 +197,6 @@ logger.info("Container Id:\t{}",customContainer.getId());
  return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(2000));    
 ```
 5. 변경된 부분을 확인하기 위해 Azure portal에서 Cosmos DB리소스의 EntertainmentDatabase 데이터베이스를 삭제 후 해당 코드를 다시 수행해 봅니다. (Run Java)
+<br></br>
+<br></br>
+# 예제 2. Creating a container in Azure Cosmos DB
