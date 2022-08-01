@@ -47,4 +47,6 @@ Connect-AzAccount -subscription <subscription id>
 .\labSetup.ps1 -location 'Korea Central' -resourceGroupName 'name' # name을 원하는 이름으로 수정하세요
 ```
 
-![image](https://user-images.githubusercontent.com/44718680/182065234-0ac4af60-7997-44aa-8f43-a1fae288b28a.png)
+## Azure 배포 결과 확인
+1. http://portal.azure.com 로그인   
+
