@@ -104,4 +104,13 @@ endpointUri 변수의 경우 자리 값을 URI 값으로 바꾸고 primaryKey �
  }
  ```
 
+8. 새 터미널 실행   
+    <img src="https://user-images.githubusercontent.com/44718680/182104040-79a3ed8d-babb-4475-8870-93bf0fc9b0ff.png"  width="500" height="380"/>
+
+
+9. clean package로 정상 빌드 여부를 확인 합니다. 
+```mvn 
+mvn clean package
+```
+
 
