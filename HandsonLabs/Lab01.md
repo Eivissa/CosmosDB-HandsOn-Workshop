@@ -1,3 +1,3 @@
 
-# Pre-lab: Lab 환경 배포
+# Creating a container in Azure Cosmos DB
 
