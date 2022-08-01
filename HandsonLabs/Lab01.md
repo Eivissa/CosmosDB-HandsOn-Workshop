@@ -8,14 +8,22 @@
 2. your\home\directory\Documents\CosmosLabs 경로 폴더 오픈   
     <img src="https://user-images.githubusercontent.com/44718680/182083771-7fdd3600-882f-4ca9-945e-a79629791b31.png"  width="400" height="600"/>
 
-3. 로딩된 프로젝트 파일 확인
+3. pom.xml 파일에서 azure-cosmos의 dependency의 버전을 *LATEST* 로 변경   
+
+    변경전   
+     ![image](https://user-images.githubusercontent.com/44718680/182099756-ccc4c95b-9c45-4039-9533-b8c35b459a15.png)   
+    변경후   
+     ![image](https://user-images.githubusercontent.com/44718680/182100655-4d913de1-c949-4c50-a60b-321c5db2c2ac.png)   
+
+
+4. 로딩된 프로젝트 파일 확인
 ![image](https://user-images.githubusercontent.com/44718680/182084520-576f2ff3-091d-4b1a-b52f-162c95f507cb.png)   
 
-4. Lab01외에 다른 Lab은 최상위 폴더로 잠시 이동 시켜둡니다.   
+5. Lab01외에 다른 Lab은 최상위 폴더로 잠시 이동 시켜둡니다.   
     ![image](https://user-images.githubusercontent.com/44718680/182098597-58150a8d-b017-4b45-94b4-ac54a3e22aa8.png)   
     ![image](https://user-images.githubusercontent.com/44718680/182098884-b80b96b3-fc10-4e8c-a4dd-519420fe7e4e.png)   
 
-5. handsonlabs\lab01\ 폴더의 Lab01Main.java 파일 오픈
+6. handsonlabs\lab01\ 폴더의 Lab01Main.java 파일 오픈
 ![image](https://user-images.githubusercontent.com/44718680/182088478-72367395-6d0f-4953-a1c5-5562ad1e6dce.png)
 <br></br>
 
