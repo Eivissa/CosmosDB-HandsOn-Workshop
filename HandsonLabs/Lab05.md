@@ -134,51 +134,46 @@ import com.google.common.collect.Lists;
 
 1. 앞서 작성한 코드를 복사하여 중복되도록 붙여 넣습니다.
 ```java
- String sqlA = "SELECT f.description, f.manufacturerName, " + 
-                 "f.servings FROM foods f WHERE f.foodGroup = " + 
-                 "'Sweets' and IS_DEFINED(f.description) and " + 
-                 "IS_DEFINED(f.manufacturerName) and IS_DEFINED(f.servings)";
+        String sqlA = "SELECT f.description, f.manufacturerName, f.servings FROM foods f WHERE f.foodGroup = 'Sweets' and IS_DEFINED(f.description) and IS_DEFINED(f.manufacturerName) and IS_DEFINED(f.servings)";
+        
+        CosmosQueryRequestOptions optionsA = new CosmosQueryRequestOptions();
+        optionsA.setMaxDegreeOfParallelism(1);
+        container.queryItems(sqlA, optionsA, Food.class).byPage()
+                .flatMap(page -> {
+                for (Food fd : page.getResults()) {
+                    String msg="";
+                    msg = String.format("%s by %s\n",fd.getDescription(),fd.getManufacturerName());
+       
+                    for (Serving sv : fd.getServings()) {
+                        msg += String.format("\t%f %s\n",sv.getAmount(),sv.getDescription());
+                    }
+                    msg += "\n";
+                    logger.info(msg);
+                }
+       
+                return Mono.empty();
+        }).blockLast();
 
- CosmosQueryRequestOptions optionsA = new CosmosQueryRequestOptions();
- optionsA.setMaxDegreeOfParallelism(1);
- container.queryItems(sqlA, optionsA, Food.class).byPage()
-         .flatMap(page -> {
-         for (Food fd : page.getResults()) {
-             String msg="";
-             msg = String.format("%s by %s\n",fd.getDescription(),fd.getManufacturerName());
+        String sqlA = "SELECT f.description, f.manufacturerName, f.servings FROM foods f WHERE f.foodGroup = 'Sweets' and IS_DEFINED(f.description) and IS_DEFINED(f.manufacturerName) and IS_DEFINED(f.servings)";
+        
+        CosmosQueryRequestOptions optionsA = new CosmosQueryRequestOptions();
+        optionsA.setMaxDegreeOfParallelism(1);
+        container.queryItems(sqlA, optionsA, Food.class).byPage()
+                .flatMap(page -> {
+                for (Food fd : page.getResults()) {
+                    String msg="";
+                    msg = String.format("%s by %s\n",fd.getDescription(),fd.getManufacturerName());
+       
+                    for (Serving sv : fd.getServings()) {
+                        msg += String.format("\t%f %s\n",sv.getAmount(),sv.getDescription());
+                    }
+                    msg += "\n";
+                    logger.info(msg);
+                }
+       
+                return Mono.empty();
+        }).blockLast();
 
-             for (Serving sv : fd.getServings()) {
-                 msg += String.format("\t%f %s\n",sv.getAmount(),sv.getDescription());
-             }
-             msg += "\n";
-             logger.info(msg);
-         }
-
-         return Mono.empty();
- }).blockLast();
-
- String sqlA = "SELECT f.description, f.manufacturerName, " + 
-                 "f.servings FROM foods f WHERE f.foodGroup = " + 
-                 "'Sweets' and IS_DEFINED(f.description) and " + 
-                 "IS_DEFINED(f.manufacturerName) and IS_DEFINED(f.servings)";
-
- CosmosQueryRequestOptions optionsA = new CosmosQueryRequestOptions();
- optionsA.setMaxDegreeOfParallelism(1);
- container.queryItems(sqlA, optionsA, Food.class).byPage()
-         .flatMap(page -> {
-         for (Food fd : page.getResults()) {
-             String msg="";
-             msg = String.format("%s by %s\n",fd.getDescription(),fd.getManufacturerName());
-
-             for (Serving sv : fd.getServings()) {
-                 msg += String.format("\t%f %s\n",sv.getAmount(),sv.getDescription());
-             }
-             msg += "\n";
-             logger.info(msg);
-         }
-
-         return Mono.empty();
- }).blockLast();    
 ```
 
 2. 중복 쿼리 코드 내에서 문자열 sqlA를 정의한 위치를 찾아 아래와 같이 새 쿼리 문자열 sqlB로 바꿉니다.
