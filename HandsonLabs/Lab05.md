@@ -81,3 +81,156 @@ import com.google.common.collect.Lists;
 ```sql
   SELECT c.description FROM c WHERE c.foodGroup = "Sweets"
 ```
+
+## 2. Execute a Query Against a Single Azure Cosmos DB Partition
+1. 다음으로 코드를 추가 해야 할 부분을 확인합니다.  
+```java
+ container.readItem("19130", new PartitionKey("Sweets"), Food.class)
+         .flatMap(candyResponse -> {
+         Food candy = candyResponse.getItem();
+         logger.info("Read {}",candy.getDescription());
+         return Mono.empty();
+ }).block();
+    
+ // <== New code goes here
+```
+
+2. 다음 SQL 쿼리 정의를 위에서 확인한 코드 추가 부분에 추가 합니다.
+```java
+   String sqlA = "SELECT f.description, f.manufacturerName, f.servings FROM foods f WHERE f.foodGroup = 'Sweets' and IS_DEFINED(f.description) and IS_DEFINED(f.manufacturerName) and IS_DEFINED(f.servings)";
+
+```
+이 쿼리는 foodGroup이 Sweets 값으로 설정된 모든 음식을 선택합니다. 
+또한 description, manufacturerName 및 servings 속성이 정의된 문서만 선택합니다.
+이 쿼리에는 WHERE 절에 파티션 키가 있기 때문에 이 쿼리는 단일 파티션 내에서 실행할 수 있습니다.
+참고: https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/sql-query-is-defined 
+
+3. 아래 코드를 쿼리 정의 밑에 추가합니다.
+```java
+ CosmosQueryRequestOptions optionsA = new CosmosQueryRequestOptions();
+ optionsA.setMaxDegreeOfParallelism(1);
+ container.queryItems(sqlA, optionsA, Food.class).byPage()
+         .flatMap(page -> {
+         for (Food fd : page.getResults()) {
+             String msg="";
+             msg = String.format("%s by %s\n",fd.getDescription(),fd.getManufacturerName());
+
+             for (Serving sv : fd.getServings()) {
+                 msg += String.format("\t%f %s\n",sv.getAmount(),sv.getDescription());
+             }
+             msg += "\n";
+             logger.info(msg);
+         }
+
+         return Mono.empty();
+ }).blockLast();
+```
+
+4. Lab05Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다. 
+
+5. Cosmos DB 데이터 탐색기에서 아래 쿼리를 수행하여 결과를 확인 합니다.
+
+## 3. Execute a Query Against Multiple Azure Cosmos DB Partitions
+
+1. 앞서 작성한 코드를 복사하여 중복되도록 붙여 넣습니다.
+```java
+ String sqlA = "SELECT f.description, f.manufacturerName, " + 
+                 "f.servings FROM foods f WHERE f.foodGroup = " + 
+                 "'Sweets' and IS_DEFINED(f.description) and " + 
+                 "IS_DEFINED(f.manufacturerName) and IS_DEFINED(f.servings)";
+
+ CosmosQueryRequestOptions optionsA = new CosmosQueryRequestOptions();
+ optionsA.setMaxDegreeOfParallelism(1);
+ container.queryItems(sqlA, optionsA, Food.class).byPage()
+         .flatMap(page -> {
+         for (Food fd : page.getResults()) {
+             String msg="";
+             msg = String.format("%s by %s\n",fd.getDescription(),fd.getManufacturerName());
+
+             for (Serving sv : fd.getServings()) {
+                 msg += String.format("\t%f %s\n",sv.getAmount(),sv.getDescription());
+             }
+             msg += "\n";
+             logger.info(msg);
+         }
+
+         return Mono.empty();
+ }).blockLast();
+
+ String sqlA = "SELECT f.description, f.manufacturerName, " + 
+                 "f.servings FROM foods f WHERE f.foodGroup = " + 
+                 "'Sweets' and IS_DEFINED(f.description) and " + 
+                 "IS_DEFINED(f.manufacturerName) and IS_DEFINED(f.servings)";
+
+ CosmosQueryRequestOptions optionsA = new CosmosQueryRequestOptions();
+ optionsA.setMaxDegreeOfParallelism(1);
+ container.queryItems(sqlA, optionsA, Food.class).byPage()
+         .flatMap(page -> {
+         for (Food fd : page.getResults()) {
+             String msg="";
+             msg = String.format("%s by %s\n",fd.getDescription(),fd.getManufacturerName());
+
+             for (Serving sv : fd.getServings()) {
+                 msg += String.format("\t%f %s\n",sv.getAmount(),sv.getDescription());
+             }
+             msg += "\n";
+             logger.info(msg);
+         }
+
+         return Mono.empty();
+ }).blockLast();    
+```
+
+2. 중복 쿼리 코드 내에서 문자열 sqlA를 정의한 위치를 찾아 아래와 같이 새 쿼리 문자열 sqlB로 바꿉니다.
+```sql
+String sqlB = "SELECT f.id, f.description, f.manufacturerName, f.servings FROM foods f WHERE IS_DEFINED(f.manufacturerName)";
+```
+
+3. 이 쿼리의 경우 더 큰 동시성을 사용하여 실행하고 최대 항목 수를 100 개로 허용하도록 수정합니다.    
+   또한 코드의 optionsA, sqlA를 optionB, sqlB로 변경해야 합니다.
+
+Before
+```java
+CosmosQueryRequestOptions optionsA = new CosmosQueryRequestOptions();
+optionsA.setMaxDegreeOfParallelism(1);
+container.queryItems(sqlA, optionsA, Food.class).byPage()
+```   
+After
+```java
+CosmosQueryRequestOptions optionsB = new CosmosQueryRequestOptions();
+optionsB.setMaxDegreeOfParallelism(5);
+container.queryItems(sqlB, optionsB, Food.class).byPage(100)
+```
+
+4. 아래 코드를 클래스 변수 선언부에 추가 합니다.
+```java
+ private static AtomicInteger pageCount = new AtomicInteger(0);
+```
+thread-safe page count를 처리하기 위함입니다.
+
+5. 아래 코드 부분을 찾습니다.
+```java
+ for (Food fd : page.getResults()) {
+     String msg="";
+     msg = String.format("%s by %s\n",fd.getDescription(),fd.getManufacturerName());
+
+     for (Serving sv : fd.getServings()) {
+         msg += String.format("\t%f %s\n",sv.getAmount(),sv.getDescription());
+     }
+     msg += "\n";
+     logger.info(msg);
+ } 
+```
+그리고 아래 코드로 바꾸어 줍니다.
+```java
+ String msg="";
+
+ msg = String.format("---Page %d---\n",pageCount.getAndIncrement());
+
+ for (Food fd : page.getResults()) {
+     msg += String.format("\t[%s]\t%s\t%s\n",fd.getId(),fd.getDescription(),fd.getManufacturerName());
+ }
+ logger.info(msg);    
+```
+
+
