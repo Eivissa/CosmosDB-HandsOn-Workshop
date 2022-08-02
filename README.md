@@ -111,10 +111,10 @@ Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 [Post-lab: Cleaning Up]   
 -->
 <br></br>
-### 9. Benchmark tool
-[Benchmark tool test](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-cosmos-benchmark)   
-[Performance tips](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/performance-tips-java-sdk-v4-sql)   
-[Troubleshooting](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/troubleshoot-java-sdk-v4-sql)   
+### 9. Benchmark tool   
+1. [Benchmark tool test](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-cosmos-benchmark)   
+2. [Performance tips](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/performance-tips-java-sdk-v4-sql)   
+3. [Troubleshooting](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/troubleshoot-java-sdk-v4-sql)   
 <br></br>
 ### 10. 종료 후 체크리스트
 - 테스트에 사용된 리소스를 모두 삭제합니다. (리소스 그룹을 삭제하면 한번에 모두 삭제됩니다.)
