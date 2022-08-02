@@ -33,3 +33,32 @@
 7. 컨테이너 최대 RU/초 필드에 값 11000을 입력합니다.
 
 8. 확인 버튼을 클릭합니다.
+
+**데이터베이스와 컨테이너가 생성될 동안 잠시 기다려 주세요**
+
+
+## 2. Import Lab Data Into Container
+Azure Data Factory를 사용하여 Azure Blob Storage의 Nutrition.json 파일에 저장된 JSON 배열 데이터를 가져옵니다.
+
+1. Cosmos DB 리소스 그룹에 미리 생성된 Data Factory 리소스를 사용할 수 있습니다. 
+
+2. Data Factory의 Open Azure Data Factory Studio 버튼을 선택합니다. 
+![image](https://user-images.githubusercontent.com/44718680/182300300-aeaee986-7224-4610-9a84-ad5000645819.png)
+
+3. 수집 버튼을 선택 합니다. 
+![image](https://user-images.githubusercontent.com/44718680/182300407-ad97631b-1869-4dab-a3e5-e70713c01e19.png)
+
+4. 기본 제공 복사 작업을 선택합니다.   
+   작업 주기 또는 작업 일정에서 지금 한 번 실행을 선택 합니다.   
+   이후 다음를 선택 합니다. 
+![image](https://user-images.githubusercontent.com/44718680/182300514-c81cee4b-f9d3-4084-8756-94825d36ec9a.png)
+
+5. 원본 유형에서 Azure Blob Storage를 선택하고 새 연결을 선택합니다. 
+![image](https://user-images.githubusercontent.com/44718680/182300933-ff1cc8e4-7e03-4706-982d-c6b3160f9eb3.png)
+
+6. 이름을 NutritionJson로 입력하고 인증 방식을 **SAS URI** 방식으로 선택 후 아래 값을 SAS URL 부분에 붙여 넣습니다.
+```
+https://cosmoslabsstorageaccount.blob.core.windows.net/nutrition-data?si=container-list-read-policy&spr=https&sv=2021-06-08&sr=c&sig=jGrmrokYikbgbuW9we2am%2BwAq%2BC%2BxfZcPYswOeSQpAU%3D
+```   
+    ![image](https://user-images.githubusercontent.com/44718680/182301456-72ede8f4-e9f4-4fc4-866a-5c6af08810a0.png)
+
