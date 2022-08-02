@@ -93,7 +93,7 @@ Azure Data Factory를 사용하여 Azure Blob Storage의 Nutrition.json 파일�
  15. 몇 분 후 페이지를 새로 고치면 ImportNutrition 파이프라인의 상태가 Succeeded로 나열되어야 합니다. 
      가져오기 프로세스가 완료되면 ADF를 닫습니다. 이제 가져온 데이터의 유효성 검사를 진행합니다.
 
-## 2. Validate Imported Data
+## 3. Validate Imported Data
 
 1. 리소스 그룹을 선택합니다.   
 ![image](https://user-images.githubusercontent.com/44718680/182298967-92f8ceb3-773e-48dc-afbb-3c7033bdc07a.png)   
