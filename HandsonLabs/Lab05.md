@@ -206,7 +206,7 @@ container.queryItems(sqlB, optionsB, Food.class).byPage(100)
 ```java
  private static AtomicInteger pageCount = new AtomicInteger(0);
 ```
-thread-safe page count를 처리하기 위함입니다.
+   thread-safe page count를 처리하기 위함입니다.
 
 5. 아래 코드 부분을 찾습니다.
 ```java
@@ -233,4 +233,6 @@ thread-safe page count를 처리하기 위함입니다.
  logger.info(msg);    
 ```
 
+6. Lab05Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다. 
 
+7. Cosmos DB 데이터 탐색기에서 쿼리를 수행하여 결과를 확인 합니다.
