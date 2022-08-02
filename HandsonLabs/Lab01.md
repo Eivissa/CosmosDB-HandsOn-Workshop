@@ -390,3 +390,5 @@ import com.azure.cosmos.handsonlabs.common.datatypes.WatchLiveTelevisionChannel;
 3. 결과를 확인 합니다.
 - Azure portal에서 추가 입력된 데이터의 구조를 확인 합니다. 
 
+Next Lab : [Importing Data into Azure Cosmos DB with Azure Data Factory](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab02.md#importing-data-into-azure-cosmos-db-with-azure-data-factory)   
+[목차로 돌아가기](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop#8-java-lab-guides)
