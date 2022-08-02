@@ -60,5 +60,5 @@ Connect-AzAccount -subscription <subscription id>
 6. Cosmos DB Key 정보 확인
 ![image](https://user-images.githubusercontent.com/44718680/182080319-8bda1aef-1a1e-4c10-bec6-e83a1327ab1b.png)
  
-Next Lab. [Creating a container in Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab01.md#creating-a-container-in-azure-cosmos-db)   
+Next Lab : [Creating a container in Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab01.md#creating-a-container-in-azure-cosmos-db)   
 [목차로 돌아가기](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop#8-java-lab-guides)
