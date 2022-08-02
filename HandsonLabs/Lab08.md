@@ -15,7 +15,6 @@
 2. your\home\directory\Documents\CosmosLabs 폴더를 오픈 합니다. 
 
 3.ㅇㄹ
-
    <img src="https://user-images.githubusercontent.com/44718680/182337708-6ac31074-6acf-419b-b7dc-d3762e6c3fd5.png"  width="300" height="450"/>
 
 
