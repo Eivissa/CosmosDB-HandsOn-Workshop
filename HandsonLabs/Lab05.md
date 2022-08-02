@@ -231,3 +231,8 @@ container.queryItems(sqlB, optionsB, Food.class).byPage(100)
 6. Lab05Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다. 
 
 7. Cosmos DB 데이터 탐색기에서 쿼리를 수행하여 결과를 확인 합니다.
+
+
+Next Lab : [Intro to Azure Cosmos DB Change Feed](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab08.md#intro-to-azure-cosmos-db-change-feed)   
+[목차로 돌아가기](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop#8-java-lab-guides)
+
