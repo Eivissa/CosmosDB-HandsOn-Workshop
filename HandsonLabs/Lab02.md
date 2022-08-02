@@ -112,4 +112,6 @@ Azure Data Factory를 사용하여 Azure Blob Storage의 Nutrition.json 파일�
 ![image](https://user-images.githubusercontent.com/44718680/182306930-f0deb9e7-2c03-4d15-a94b-7a4903107372.png)
 
 
+Next Lab : [Building a Java Console App on Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab05.md#building-a-java-console-app-on-azure-cosmos-db)   
+[목차로 돌아가기](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop#8-java-lab-guides)
 
