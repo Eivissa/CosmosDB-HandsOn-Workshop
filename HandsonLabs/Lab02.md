@@ -56,10 +56,24 @@ Azure Data Factory를 사용하여 Azure Blob Storage의 Nutrition.json 파일�
 5. 원본 유형에서 Azure Blob Storage를 선택하고 새 연결을 선택합니다. 
 ![image](https://user-images.githubusercontent.com/44718680/182300933-ff1cc8e4-7e03-4706-982d-c6b3160f9eb3.png)
 
-6. 이름을 NutritionJson로 입력하고 인증 방식을 **SAS URI** 방식으로 선택 후 아래 값을 SAS URL 부분에 붙여 넣습니다.
-```
-https://cosmoslabsstorageaccount.blob.core.windows.net/nutrition-data?si=container-list-read-policy&spr=https&sv=2021-06-08&sr=c&sig=jGrmrokYikbgbuW9we2am%2BwAq%2BC%2BxfZcPYswOeSQpAU%3D
-```   
-
+6. 이름을 NutritionJson로 입력하고 인증 방식을 **SAS URI** 방식으로 선택 후 아래 값을 SAS URL 부분에 붙여 넣습니다.   
+   https://cosmoslabsstorageaccount.blob.core.windows.net/nutrition-data?si=container-list-read-policy&spr=https&sv=2021-06-08&sr=c&sig=jGrmrokYikbgbuW9we2am%2BwAq%2BC%2BxfZcPYswOeSQpAU%3D   
 ![image](https://user-images.githubusercontent.com/44718680/182301456-72ede8f4-e9f4-4fc4-866a-5c6af08810a0.png)
+
+7. 파일 또는 폴더 텍스트 박스안에 nutrition-data 를 입력 후 찾아보기를 선택하여 NutritionData.json 파일을 선택합니다.
+![image](https://user-images.githubusercontent.com/44718680/182303256-a4638a3a-589e-4fba-a835-d1ca0537f95b.png)
+
+8. 옵션의 이진 복사, 재귀적, 파티션 검색 사용을 모두 체크 해제 한 후 다음을 클릭 합니다.
+![image](https://user-images.githubusercontent.com/44718680/182303404-7889e819-84c4-4bc0-aceb-565c76023d32.png)
+
+9. 파일 포맷은 JSON 포맷을 선택 후 다음을 클릭 합니다.
+![image](https://user-images.githubusercontent.com/44718680/182303637-5e61dbc0-39db-4795-b623-91e8bc2b0776.png)
+
+10. 대상 데이터 저장소의 경우 새 연결 만들기를 선택하고 Azure Cosmos DB(SQL API)를 선택하여 Cosmos DB 대상 데이터 저장소를 추가합니다.
+![image](https://user-images.githubusercontent.com/44718680/182303717-1b3e3256-80dd-498b-a5ed-a85f6e444eb3.png)
+
+
+
+
+
 
