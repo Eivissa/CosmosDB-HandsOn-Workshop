@@ -345,3 +345,11 @@ public class ChangeFeedMain {
     }
 }
 ```
+
+5. ChangeFeedMain.java 파일 우클릭 후 "Run Java"로 실행합니다.    
+
+6. DataGenerator.java를 실행하고 ChangeFeedMain.java 터미널 창의 로그 변화를 확인 합니다.
+
+7. Cosmos DB 데이터 탐색기에서 입력된 데이터를 확인 합니다.  
+   정상적으로 동작할 경우 DataGenerator.java에서 발생시킨 데이터가 StoreDatabase 데이터베이스의 CartContainer 컨테이너로 입력되며 ChangeFeedMain.java에 의해 CartContainerByState 컨테이너에도 데이터가 입력되는 것을 확인할 수 있습니다.
+
