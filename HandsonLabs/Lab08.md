@@ -356,6 +356,8 @@ public class ChangeFeedMain {
 
 ## 3. Create an Azure Function to Consume Cosmos DB Change Feed
 
+### 1. Create a Java Azure Functions Project
+
 **아래 2개가 설치 되어야 합니다.**   
    [1. The Azure Functions Core Tools version 4.x.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2)   
    [2.The Azure CLI version 2.4 or later.](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)   
@@ -371,3 +373,174 @@ public class ChangeFeedMain {
    만약 구독을 바꿔야 하면 아래 링크를 참고하여 변경 합니다.   
    https://docs.microsoft.com/ko-kr/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription 
 
+1. Lab8 폴더에서 New 파일 만들기로 MaterializedViewFunction.java 파일을 생성합니다.
+
+2. MaterializedViewFunction.java 파일을 아래 코드로 채웁니다.
+Materialized View Function은 다른 애플리케이션이 요약 판매 데이터를 빠르게 검색할 수 있도록 State별로 집계된 판매 데이터의 실시간 컬렉션을 생성합니다.
+
+```java
+package com.azure.cosmos.handsonlabs.lab08;
+
+import com.azure.cosmos.ConsistencyLevel;
+import com.azure.cosmos.CosmosAsyncClient;
+import com.azure.cosmos.CosmosAsyncContainer;
+import com.azure.cosmos.CosmosAsyncDatabase;
+import com.azure.cosmos.CosmosClientBuilder;
+import com.azure.cosmos.handsonlabs.common.datatypes.ActionType;
+import com.azure.cosmos.handsonlabs.common.datatypes.CartAction;
+import com.azure.cosmos.handsonlabs.common.datatypes.StateCount;
+import com.azure.cosmos.models.CosmosQueryRequestOptions;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.microsoft.azure.functions.ExecutionContext;
+import com.microsoft.azure.functions.annotation.CosmosDBTrigger;
+import com.microsoft.azure.functions.annotation.FunctionName;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Azure Functions with HTTP Trigger.
+ */
+public class MaterializedViewFunction {
+
+    private static String endpointUri = "<your uri>";
+    private static String primaryKey = "<your key>";
+    private String databaseId = "StoreDatabase";
+    private String containerId = "StateSales";
+    protected static Logger logger = LoggerFactory.getLogger(Lab08Main.class.getSimpleName());
+    private CosmosAsyncClient client;
+
+    public MaterializedViewFunction() {
+        client = new CosmosClientBuilder()
+                .endpoint(endpointUri)
+                .key(primaryKey)
+                .consistencyLevel(ConsistencyLevel.EVENTUAL)
+                .contentResponseOnWriteEnabled(true)
+                .buildAsyncClient();
+    }
+
+    @FunctionName("MaterializedViewFunction")
+    public void cosmosDbProcessor(
+            @CosmosDBTrigger(name = "MaterializedView", databaseName = "StoreDatabase", collectionName = "CartContainerByState", createLeaseCollectionIfNotExists = true, leaseCollectionName = "materializedViewLeases", connectionStringSetting = "AzureCosmosDBConnection") String[] items,
+            final ExecutionContext context) {
+
+        if (items != null && items.length > 0) {
+            logger.info("Documents modified " + items.length);
+        }
+
+        Map<String, List<Double>> stateMap = new HashMap<String, List<Double>>();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        for (String doc : items) {
+            try {
+                CartAction cartAction = objectMapper.readValue(doc, CartAction.class);
+                if (cartAction.action != ActionType.Purchased) {
+                    continue;
+                }
+                if (!stateMap.containsKey(cartAction.buyerState)) {
+                    stateMap.put(cartAction.buyerState, new ArrayList<Double>());
+                }
+                stateMap.get(cartAction.buyerState).add(cartAction.price);
+            } catch (JsonMappingException e) {
+                e.printStackTrace();
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        }
+
+        CosmosAsyncDatabase database = client.getDatabase(databaseId);
+        CosmosAsyncContainer container = database.getContainer(containerId);
+
+        Flux.fromIterable(stateMap.keySet())
+                .flatMap(key -> {
+                    String query = "select * from StateSales s where s.State ='" + key + "'";
+                    return container.queryItems(query, new CosmosQueryRequestOptions(), StateCount.class)
+                            .byPage(1)
+                            .flatMap(page -> {
+                                if (!page.getResults().isEmpty()) {
+                                    StateCount stateCount = page.getResults().get(0);
+                                    logger.info("found item with state: " + stateCount.getState());
+                                    stateCount.totalSales += stateMap.get(key).stream().reduce(0.0, (a, b) -> a + b);
+                                    stateCount.count += stateMap.get(key).size();
+                                    return Mono.just(stateCount);
+                                } else {
+                                    StateCount stateCount = new StateCount();
+                                    stateCount.state = key;
+                                    stateCount.totalSales = stateMap.get(key).stream().reduce(0.0, (a, b) -> a + b);
+                                    stateCount.count = stateMap.get(key).size();
+                                    return Mono.just(stateCount);
+                                }
+                            }).flatMap(item -> {
+                                logger.info("upsert item with state: " + item.getState());
+                                return container.upsertItem(item);
+                            });
+                }).collectList().block();
+    }
+}
+```
+
+3. MaterializedViewFunction.java에서 사용될 데이터 타입 추가를 위해 common\datatypes 폴더에 StateCount.java 파일을 생성합니다. 
+![image](https://user-images.githubusercontent.com/44718680/182517638-2e6b97b7-2792-49c8-b7ce-fef884d890cf.png)
+
+4. StateCount.java 파일에 아래 코드로 채웁니다.
+```java
+package com.azure.cosmos.handsonlabs.common.datatypes;
+
+import java.util.UUID;
+
+
+public class StateCount {
+    
+    public String id;
+    public String state;
+    public int count;
+    public double totalSales;
+ 
+    public StateCount()
+    {
+       this.id = UUID.randomUUID().toString();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public double getTotalSales() {
+        return totalSales;
+    }
+
+    public void setTotalSales(double totalSales) {
+        this.totalSales = totalSales;
+    }
+}
+```
