@@ -356,9 +356,9 @@ public class ChangeFeedMain {
 
 ## 3. Create an Azure Function to Consume Cosmos DB Change Feed
 
-아래 2개가 설치 되어야 합니다.
-[1. The Azure Functions Core Tools version 4.x.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2)
-[2.The Azure CLI version 2.4 or later.](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+아래 2개가 설치 되어야 합니다.   
+[1. The Azure Functions Core Tools version 4.x.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2)   
+[2.The Azure CLI version 2.4 or later.](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)   
 
 
 
