@@ -251,7 +251,7 @@ public class CartAction {
 }
 ```
 
-7. DataGenerator.java 파일 우클릭 후 "Run Java"로 실행합니다. 
+7. DataGenerator.java 파일 우클릭 후 "Run Java"로 실행합니다.    
    실행 후 "INFO: Enter number of documents to generate." 메시지에서 입력하고자 하는 데이터 수 입력 후 엔터를 입력 합니다.
    
 8. Cosmos DB 데이터 탐색기에서 입력된 데이터를 확인 합니다.  
