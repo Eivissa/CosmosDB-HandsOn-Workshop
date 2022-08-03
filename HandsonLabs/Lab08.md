@@ -544,3 +544,20 @@ public class StateCount {
     }
 }
 ```
+
+5. pom.xml 파일에 아래 dependency를 추가 합니다.   
+```xml
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.4.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.azure.functions</groupId>
+            <artifactId>azure-functions-java-library</artifactId>
+            <version>LATEST</version>
+        </dependency>
+```
+
+6. 
