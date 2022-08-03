@@ -353,3 +353,13 @@ public class ChangeFeedMain {
 7. Cosmos DB 데이터 탐색기에서 입력된 데이터를 확인 합니다.  
    정상적으로 동작할 경우 DataGenerator.java에서 발생시킨 데이터가 StoreDatabase 데이터베이스의 CartContainer 컨테이너로 입력되며 ChangeFeedMain.java에 의해 CartContainerByState 컨테이너에도 데이터가 입력되는 것을 확인할 수 있습니다.
 
+
+## 3. Create an Azure Function to Consume Cosmos DB Change Feed
+
+아래 2개가 설치 되어야 합니다.
+[1. The Azure Functions Core Tools version 4.x.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2)
+[2.The Azure CLI version 2.4 or later.](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+
+
+
+
