@@ -10,11 +10,13 @@
    <img src="https://user-images.githubusercontent.com/44718680/182335649-203161a1-ca7b-44bc-a864-fd17158036dd.png"  width="630" height="380"/>
    <img src="https://user-images.githubusercontent.com/44718680/182335804-4194ddad-7ac6-4549-b6f8-45be2446b9a7.png"  width="630" height="180"/>
 
-1. Visual Studio를 엽니다.
+1. Visual Studio 를 엽니다.
 
 2. your\home\directory\Documents\CosmosLabs 폴더를 오픈 합니다. 
 
 3. 데이터 생성기 코드 작성을 위해 Lab8 폴더에서 New 파일 만들기로 DataGenerator.java 파일을 생성합니다.
+   DataGenerator.java 파일에 아래 코드로 채웁니다.
+   Lab08Main.java 파일은 Lab08Main으로 확장자를 잠시 없애 줍니다. 
    <img src="https://user-images.githubusercontent.com/44718680/182337708-6ac31074-6acf-419b-b7dc-d3762e6c3fd5.png"  width="300" height="450"/>
 
 ```java
@@ -158,7 +160,7 @@ public class DataGenerator {
 4. Datagenerator.java에서 사용될 데이터 타입 추가를 위해 common\datatypes 폴더에 ActionType.java, CartAction.java 파일을 생성합니다. 
 ![image](https://user-images.githubusercontent.com/44718680/182517638-2e6b97b7-2792-49c8-b7ce-fef884d890cf.png)
 
-5. ActionType.java 파일에 아래 코드를 추가 합니다.
+5. ActionType.java 파일에 아래 코드로 채웁니다.
 ```java
 package com.azure.cosmos.handsonlabs.common.datatypes;
 
@@ -169,7 +171,7 @@ public enum ActionType {
 }
 ```
 
-6. CartAction.java 파일에 아래 코드를 추가 합니다. 
+6. CartAction.java 파일에 아래 코드로 다. 
 ```java
 package com.azure.cosmos.handsonlabs.common.datatypes;
 
@@ -262,6 +264,84 @@ Cosmos DB 변경 피드를 사용하기 위한 두 가지 주요 옵션은 Azure
 간단한 콘솔 애플리케이션을 통해 Change Feed Processor부터 테스트 하겠습니다.
 본 테스트를 통해 Cosmos DB의 파티션키 변경을 위한 라이브 마이그레이션을 구현할 수 있습니다. 
 
-1. Connect to the Cosmos DB Change Feed
+### 1. Connect to the Cosmos DB Change Feed
+1. Visual Studio Code를 엽니다. 
 
+3. 데이터 생성기 코드 작성을 위해 Lab8 폴더에서 New 파일 만들기로 ChangeFeedMain.java 파일을 생성합니다.
 
+4. ChangeFeedMain.java 파일을 아래 코드로 채웁니다.
+```java
+package com.azure.cosmos.handsonlabs.lab08;
+
+import com.azure.cosmos.ChangeFeedProcessor;
+import com.azure.cosmos.ChangeFeedProcessorBuilder;
+import com.azure.cosmos.ConsistencyLevel;
+import com.azure.cosmos.CosmosAsyncClient;
+import com.azure.cosmos.CosmosAsyncContainer;
+import com.azure.cosmos.CosmosAsyncDatabase;
+import com.azure.cosmos.CosmosClientBuilder;
+import com.azure.cosmos.models.ThroughputProperties;
+
+import java.util.Scanner;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+public class ChangeFeedMain {
+
+    protected static Logger logger = LoggerFactory.getLogger(ChangeFeedMain.class.getSimpleName());
+    private static String endpointUri = "";
+    private static String primaryKey = ""; 
+    private static CosmosAsyncDatabase storeDatabase;
+    private static CosmosAsyncContainer cartContainer;
+    private static CosmosAsyncContainer destinationContainer;
+    private static CosmosAsyncContainer leaseContainer;
+
+    public static void main(String[] args) {
+        CosmosAsyncClient client = new CosmosClientBuilder()
+                .endpoint(endpointUri)
+                .key(primaryKey)
+                .consistencyLevel(ConsistencyLevel.EVENTUAL)
+                .contentResponseOnWriteEnabled(true)
+                .buildAsyncClient();
+
+        storeDatabase = client.getDatabase("StoreDatabase");
+        cartContainer = storeDatabase.getContainer("CartContainer");
+        destinationContainer = storeDatabase.getContainer("CartContainerByState");
+        storeDatabase
+                .createContainerIfNotExists("consoleLeases", "/id", ThroughputProperties.createManualThroughput(400))
+                .flatMap(containerResponse -> {
+                    leaseContainer = storeDatabase.getContainer(containerResponse.getProperties().getId());
+                    return Mono.empty();
+                }).block();
+
+        ChangeFeedProcessor processor = new ChangeFeedProcessorBuilder()
+                .hostName("host_1")
+                .feedContainer(cartContainer)
+                .leaseContainer(leaseContainer)
+                .handleChanges(
+                        docs -> {
+                            logger.info("Changes received: " + docs.size());
+                            Flux.fromIterable(docs).flatMap(doc -> destinationContainer.createItem(doc))
+                                    .flatMap(itemResponse -> Mono.empty()).subscribe();
+                        })
+                .buildChangeFeedProcessor();
+
+        processor.start().subscribe();
+
+        logger.info("Started Change Feed Processor");
+        logger.info("Press any key to stop the processor...");
+
+        Scanner input = new Scanner(System.in);
+        input.next();
+        input.close();
+
+        logger.info("Stopping Change Feed Processor");
+
+        processor.stop().subscribe();
+    }
+}
+```
