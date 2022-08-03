@@ -356,8 +356,6 @@ public class ChangeFeedMain {
 
 ## 3. Create an Azure Function to Consume Cosmos DB Change Feed
 
-### 1. Create a Java Azure Functions Project
-
 **아래 2개가 설치 되어야 합니다.**   
    [1. The Azure Functions Core Tools version 4.x.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2)   
    [2.The Azure CLI version 2.4 or later.](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)   
@@ -366,12 +364,14 @@ public class ChangeFeedMain {
    Azure CLI(Azure 명령줄 인터페이스)는 Azure 리소스를 만들고 관리하는 데 사용되는 명령 세트입니다.   
 
 **Prerequisite check**   
-   1. CMD 창에서 "func --version" 명령어를 실행하여 버전을 확인 합니다. (4.x. 이상)   
-   2. CMD 창에서 "az --version" 명령어를 실행하여 버전을 확인 합니다. (2.4 이상)   
-   3. CMD 창에서 "az login" 을 실행하여 로그인 합니다. 
-   4. 로그인이 되면 "az account show" 명령을 수행하여 올바른 구독에 연결되었는지 확인합니다.   
+   1.1. CMD 창에서 "func --version" 명령어를 실행하여 버전을 확인 합니다. (4.x. 이상)   
+   2.1. CMD 창에서 "az --version" 명령어를 실행하여 버전을 확인 합니다. (2.4 이상)   
+   3.1. CMD 창에서 "az login" 을 실행하여 로그인 합니다.   
+   4.1. 로그인이 되면 "az account show" 명령을 수행하여 올바른 구독에 연결되었는지 확인합니다.   
    만약 구독을 바꿔야 하면 아래 링크를 참고하여 변경 합니다.   
-   https://docs.microsoft.com/ko-kr/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription 
+   https://docs.microsoft.com/ko-kr/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription   
+
+### 1. Create a Java Azure Functions Project
 
 1. Lab8 폴더에서 New 파일 만들기로 MaterializedViewFunction.java 파일을 생성합니다.
 
