@@ -257,3 +257,11 @@ public class CartAction {
 8. Cosmos DB 데이터 탐색기에서 입력된 데이터를 확인 합니다.  
 
 
+## 2. Consume Cosmos DB Change Feed via the Change Feed Processor
+Cosmos DB 변경 피드를 사용하기 위한 두 가지 주요 옵션은 Azure Functions 및 변경 피드 프로세서 라이브러리입니다. 
+간단한 콘솔 애플리케이션을 통해 Change Feed Processor부터 테스트 하겠습니다.
+본 테스트를 통해 Cosmos DB의 파티션키 변경을 위한 라이브 마이그레이션을 구현할 수 있습니다. 
+
+1. Connect to the Cosmos DB Change Feed
+
+
