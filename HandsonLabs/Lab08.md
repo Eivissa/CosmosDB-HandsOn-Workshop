@@ -375,7 +375,7 @@ public class ChangeFeedMain {
 
 1. Lab8 폴더에서 New 파일 만들기로 MaterializedViewFunction.java 파일을 생성합니다.
 
-2. MaterializedViewFunction.java 파일을 아래 코드로 채웁니다.
+2. MaterializedViewFunction.java 파일을 아래 코드로 채웁니다.   
 Materialized View Function은 다른 애플리케이션이 요약 판매 데이터를 빠르게 검색할 수 있도록 State별로 집계된 판매 데이터의 실시간 컬렉션을 생성합니다.
 
 ```java
@@ -489,10 +489,10 @@ public class MaterializedViewFunction {
 }
 ```
 
-3. MaterializedViewFunction.java에서 사용될 데이터 타입 추가를 위해 common\datatypes 폴더에 StateCount.java 파일을 생성합니다. 
+3. MaterializedViewFunction.java에서 사용될 데이터 타입 추가를 위해 common\datatypes 폴더에 StateCount.java 파일을 생성합니다.   
 ![image](https://user-images.githubusercontent.com/44718680/182517638-2e6b97b7-2792-49c8-b7ce-fef884d890cf.png)
 
-4. StateCount.java 파일에 아래 코드로 채웁니다.
+4. StateCount.java 파일에 아래 코드로 채웁니다.   
 ```java
 package com.azure.cosmos.handsonlabs.common.datatypes;
 
