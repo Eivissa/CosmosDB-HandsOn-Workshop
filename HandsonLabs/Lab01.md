@@ -282,8 +282,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Lab01Main {
     protected static Logger logger = LoggerFactory.getLogger(Lab01Main.class.getSimpleName());
-    private static String endpointUri = "https://cosmoslab.documents.azure.com:443/";
-    private static String primaryKey = "7aCZkdKTr3FfNeGWMg2ZVlPU0an36qxsVSK0H3FmjMmafhvlyOpXL0WxDPQrMrkEo2rR7jI6uPibuwA2w==";   
+    private static String endpointUri = "";
+    private static String primaryKey = "";   
     private static CosmosAsyncDatabase targetDatabase;
     private static CosmosAsyncContainer customContainer;
     private static AtomicBoolean resourcesCreated = new AtomicBoolean(false);
