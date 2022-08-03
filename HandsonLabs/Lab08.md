@@ -360,6 +360,5 @@ public class ChangeFeedMain {
 [1. The Azure Functions Core Tools version 4.x.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2)   
 [2.The Azure CLI version 2.4 or later.](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)   
 
-
-
-
+Azure Functions Core Tools를 사용하면 명령 프롬프트나 터미널에서 함수를 개발하고 테스트할 수 있습니다.    
+Azure CLI(Azure 명령줄 인터페이스)는 Azure 리소스를 만들고 관리하는 데 사용되는 명령 세트입니다.   
