@@ -779,3 +779,9 @@ public class Lab08Main {
 mvn clean package
 mvn azure-functions:run
 ```
+
+10. ChangeFeedMain.java와 DataGenerator.java를 실행하여 데이터를 입력해 봅니다.
+
+11. Cosmos DB 데이터 탐색기에서 입력된 데이터를 확인 합니다.  
+    정상적으로 수행된 경우 Cosmos DB에 StoreDatabase 데이터베이스의 StateSales 컨테이너에 집계된 결과를 확인할 수 있습니다. 
+
