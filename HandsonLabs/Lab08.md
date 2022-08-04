@@ -12,11 +12,11 @@
 
 1. Visual Studio 를 엽니다.
 
-2. your\home\directory\Documents\CosmosLabs 폴더를 오픈 합니다. 
+2. your\home\directory\Documents\CosmosLabs 폴더를 오픈 합니다.   
+   <span style="color:red">Lab08Main.java 파일은 Lab08Main으로 Rename하여 확장자를 잠시 없애 줍니다.</span>   
 
 3. 데이터 생성기 코드 작성을 위해 Lab8 폴더에서 New 파일 만들기로 DataGenerator.java 파일을 생성합니다.   
    DataGenerator.java 파일에 아래 코드로 채웁니다.   
-   Lab08Main.java 파일은 Lab08Main으로 확장자를 잠시 없애 줍니다.   
    <img src="https://user-images.githubusercontent.com/44718680/182337708-6ac31074-6acf-419b-b7dc-d3762e6c3fd5.png"  width="300" height="450"/>
 
 ```java
@@ -597,4 +597,30 @@ public class StateCount {
         </dependency>
 ```
 
-6. 
+6. Lab08Main 파일을 Lab08Main.java로 변경 후 아래 코드를 채웁니다.
+```java
+package com.azure.cosmos.handsonlabs.lab08;
+
+import com.azure.cosmos.ConsistencyLevel;
+import com.azure.cosmos.CosmosAsyncClient;
+import com.azure.cosmos.CosmosClientBuilder;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class Lab08Main {
+    
+    protected static Logger logger = LoggerFactory.getLogger(Lab08Main.class.getSimpleName());
+    private static String endpointUri = "<your uri>";
+    private static String primaryKey = "<your key>"; 
+    public static void main(String[] args) {
+        
+        CosmosAsyncClient client = new CosmosClientBuilder()
+                .endpoint(endpointUri)
+                .key(primaryKey)
+                .consistencyLevel(ConsistencyLevel.EVENTUAL)
+                .contentResponseOnWriteEnabled(true)
+                .buildAsyncClient();
+    }
+}
+```
