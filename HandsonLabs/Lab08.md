@@ -752,7 +752,7 @@ public class Lab08Main {
 }
 ```   
 
-7. CosmosLbas 폴더 아래에 host.json 파일을 생성 후 아래 내용을 채웁니다.   
+7. CosmosLabs 폴더 아래에 host.json 파일을 생성 후 아래 내용을 채웁니다.   
 ```java
 {
     "version": "2.0",
@@ -762,7 +762,7 @@ public class Lab08Main {
     }
   }
 ```   
-8. CosmosLbas 폴더 아래에 local.settings.json 파일을 생성 후 아래 내용을 채웁니다.   
+8. CosmosLabs 폴더 아래에 local.settings.json 파일을 생성 후 아래 내용을 채웁니다.   
 ```java
 {
     "java.configuration.updateBuildConfiguration": "automatic",
