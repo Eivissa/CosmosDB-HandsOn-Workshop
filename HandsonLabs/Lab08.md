@@ -766,6 +766,8 @@ public class Lab08Main {
   }
 ```   
 8. CosmosLabs 폴더 아래에 local.settings.json 파일을 생성 후 아래 내용을 채웁니다.   
+   AzureCosmosDBConnection에는 Cosmos DB의 connection string을 넣어 줍니다.   
+   아래 이미지를 참고하세요.
 ```java
 {
     "java.configuration.updateBuildConfiguration": "automatic",
@@ -777,6 +779,10 @@ public class Lab08Main {
     }
 } 
 ```   
+   참고   
+   ![image](https://user-images.githubusercontent.com/44718680/182792837-6c4ef633-037d-4730-aa5e-23f12c51917f.png)
+
+
 9. 아래 명령을 수행하여 Azure function을 로컬 디버깅 모드로 시작합니다.
 ```mvn
 mvn clean package
