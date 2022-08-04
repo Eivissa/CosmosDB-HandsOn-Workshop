@@ -335,6 +335,7 @@ import com.azure.cosmos.implementation.ConnectionPolicy;
 import com.azure.cosmos.handsonlabs.common.datatypes.WatchLiveTelevisionChannel;
 ```
 2. main 메소의 내용을 아래와 같이 수정합니다.  
+Before
 ```java
  public static void main(String[] args) {
     
@@ -350,7 +351,7 @@ import com.azure.cosmos.handsonlabs.common.datatypes.WatchLiveTelevisionChannel;
      client.close();        
  }
 ```
-2. 
+After
 ```java
  public static void main(String[] args) {
      ConnectionPolicy defaultPolicy = ConnectionPolicy.getDefaultPolicy();
