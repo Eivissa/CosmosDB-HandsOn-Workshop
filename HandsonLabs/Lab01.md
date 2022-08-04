@@ -334,8 +334,8 @@ public class Lab01Main {
 import com.azure.cosmos.implementation.ConnectionPolicy;
 import com.azure.cosmos.handsonlabs.common.datatypes.WatchLiveTelevisionChannel;
 ```
-2. main 메소의 내용을 아래와 같이 수정합니다.  
-Before
+2. main 메소의 내용을 아래와 같이 수정합니다.   
+Before   
 ```java
  public static void main(String[] args) {
     
@@ -350,8 +350,8 @@ Before
 
      client.close();        
  }
-```
-After
+```   
+After   
 ```java
  public static void main(String[] args) {
      ConnectionPolicy defaultPolicy = ConnectionPolicy.getDefaultPolicy();
@@ -387,9 +387,9 @@ After
 
      client.close();        
  }
-```
-3. 결과를 확인 합니다.
-- Azure portal에서 추가 입력된 데이터의 구조를 확인 합니다. 
+```   
+3. 결과를 확인 합니다.   
+- Azure portal에서 추가 입력된 데이터의 구조를 확인 합니다.   
 
 Next Lab : [Importing Data into Azure Cosmos DB with Azure Data Factory](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab02.md#importing-data-into-azure-cosmos-db-with-azure-data-factory)   
 [목차로 돌아가기](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop#8-java-lab-guides)
