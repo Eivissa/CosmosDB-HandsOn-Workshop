@@ -408,9 +408,11 @@ storeDatabase
    만약 구독을 바꿔야 하면 아래 링크를 참고하여 변경 합니다.   
    https://docs.microsoft.com/ko-kr/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription   
 
+
+
 ### 1. Create a Java Azure Functions Project
 
-1. Lab8 폴더에서 New 파일 만들기로 MaterializedViewFunction.java 파일을 생성합니다.
+1. Visual Studio를 재시작 한 후 Lab8 폴더에서 New 파일 만들기로 MaterializedViewFunction.java 파일을 생성합니다.
 
 2. MaterializedViewFunction.java 파일을 아래 코드로 채웁니다.   
 Materialized View Function은 다른 애플리케이션이 요약 판매 데이터를 빠르게 검색할 수 있도록 State별로 집계된 판매 데이터의 실시간 컬렉션을 생성합니다.
@@ -624,3 +626,6 @@ public class Lab08Main {
     }
 }
 ```
+
+
+
