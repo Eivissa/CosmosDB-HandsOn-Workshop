@@ -406,7 +406,10 @@ storeDatabase
    3.1. CMD 창에서 "az login" 을 실행하여 로그인 합니다.   
    4.1. 로그인이 되면 "az account show" 명령을 수행하여 올바른 구독에 연결되었는지 확인합니다.   
    만약 구독을 바꿔야 하면 아래 링크를 참고하여 변경 합니다.   
-   https://docs.microsoft.com/ko-kr/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription   
+   https://docs.microsoft.com/ko-kr/cli/azure/manage-azure-subscriptions-azure-cli#change-the-active-subscription    
+
+- JAVA_HOME 설정이 되어 있어야 합니다.   
+![image](https://user-images.githubusercontent.com/44718680/182791991-c320c4ba-0dc9-44f4-b47e-dc5203022e8c.png)
 
 
 
