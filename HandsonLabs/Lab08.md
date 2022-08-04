@@ -269,7 +269,10 @@ Cosmos DB 변경 피드를 사용하기 위한 두 가지 주요 옵션은 Azure
 
 3. 데이터 생성기 코드 작성을 위해 Lab8 폴더에서 New 파일 만들기로 ChangeFeedMain.java 파일을 생성합니다.
 
-4. ChangeFeedMain.java 파일을 아래 코드로 채웁니다.
+4. 동일한 데이터베이스 내의 다른 컨테이너(CartContainerByState)로 데이터를 마이그레이션할 것입니다.   
+   데이터를 완전히 다른 데이터베이스로 마이그레이션하려는 경우에도 동일한 아이디어가 적용됩니다.   
+
+5. ChangeFeedMain.java 파일을 아래 코드로 채웁니다.
 ```java
 package com.azure.cosmos.handsonlabs.lab08;
 
@@ -293,8 +296,8 @@ import reactor.core.publisher.Mono;
 public class ChangeFeedMain {
 
     protected static Logger logger = LoggerFactory.getLogger(ChangeFeedMain.class.getSimpleName());
-    private static String endpointUri = "";
-    private static String primaryKey = ""; 
+    private static String endpointUri = "<your uri>";
+    private static String primaryKey = "<your key>"; 
     private static CosmosAsyncDatabase storeDatabase;
     private static CosmosAsyncContainer cartContainer;
     private static CosmosAsyncContainer destinationContainer;
@@ -307,30 +310,12 @@ public class ChangeFeedMain {
                 .consistencyLevel(ConsistencyLevel.EVENTUAL)
                 .contentResponseOnWriteEnabled(true)
                 .buildAsyncClient();
-
+        
         storeDatabase = client.getDatabase("StoreDatabase");
         cartContainer = storeDatabase.getContainer("CartContainer");
         destinationContainer = storeDatabase.getContainer("CartContainerByState");
-        storeDatabase
-                .createContainerIfNotExists("consoleLeases", "/id", ThroughputProperties.createManualThroughput(400))
-                .flatMap(containerResponse -> {
-                    leaseContainer = storeDatabase.getContainer(containerResponse.getProperties().getId());
-                    return Mono.empty();
-                }).block();
-
-        ChangeFeedProcessor processor = new ChangeFeedProcessorBuilder()
-                .hostName("host_1")
-                .feedContainer(cartContainer)
-                .leaseContainer(leaseContainer)
-                .handleChanges(
-                        docs -> {
-                            logger.info("Changes received: " + docs.size());
-                            Flux.fromIterable(docs).flatMap(doc -> destinationContainer.createItem(doc))
-                                    .flatMap(itemResponse -> Mono.empty()).subscribe();
-                        })
-                .buildChangeFeedProcessor();
-
-        processor.start().subscribe();
+        
+        //todo: Add storeDatabase code here
 
         logger.info("Started Change Feed Processor");
         logger.info("Press any key to stop the processor...");
@@ -341,17 +326,62 @@ public class ChangeFeedMain {
 
         logger.info("Stopping Change Feed Processor");
 
-        processor.stop().subscribe();
+        //todo: Add stop code here
     }
 }
 ```
 
-5. ChangeFeedMain.java 파일 우클릭 후 "Run Java"로 실행합니다.    
 
-6. DataGenerator.java를 실행하고 ChangeFeedMain.java 터미널 창의 로그 변화를 확인 합니다.
+6. 변경 피드를 사용하기 위해 임대 컨테이너를 사용합니다. 다음 코드 줄을 //todo: Add storeDatabase code here 부분에 추가하여 임대 컨테이너를 만듭니다.
+   임대 컨테이너는 변경 피드의 병렬 처리를 허용하는 정보를 저장하고 피드에서 변경 사항을 마지막으로 처리한 위치에 대한 북마크 역할을 합니다.
+```java
+storeDatabase
+      .createContainerIfNotExists("consoleLeases", "/id", ThroughputProperties.createManualThroughput(400))
+      .flatMap(containerResponse -> {
+               leaseContainer = storeDatabase.getContainer(containerResponse.getProperties().getId());
+               return Mono.empty();
+       }).block();
+```
 
-7. Cosmos DB 데이터 탐색기에서 입력된 데이터를 확인 합니다.  
-   정상적으로 동작할 경우 DataGenerator.java에서 발생시킨 데이터가 StoreDatabase 데이터베이스의 CartContainer 컨테이너로 입력되며 ChangeFeedMain.java에 의해 CartContainerByState 컨테이너에도 데이터가 입력되는 것을 확인할 수 있습니다.
+7. 이제 변경 프로세서의 인스턴스를 가져오기 위해 임대 컨테이너 정의 바로 뒤에 다음 코드 줄을 추가합니다.
+   일련의 변경 사항이 수신될 때마다 handleChanges 내부의 코드가 호출됩니다. 우리는 현재 이러한 변경 사항 처리를 건너뛰고 있습니다.
+```java
+        ChangeFeedProcessor processor = new ChangeFeedProcessorBuilder()
+                .hostName("host_1")
+                .feedContainer(cartContainer)
+                .leaseContainer(leaseContainer)
+                .handleChanges(
+                        docs -> {
+                                 //todo: Add processor code here
+                        })
+                .buildChangeFeedProcessor();
+```
+
+8. 프로세서를 실행하려면 프로세서를 시작해야 합니다. 프로세서 정의 다음에 다음 코드 줄을 추가합니다.
+```java
+        processor.start().subscribe();
+```
+
+9. 마지막으로 프로세서를 종료하기 위해 키를 누르면 프로세서를 종료해야 합니다. //todo: Add stop code here 행을 찾아 다음 코드로 바꿉니다.
+```java
+        processor.stop().subscribe();
+```
+
+10. ChangeFeedMain.java 파일 내에서 //todo: 여기에 프로세서 코드를 추가하고 다음 코드 줄로 교체합니다.
+```java
+                            logger.info("Changes received: " + docs.size());
+                            Flux.fromIterable(docs).flatMap(doc -> destinationContainer.createItem(doc))
+                                    .flatMap(itemResponse -> Mono.empty()).subscribe();
+```
+
+11. ChangeFeedMain.java 파일 우클릭 후 "Run Java"로 실행합니다.    
+
+12. DataGenerator.java를 실행하고 ChangeFeedMain.java 터미널 창의 로그 변화를 확인 합니다.
+
+13. Cosmos DB 데이터 탐색기에서 입력된 데이터를 확인 합니다.  
+    정상적으로 동작할 경우 DataGenerator.java에서 발생시킨 데이터가 StoreDatabase 데이터베이스의 CartContainer 컨테이너로 입력되며 
+    ChangeFeedMain.java에 의해 CartContainerByState 컨테이너에도 데이터가 입력되는 것을 확인할 수 있습니다. 
+    임대 컨테이너인 consoleLeases의 데이터도 확인해 봅니다. 
 
 
 ## 3. Create an Azure Function to Consume Cosmos DB Change Feed
