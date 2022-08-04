@@ -774,4 +774,8 @@ public class Lab08Main {
     }
 } 
 ```   
-
+9. 아래 명령을 수행하여 Azure function을 로컬 디버깅 모드로 시작합니다.
+```mvn
+mvn clean package
+mvn azure-functions:run
+```
