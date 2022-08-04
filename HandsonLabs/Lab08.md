@@ -786,4 +786,6 @@ mvn azure-functions:run
     정상적으로 수행된 경우 Cosmos DB에 StoreDatabase 데이터베이스의 StateSales 컨테이너에 집계된 결과를 확인할 수 있습니다.    
 ![image](https://user-images.githubusercontent.com/44718680/182788854-b24226d3-4ab6-49d5-b7c4-2a99e8c20884.png)
 
+Next Lab : [Troubleshooting Performance in Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab09.md#troubleshooting-performance-in-azure-cosmos-db)   
+[목차로 돌아가기](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop#8-java-lab-guides)
 
