@@ -584,8 +584,131 @@ public class StateCount {
 }
 ```
 
-5. pom.xml 파일에 아래 dependency를 추가 합니다.   
+5. pom.xml 파일에 아래 내용으로 변경 합니다.   
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.azure</groupId>
+    <artifactId>azure-cosmos-java-sql-api-samples</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>Get Started With Sync / Async Java SDK for SQL API of Azure Cosmos DB Database Service
+    </name>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <azure.functions.java.library.version>4.0.0</azure.functions.java.library.version>
+        <functionAppName>az.functions-20220606120203829</functionAppName>
+        <java.version>1.8</java.version>
+        <azure.functions.maven.plugin.version>1.19.0</azure.functions.maven.plugin.version>
+    </properties>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.8</version>
+                <configuration>
+                    <classpathContainers>
+                        <classpathContainer>
+                            org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8
+                        </classpathContainer>
+                    </classpathContainers>
+                </configuration>
+            </plugin>
+      <plugin>
+        <groupId>com.microsoft.azure</groupId>
+        <artifactId>azure-functions-maven-plugin</artifactId>
+        <version>${azure.functions.maven.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>package-functions</id>
+            <goals>
+              <goal>package</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <appName>${functionAppName}</appName>
+          <resourceGroup>java-functions-group</resourceGroup>
+          <appServicePlanName>java-functions-app-service-plan</appServicePlanName>
+          <region>koreacentral</region>
+          <runtime>
+            <os>windows</os>
+            <javaVersion>8</javaVersion>
+          </runtime>
+          <appSettings>
+            <property>
+              <name>FUNCTIONS_EXTENSION_VERSION</name>
+              <value>~4</value>
+            </property>
+          </appSettings>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>obj</directory>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-cosmos</artifactId>
+            <version>LATEST</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.13.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.11.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>1.7.28</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.1-jre</version>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -597,7 +720,9 @@ public class StateCount {
             <artifactId>azure-functions-java-library</artifactId>
             <version>LATEST</version>
         </dependency>
-```
+    </dependencies>
+</project>
+```   
 
 6. Lab08Main 파일을 Lab08Main.java로 변경 후 아래 코드를 채웁니다.
 ```java
@@ -625,7 +750,28 @@ public class Lab08Main {
                 .buildAsyncClient();
     }
 }
-```
+```   
 
-
+7. CosmosLbas 폴더 아래에 host.json 파일을 생성 후 아래 내용을 채웁니다.   
+```java
+{
+    "version": "2.0",
+    "extensionBundle": {
+      "id": "Microsoft.Azure.Functions.ExtensionBundle",
+      "version": "[2.*, 3.0.0)"
+    }
+  }
+```   
+9. CosmosLbas 폴더 아래에 local.settings.json 파일을 생성 후 아래 내용을 채웁니다.   
+```java
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "IsEncrypted": false,
+    "Values": {
+      "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+      "AzureCosmosDBConnection": "",
+      "FUNCTIONS_WORKER_RUNTIME": "java"
+    }
+} 
+```   
 
