@@ -14,9 +14,9 @@
 
 2. your\home\directory\Documents\CosmosLabs 폴더를 오픈 합니다. 
 
-3. 데이터 생성기 코드 작성을 위해 Lab8 폴더에서 New 파일 만들기로 DataGenerator.java 파일을 생성합니다.
-   DataGenerator.java 파일에 아래 코드로 채웁니다.
-   Lab08Main.java 파일은 Lab08Main으로 확장자를 잠시 없애 줍니다. 
+3. 데이터 생성기 코드 작성을 위해 Lab8 폴더에서 New 파일 만들기로 DataGenerator.java 파일을 생성합니다.   
+   DataGenerator.java 파일에 아래 코드로 채웁니다.   
+   Lab08Main.java 파일은 Lab08Main으로 확장자를 잠시 없애 줍니다.   
    <img src="https://user-images.githubusercontent.com/44718680/182337708-6ac31074-6acf-419b-b7dc-d3762e6c3fd5.png"  width="300" height="450"/>
 
 ```java
