@@ -245,7 +245,7 @@ SELECT * FROM coll WHERE IS_DEFINED(coll.relatives) ORDER BY coll.relatives.Spou
   
 ### 2. Observing Throttling (HTTP 429)   
 
-1. Lab09Main.java 파일의 main 메소드 안의 코드를 삭제합니다.   
+1. Lab09Main.java 파일의 main 메소드 안의 코드를 다음과 같이 수정합니다.   
 ```java
  public static void main(String[] args) {
      CosmosAsyncClient client = new CosmosClientBuilder()
@@ -339,6 +339,152 @@ logger.info("Item Created {}", result.getItem().getId());
 
 4. 테스트 완료 후 Throughput 값을 400으로 수정합니다.
 
+## 4. Tuning Queries and Reads   
+이제 Java SDK에서 RequestOptions 클래스의 SQL 쿼리 및 속성을 조작하여 Azure Cosmos DB에 대한 요청을 조정합니다.   
+
+### 1. Measuring RU Charge   
+
+1. Lab09Main.java 파일의 main 메소드 안의 코드를 다음과 같이 수정합니다.   
+```java
+ public static void main(String[] args) {
+     CosmosAsyncClient client = new CosmosClientBuilder()
+             .endpoint(endpointUri)
+             .key(primaryKey)
+             .consistencyLevel(ConsistencyLevel.EVENTUAL)
+             .contentResponseOnWriteEnabled(true)
+             .buildAsyncClient();
+
+     database = client.getDatabase("FinancialDatabase");
+     peopleContainer = database.getContainer("PeopleCollection");
+     transactionContainer = database.getContainer("TransactionCollection");         
+
+     client.close();
+ }
+```    
+
+2. 문자열 변수에 SQL 쿼리를 저장할 다음 코드 줄을 추가합니다.   
+```sql
+String sql = "SELECT TOP 1000 * FROM c WHERE c.processed = true ORDER BY c.amount DESC";
+```   
+> 이 쿼리는 파티션 간 ORDER BY를 수행하고 상위 1000개 항목만 반환합니다.   
+
+3. 첫번째 페이지의 결과만을 반환하기 위해 아래 코드를 추가합니다.   
+```java
+ CosmosQueryRequestOptions options = new CosmosQueryRequestOptions();
+ transactionContainer.queryItems(sql, options, Transaction.class)
+         .byPage()
+         .next() // Take only the first page
+         .flatMap(page -> {
+         logger.info("Request Charge: {} RUs",page.getRequestCharge());
+         return Mono.empty();
+ }).block();
+```    
+
+4. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+   출력된 Request Charge를 확인   
+
+5. 위 쿼리 구문을 아래 쿼리로 변경합니다.   
+```java
+String sql = "SELECT * FROM c WHERE c.processed = true";
+```   
+
+6. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+   출력된 Request Charge를 확인하고 차이를 확인합니다.   
+
+
+7. 위 쿼리 구문을 아래 쿼리로 변경합니다.   
+```java
+String sql = "SELECT * FROM c";
+```   
+
+8. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+   출력된 Request Charge를 확인하고 차이를 확인합니다.   
+
+
+9. 위 쿼리 구문을 아래 쿼리로 변경합니다.   
+```java
+String sql = "SELECT c.id FROM c";
+```   
+
+10. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+   출력된 Request Charge를 확인하고 차이를 확인합니다.   
+
+
+### 2. Managing SDK Query Options   
+
+1. Lab09Main.java 파일의 main 메소드 안의 코드를 다음과 같이 수정합니다.   
+```java
+ public static void main(String[] args) {
+     CosmosAsyncClient client = new CosmosClientBuilder()
+             .endpoint(endpointUri)
+             .key(primaryKey)
+             .consistencyLevel(ConsistencyLevel.EVENTUAL)
+             .contentResponseOnWriteEnabled(true)
+             .buildAsyncClient();
+
+     database = client.getDatabase("FinancialDatabase");
+     peopleContainer = database.getContainer("PeopleCollection");
+     transactionContainer = database.getContainer("TransactionCollection");         
+
+     client.close();
+ }
+```    
+
+2. 다음 코드 줄을 추가하여 쿼리 옵션을 구성하는 변수를 만듭니다.   
+```java
+ int maxItemCount = 100;
+ int maxDegreeOfParallelism = 1;
+ int maxBufferedItemCount = 0;
+```   
+ 
+3. 다음 코드 줄을 추가하여 변수에서 쿼리에 대한 옵션을 구성합니다.   
+```java
+ CosmosQueryRequestOptions options = new CosmosQueryRequestOptions();
+ options.setMaxBufferedItemCount(maxBufferedItemCount);
+ options.setMaxDegreeOfParallelism(maxDegreeOfParallelism);
+```   
+ 
+4. 다음 코드를 추가하여 콘솔 창에 변수 값 출력을 작성합니다.   
+```java
+ logger.info("\n\n" +
+             "MaxItemCount:\t{}\n" +
+             "MaxDegreeOfParallelism:\t{}\n" +
+             "MaxBufferedItemCount:\t{}" + 
+             "\n\n",
+             maxItemCount, maxDegreeOfParallelism, maxBufferedItemCount);
+```   
+
+5. 문자열 변수에 SQL 쿼리를 저장할 다음 코드 줄을 추가합니다.   
+```java
+String sql = "SELECT * FROM c WHERE c.processed = true ORDER BY c.amount DESC";
+```      
+
+6. 수행시간 측정을 위한 타이머 코드를 추가합니다.   
+```java
+StopWatch timer = StopWatch.createStarted();
+```   
+
+7. 다음 코드 줄을 추가하여 항목 쿼리 인스턴스를 만들고 결과 집합을 열거합니다.   
+```java
+transactionContainer.queryItems(sql, options, Transaction.class)
+      .byPage(maxItemCount)
+      .flatMap(page -> {
+      //Don't do anything with the query page results
+      return Mono.empty();
+}).blockLast();
+```   
+
+8. 타이머를 종료하는 코드를 추가합니다.   
+```java
+ timer.stop();
+```   
+
+9. 측정된 시간을 출력하는 코드를 추가합니다.   
+```java
+logger.info("\n\nElapsed Time:\t{}s\n\n", ((double)timer.getTime(TimeUnit.MILLISECONDS))/1000.0);
+```   
+
+10. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
 
 
 
