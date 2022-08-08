@@ -779,7 +779,7 @@ public class Lab08Main {
     }
 } 
 ```   
-   참고   
+   참고. connection string 확인하기  
    ![image](https://user-images.githubusercontent.com/44718680/182792837-6c4ef633-037d-4730-aa5e-23f12c51917f.png)
 
 
