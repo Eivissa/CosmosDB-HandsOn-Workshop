@@ -94,7 +94,46 @@ logger.info("{} RUs", response.getRequestCharge());
  }
 ```   
 
-9. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.
+9. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.   
+
+10. Cosmos DB 데이터 탐색기에서 아래 쿼리를 수행하여 결과를 확인 합니다.   
+```sql
+SELECT TOP 2 * FROM coll ORDER BY coll._ts DESC
+```   
+
+11. main 메소드의 아래 코드를 수정합니다.
+Before     
+```java
+ Person person = new Person(); 
+ CosmosItemResponse<Person> response = peopleContainer.createItem(person).block();
+
+ logger.info("First item insert: {} RUs", response.getRequestCharge());
+```   
+After   
+```java
+ List<Person> children = new ArrayList<Person>();
+ for (int i=0; i<4; i++) children.add(new Person());
+ Member member = new Member(UUID.randomUUID().toString(),
+                             new Person(), // accountHolder
+                             new Family(new Person(), // spouse
+                                         children)); // children
+
+ CosmosItemResponse<Member> response = peopleContainer.createItem(member).block();
+
+ logger.info("Second item insert: {} RUs", response.getRequestCharge());                                            
+```
+
+<!--12. Member 클래스를 추가합니다.   
+```java
+import com.azure.cosmos.handsonlabs.common.datatypes.Member;
+import com.azure.cosmos.handsonlabs.common.datatypes.Family;
+```
+-->
+
+
+
+
+
 
 
 
