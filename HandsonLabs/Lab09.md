@@ -319,6 +319,26 @@ logger.info("Item Created {}", result.getItem().getId());
 그런 다음 이전 요청이 완료될 때까지 기다리지 않고 연속적인 createItem 요청을 발행하는 Reactive Streams 파이프라인에서 interactionFlux를 게시자로 사용합니다. 따라서 이것은 비동기 구현입니다. 이 코드 블록 끝에 있는 for-each 루프는 요청 결과를 반복하고 각각에 대한 알림을 인쇄합니다. 이러한 요청은 거의 병렬로 실행되므로 Azure Cosmos DB 컨테이너에 할당된 처리량이 요청 볼륨을 처리하기에 충분하지 않기 때문에 문서 수를 늘리면 예외적인 시나리오가 빠르게 발생해야 합니다.
 
 
+8. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+> 이 쿼리는 성공적으로 실행되어야 합니다.   
+> 단지 100개의 항목을 만들고 있으며 여기서 처리량 문제가 발생하지 않을 가능성이 높습니다.
+
+9. 생성하는 문서의 수를 100개에서 5000개로 늘립니다. 
+
+10. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+
+### 3. Increasing RU Throughput to Reduce Throttling   
+
+1. Azure Portal에서 Cosmos DB 리소스를 찾습니다.   
+
+2. FinancialDatabase 데이터베이스의 TransactionCollection 컨테이너의 Scale & Settings 옵션에서 Throughput 값을 10000으로 수정합니다.   
+
+<!--3. 생성하는 문서의 수를 5000개에서 10000개로 늘립니다. -->
+
+3. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+
+4. 테스트 완료 후 Throughput 값을 400으로 수정합니다.
+
 
 
 
