@@ -597,4 +597,68 @@ peopleContainer.readItem("example.document", new PartitionKey("<LastName>"), Mem
 ```   
 
 
+## 5. Tuning Queries and Reads    
+컨테이너 또는 데이터베이스 처리량에 적절한 RU 설정을 사용하면 최소한의 비용으로 원하는 성능을 충족할 수 있습니다.   
+
+### 1. Estimating Throughput Needs   
+
+1. Azure Cosmos DB 블레이드에서 모니터링 섹션 아래 블레이드 왼쪽에 있는 메트릭(클래식) 링크를 찾아 클릭합니다.    
+   요청 수 그래프의 값을 관찰하여 실험실 작업이 Cosmos 컨테이너에 대해 수행한 요청의 양을 확인합니다.   
+
+2. Lab09Main.java 파일의 main 메소드에 아래 코드를 추가합니다.    
+```java
+double writeRequestCharge = 0.0;
+Member member = new Member();
+CosmosItemResponse<Member> createResponse = peopleContainer.createItem(member).block();
+writeRequestCharge = createResponse.getRequestCharge();
+logger.info("{} RUs", writeRequestCharge);
+
+logger.info("\n\nEstimated load: {} RU per sec\n\n",
+   readRequestCharge * expectedReadsPerSec + writeRequestCharge * expectedWritesPerSec);
+```   
+
+3. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+
+### 2. Adjusting for Usage Patterns
+많은 애플리케이션에는 예측 가능한 방식으로 시간이 지남에 따라 변하는 워크로드가 있습니다.    
+예를 들어 업무일 기준 9-5일 동안 워크로드가 높지만 이 시간 외에는 사용량이 최소화되는 비즈니스 애플리케이션입니다.    
+Cosmos 처리량 설정은 이러한 유형의 사용 패턴에 맞게 다양할 수도 있습니다.   
+
+1. Lab09Main.java 파일의 main 메소드 안의 코드를 다음과 같이 수정합니다.    
+```java
+public static void main(String[] args) {
+  CosmosAsyncClient client = new CosmosClientBuilder()
+          .endpoint(endpointUri)
+          .key(primaryKey)
+          .consistencyLevel(ConsistencyLevel.EVENTUAL)
+          .contentResponseOnWriteEnabled(true)
+          .buildAsyncClient();
+
+  database = client.getDatabase("FinancialDatabase");
+  peopleContainer = database.getContainer("PeopleCollection");
+  transactionContainer = database.getContainer("TransactionCollection");         
+
+  client.close();
+}
+```      
+
+2. 컨테이너의 현재 Throughput을 알기위해 아래 코드를 추가합니다.   
+```java
+int throughput = peopleContainer.readThroughput().block().getProperties().getManualThroughput();
+```   
+
+3. 출력 코드를 추가합니다.   
+```java
+logger.info("{} RU per sec", throughput);
+```   
+
+4. RU를 수정하는 코드를 추가합니다.
+```java
+peopleContainer.replaceThroughput(ThroughputProperties.createManualThroughput(1000)).block();
+```
+
+5. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+   Azure Portal에서 변경사항을 확인합니다.
+
+
 
