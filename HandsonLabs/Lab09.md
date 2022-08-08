@@ -661,4 +661,5 @@ peopleContainer.replaceThroughput(ThroughputProperties.createManualThroughput(10
    Azure Portal에서 변경사항을 확인합니다.
 
 
+모든 테스트가 종료되면 불필요한 비용이 발생하지 않도록 Azure Portal에서 테스트에 사용된 리소스를 모두 삭제합니다. 
 
