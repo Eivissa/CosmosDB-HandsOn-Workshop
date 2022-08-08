@@ -157,8 +157,8 @@ public class DataGenerator {
 ```
 
 
-4. Datagenerator.java에서 사용될 데이터 타입 추가를 위해 common\datatypes 폴더에 ActionType.java, CartAction.java 파일을 생성합니다. 
-![image](https://user-images.githubusercontent.com/44718680/182517638-2e6b97b7-2792-49c8-b7ce-fef884d890cf.png)
+4. Datagenerator.java에서 사용될 데이터 타입 추가를 위해 common\datatypes 폴더에 ActionType.java, CartAction.java 파일을 생성합니다.   
+![image](https://user-images.githubusercontent.com/44718680/182517638-2e6b97b7-2792-49c8-b7ce-fef884d890cf.png)   
 
 5. ActionType.java 파일에 아래 코드로 채웁니다.
 ```java
