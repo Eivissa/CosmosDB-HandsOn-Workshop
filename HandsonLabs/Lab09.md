@@ -432,7 +432,7 @@ String sql = "SELECT c.id FROM c";
 
 2. 다음 코드 줄을 추가하여 쿼리 옵션을 구성하는 변수를 만듭니다.   
 ```java
- int maxItemCount = 100;
+ int maxItemCount = 10;
  int maxDegreeOfParallelism = 1;
  int maxBufferedItemCount = 0;
 ```   
@@ -498,24 +498,24 @@ int maxDegreeOfParallelism = 5;
     소모되는 RU량과 최종 수행 시간을 확인합니다.   
 
 
-13. 처리 속도가 개선되는지를 확인하기 위해 병렬 처리수를 -1로 수정합니다.   
+13. 처리 속도가 개선되는지를 확인하기 위해 데이터 미리가져오기 처리수를 -1로 수정합니다.   
 ```java
-int maxDegreeOfParallelism = -1;
+int maxBufferedItemCount = -1;
 ```   
 
 14. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
     소모되는 RU량과 최종 수행 시간을 확인합니다.   
 
 
-15. 처리 속도가 개선되는지를 확인하기 위해 반환되는 아이템 처리수를  500로 수정합니다.   
+15. 처리 속도가 개선되는지를 확인하기 위해 병렬 처리수를 -1로 수정합니다.   
 ```java
-int maxItemCount = 500;
+int maxDegreeOfParallelism = -1;
 ```   
 
 16. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
     소모되는 RU량과 최종 수행 시간을 확인합니다.   
  
-17. 처리 속도가 개선되는지를 확인하기 위해 반환되는 아이템 처리수를  1000로 수정합니다.   
+17. 처리 속도가 개선되는지를 확인하기 위해 반환되는 아이템 처리수를 1000로 수정합니다.   
 ```java
 int maxItemCount = 1000;
 ```   
@@ -523,7 +523,7 @@ int maxItemCount = 1000;
 18. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
     소모되는 RU량과 최종 수행 시간을 확인합니다.   
 
-19. 처리 속도가 개선되는지를 확인하기 위해 미리 데이터 미리가져오기 처리수를  50000로 수정합니다.   
+19. 처리 속도가 개선되는지를 확인하기 위해 데이터 미리가져오기 처리수를 50000로 수정합니다.   
 ```java
 int maxBufferedItemCount = 50000;
 ```   
@@ -531,6 +531,7 @@ int maxBufferedItemCount = 50000;
 20. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
     소모되는 RU량과 최종 수행 시간을 확인합니다.   
 
+### 3. Reading and Querying Items
 
 
 
