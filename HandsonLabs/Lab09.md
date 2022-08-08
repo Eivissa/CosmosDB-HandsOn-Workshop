@@ -461,6 +461,8 @@ String sql = "SELECT * FROM c WHERE c.processed = true ORDER BY c.amount DESC";
 
 6. 수행시간 측정을 위한 타이머 코드를 추가합니다.   
 ```java
+import org.apache.commons.lang3.time.StopWatch;
+
 StopWatch timer = StopWatch.createStarted();
 ```   
 
@@ -485,6 +487,55 @@ logger.info("\n\nElapsed Time:\t{}s\n\n", ((double)timer.getTime(TimeUnit.MILLIS
 ```   
 
 10. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+    소모되는 RU량과 최종 수행 시간을 확인합니다.   
+
+11. 처리 속도가 개선되는지를 확인하기 위해 병렬 처리수를 5로 수정합니다.   
+```java
+int maxDegreeOfParallelism = 5;
+```   
+
+12. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+    소모되는 RU량과 최종 수행 시간을 확인합니다.   
+
+
+13. 처리 속도가 개선되는지를 확인하기 위해 병렬 처리수를 -1로 수정합니다.   
+```java
+int maxDegreeOfParallelism = -1;
+```   
+
+14. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+    소모되는 RU량과 최종 수행 시간을 확인합니다.   
+
+
+15. 처리 속도가 개선되는지를 확인하기 위해 반환되는 아이템 처리수를  500로 수정합니다.   
+```java
+int maxItemCount = 500;
+```   
+
+16. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+    소모되는 RU량과 최종 수행 시간을 확인합니다.   
+ 
+17. 처리 속도가 개선되는지를 확인하기 위해 반환되는 아이템 처리수를  1000로 수정합니다.   
+```java
+int maxItemCount = 1000;
+```   
+
+18. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+    소모되는 RU량과 최종 수행 시간을 확인합니다.   
+
+19. 처리 속도가 개선되는지를 확인하기 위해 미리 데이터 미리가져오기 처리수를  50000로 수정합니다.   
+```java
+int maxBufferedItemCount = 50000;
+```   
+
+20. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+    소모되는 RU량과 최종 수행 시간을 확인합니다.   
+
+
+
+
+
+
 
 
 
