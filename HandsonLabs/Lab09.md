@@ -414,44 +414,44 @@ String sql = "SELECT c.id FROM c";
 
 1. Lab09Main.java 파일의 main 메소드 안의 코드를 다음과 같이 수정합니다.   
 ```java
- public static void main(String[] args) {
-     CosmosAsyncClient client = new CosmosClientBuilder()
-             .endpoint(endpointUri)
-             .key(primaryKey)
-             .consistencyLevel(ConsistencyLevel.EVENTUAL)
-             .contentResponseOnWriteEnabled(true)
-             .buildAsyncClient();
+public static void main(String[] args) {
+  CosmosAsyncClient client = new CosmosClientBuilder()
+          .endpoint(endpointUri)
+          .key(primaryKey)
+          .consistencyLevel(ConsistencyLevel.EVENTUAL)
+          .contentResponseOnWriteEnabled(true)
+          .buildAsyncClient();
 
-     database = client.getDatabase("FinancialDatabase");
-     peopleContainer = database.getContainer("PeopleCollection");
-     transactionContainer = database.getContainer("TransactionCollection");         
+  database = client.getDatabase("FinancialDatabase");
+  peopleContainer = database.getContainer("PeopleCollection");
+  transactionContainer = database.getContainer("TransactionCollection");         
 
-     client.close();
- }
+  client.close();
+}
 ```    
 
 2. 다음 코드 줄을 추가하여 쿼리 옵션을 구성하는 변수를 만듭니다.   
 ```java
- int maxItemCount = 10;
- int maxDegreeOfParallelism = 1;
- int maxBufferedItemCount = 0;
+int maxItemCount = 10;
+int maxDegreeOfParallelism = 1;
+int maxBufferedItemCount = 0;
 ```   
  
 3. 다음 코드 줄을 추가하여 변수에서 쿼리에 대한 옵션을 구성합니다.   
 ```java
- CosmosQueryRequestOptions options = new CosmosQueryRequestOptions();
- options.setMaxBufferedItemCount(maxBufferedItemCount);
- options.setMaxDegreeOfParallelism(maxDegreeOfParallelism);
+CosmosQueryRequestOptions options = new CosmosQueryRequestOptions();
+options.setMaxBufferedItemCount(maxBufferedItemCount);
+options.setMaxDegreeOfParallelism(maxDegreeOfParallelism);
 ```   
  
 4. 다음 코드를 추가하여 콘솔 창에 변수 값 출력을 작성합니다.   
 ```java
- logger.info("\n\n" +
-             "MaxItemCount:\t{}\n" +
-             "MaxDegreeOfParallelism:\t{}\n" +
-             "MaxBufferedItemCount:\t{}" + 
-             "\n\n",
-             maxItemCount, maxDegreeOfParallelism, maxBufferedItemCount);
+logger.info("\n\n" +
+          "MaxItemCount:\t{}\n" +
+          "MaxDegreeOfParallelism:\t{}\n" +
+          "MaxBufferedItemCount:\t{}" + 
+          "\n\n",
+          maxItemCount, maxDegreeOfParallelism, maxBufferedItemCount);
 ```   
 
 5. 문자열 변수에 SQL 쿼리를 저장할 다음 코드 줄을 추가합니다.   
@@ -533,10 +533,68 @@ int maxBufferedItemCount = 50000;
 
 ### 3. Reading and Querying Items
 
+1. Cosmos DB 데이터 익스플로러에서 FinancialDatabase 데이터베이스의 PeopleCollection 컨테이너의 데이터를 확인합니다.
 
+2. 임의의 데이터 1건에 대한 id 속성 값과 파티션 키 값을 따로 기입해 둡니다. 
 
+3. Lab09Main.java 파일의 main 메소드 안의 코드를 다음과 같이 수정합니다.   
+```java
+public static void main(String[] args) {
+  CosmosAsyncClient client = new CosmosClientBuilder()
+          .endpoint(endpointUri)
+          .key(primaryKey)
+          .consistencyLevel(ConsistencyLevel.EVENTUAL)
+          .contentResponseOnWriteEnabled(true)
+          .buildAsyncClient();
 
+  database = client.getDatabase("FinancialDatabase");
+  peopleContainer = database.getContainer("PeopleCollection");
+  transactionContainer = database.getContainer("TransactionCollection");         
 
+  client.close();
+}
+```    
+
+4. 문자열 변수에 SQL 쿼리를 저장하는 다음 코드 줄을 추가합니다(example.document를 앞서 기록해 둔 id 값으로 바꿉니다).   
+```sql
+String sql = "SELECT TOP 1 * FROM c WHERE c.id = 'example.document'";
+```   
+> 이 쿼리는 지정된 고유 ID와 일치하는 단일 항목을 찾습니다.
+
+5. 다음 코드 줄을 추가하여 항목 쿼리 인스턴스를 만들고 결과의 첫 페이지를 가져옵니다.    
+   또한 페이지의 RequestCharge 속성 값과 검색된 항목의 내용을 인쇄합니다.   
+```java
+CosmosQueryRequestOptions options = new CosmosQueryRequestOptions();
+
+peopleContainer.queryItems(sql, options, Member.class)
+      .byPage()
+      .next()
+      .flatMap(page -> {
+      logger.info("\n\n" +
+                  "{} RUs for\n" +
+                  "{}" + 
+                  "\n\n",
+                  page.getRequestCharge(),
+                  page.getElements().iterator().next());
+      return Mono.empty();
+}).block();
+```   
+6. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+> RU의 양이 표시되어야 합니다.
+
+7. 다음 코드를 추가하여 CosmosAsyncContainer 클래스의 readItem 메서드를 사용하여 이전 단계에서 성으로 설정된 고유 ID와 파티션 키를 사용하여 항목을 검색합니다.    
+RequestCharge 속성 값을 출력하는 행을 추가합니다.    
+```java
+int expectedWritesPerSec = 200;
+int expectedReadsPerSec = 800;
+double readRequestCharge = 0.0;
+peopleContainer.readItem("example.document", new PartitionKey("<LastName>"), Member.class)
+.flatMap(response -> {
+  readRequestCharge = response.getRequestCharge();
+  logger.info("\n\n{} RUs\n\n",readRequestCharge);
+  return Mono.empty();
+}).block();
+```   
 
 
 
