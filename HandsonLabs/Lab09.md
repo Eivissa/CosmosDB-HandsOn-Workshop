@@ -138,8 +138,41 @@ import com.azure.cosmos.handsonlabs.common.datatypes.Family;
  SELECT * FROM coll WHERE IS_DEFINED(coll.relatives)
 ```   
 
+# Tune Index Policy
 
+1. Azure Cosmos DB 블레이드에서 왼쪽에 있는 데이터 탐색기 링크를 찾아 클릭합니다.   
 
+2. 데이터 탐색기 섹션에서 FinancialDatabase 데이터베이스 노드를 확장하고 PeopleCollection 노드를 확장한 다음 배율 및 설정(Scale & Settings) 옵션을 선택합니다.   
 
+3. 설정 섹션에서 인덱싱 정책 필드를 찾아 현재 기본 인덱싱 정책을 관찰합니다.   
+```json
+{
+    "indexingMode": "consistent",
+    "automatic": true,
+    "includedPaths": [
+        {
+            "path": "/*"
+        }
+    ],
+    "excludedPaths": [
+        {
+            "path": "/\"_etag\"/?"
+        }
+    ],
+    "spatialIndexes": [
+        {
+            "path": "/*",
+            "types": [
+                "Point",
+                "LineString",
+                "Polygon",
+                "MultiPolygon"
+            ]
+        }
+    ]
+}
+```   
+
+> 이 정책은 JSON 문서의 모든 경로를 색인화합니다. 이 정책은 숫자(최대 8) 및 문자열(최대 100) 경로 모두에 대해 최대 정밀도(-1)를 구현합니다. 이 정책은 공간 데이터도 색인화합니다.
 
 
