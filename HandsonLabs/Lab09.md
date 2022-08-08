@@ -94,7 +94,8 @@ logger.info("{} RUs", response.getRequestCharge());
  }
 ```   
 
-9. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.   
+9. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.     
+   소모된 RU를 기록해 둡니다.  (13.9 RUs)   
 
 10. Cosmos DB 데이터 탐색기에서 아래 쿼리를 수행하여 결과를 확인 합니다.   
 ```sql
@@ -131,7 +132,8 @@ import com.azure.cosmos.handsonlabs.common.datatypes.Family;
 -->
 
 
-11. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.   
+11. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.    
+    소모된 RU를 기록해 둡니다.  (48.57 RUs)   
 
 12. Cosmos DB 데이터 탐색기에서 아래 쿼리를 수행하여 결과를 확인 합니다.   
 ```sql
@@ -173,6 +175,60 @@ import com.azure.cosmos.handsonlabs.common.datatypes.Family;
 }
 ```   
 
-> 이 정책은 JSON 문서의 모든 경로를 색인화합니다. 이 정책은 숫자(최대 8) 및 문자열(최대 100) 경로 모두에 대해 최대 정밀도(-1)를 구현합니다. 이 정책은 공간 데이터도 색인화합니다.
+> 이 정책은 JSON 문서의 모든 경로를 색인화합니다. 이 정책은 숫자(최대 8) 및 문자열(최대 100) 경로 모두에 대해 최대 정밀도(-1)를 구현합니다. 이 정책은 공간 데이터도 색인화합니다.   
 
+4. 인덱싱 정책을 인덱스에서 /relatives/* 경로를 제거하는 새 정책으로 교체합니다.   
+```json
+ {
+     "indexingMode": "consistent",
+     "automatic": true,
+     "includedPaths": [
+         {
+             "path":"/*",
+             "indexes":[
+                 {
+                     "kind": "Range",
+                     "dataType": "String",
+                     "precision": -1
+                 },
+                 {
+                     "kind": "Range",
+                     "dataType": "Number",
+                     "precision": -1
+                 }
+             ]
+         }
+     ],
+     "excludedPaths": [
+         {
+             "path":"/\"_etag\"/?"
+         },
+         {
+             "path":"/relatives/*"
+         }
+     ]
+ }
+```   
+> 이 새로운 정책은 인덱스에서 큰 JSON 문서의 Children 속성을 효과적으로 제거하는 인덱싱에서 /relatives/* 경로를 제외합니다.   
+
+5. 저장 버튼을 클릭하여 새 인덱싱 정책을 적용합니다.
+
+6. Cosmos DB 데이터 탐색기에서 아래 쿼리를 수행하여 결과를 확인 합니다.
+   여전히 결과는 기존과 동일함을 알 수 있습니다. 
+```sql
+SELECT * FROM coll WHERE IS_DEFINED(coll.relatives)
+```
+
+7. 아래 쿼리를 추가로 실행해 봅니다. 
+```sql
+SELECT * FROM coll WHERE IS_DEFINED(coll.relatives) ORDER BY coll.relatives.Spouse.FirstName
+```
+> 쿼리는 실패할 것 입니다. 이유는 ORDER BY 구문에는 인덱싱된 속성만 사용할 수 있습니다.
+
+
+8. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.    
+   소모된 RU를 기록해 둡니다.  (16.38 RUs)    
+
+
+## 3. Troubleshooting Requests
 
