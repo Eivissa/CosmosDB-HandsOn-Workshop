@@ -101,7 +101,7 @@ logger.info("{} RUs", response.getRequestCharge());
 SELECT TOP 2 * FROM coll ORDER BY coll._ts DESC
 ```   
 
-11. main 메소드의 아래 코드를 수정합니다.
+11. main 메소드의 아래 코드를 수정합니다.   
 Before     
 ```java
  Person person = new Person(); 
