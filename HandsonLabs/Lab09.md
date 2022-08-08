@@ -237,4 +237,88 @@ SELECT * FROM coll WHERE IS_DEFINED(coll.relatives) ORDER BY coll.relatives.Spou
 요청에 속도가 제한되면 서버는 HTTP 상태 코드 429 RequestRateTooLargeException으로 요청을 선제적으로 종료하고 x-ms-retry-after-ms 헤더를 반환합니다. 헤더는 클라이언트가 요청을 재시도하기 전에 기다려야 하는 시간(밀리초)을 나타냅니다.   
 예제 애플리케이션에서 요청의 속도 제한을 관찰할 것입니다.   
 
+### 1. Reducing RU Throughput for a Container   
+
+1. Azure Portal에서 Cosmos DB 리소스를 찾습니다.   
+
+2. FinancialDatabase 데이터베이스의 TransactionCollection 컨테이너의 Scale & Settings 옵션에서 Throughput 값을 400으로 수정합니다.   
+  
+### 2. Observing Throttling (HTTP 429)   
+
+1. Lab09Main.java 파일의 main 메소드 안의 코드를 삭제합니다.   
+```java
+ public static void main(String[] args) {
+     CosmosAsyncClient client = new CosmosClientBuilder()
+             .endpoint(endpointUri)
+             .key(primaryKey)
+             .consistencyLevel(ConsistencyLevel.EVENTUAL)
+             .contentResponseOnWriteEnabled(true)
+             .buildAsyncClient();
+
+     database = client.getDatabase("FinancialDatabase");
+     peopleContainer = database.getContainer("PeopleCollection");
+     transactionContainer = database.getContainer("TransactionCollection");         
+
+     client.close();
+ }
+```   
+
+
+2. TransactionCollection 컨테이너에 테스트 데이터를 생성하는 코드를 작성할 차례입니다.     
+   아래 Transaction 인스턴스 데이터 생성 코드를 main 메소드 안에 추가합니다.   
+```java
+ List<Transaction> transactions = new ArrayList<Transaction>();
+ for (int i=0; i<100; i++) transactions.add(new Transaction());
+```   
+
+3. Transaction 인스턴스 반복문을 추가합니다.   
+```java
+for (Transaction transaction : transactions) {
+
+}
+```   
+
+4. foreach 블록 내에서 다음 코드 줄을 추가하여 항목을 비동기식으로 만들고 생성 작업의 결과를 변수에 저장합니다.   
+```java
+CosmosItemResponse<Transaction> result = transactionContainer.createItem(transaction).block();
+```   
+> CosmosAsyncContainer 클래스의 createItem 메서드는 JSON으로 직렬화하고 지정된 컬렉션 내 항목으로 저장하려는 개체를 가져옵니다.   
+
+5. foreach 블록 내에서 다음 코드 줄을 추가하여 새로 생성된 리소스의 id 속성 값을 콘솔에 씁니다.   
+```java
+logger.info("Item Created {}", result.getItem().getId());
+```   
+
+6. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.    
+
+7. 이 코드는 Async API를 사용하여 Azure Cosmos DB 컨테이너에 문서를 삽입하지만 각 createItem 호출을 차단하여 동기 방식으로 API를 사용하고 있습니다.   
+한 스레드의 동기화 구현은 컨테이너 프로비저닝 처리량을 포화시킬 수 없습니다.   
+이제 이러한 createItem 호출을 비동기 반응 프로그래밍 방식으로 다시 작성하고 컨테이너에 프로비저닝된 전체 400RU/s를 포화시킬 때 어떤 일이 발생하는지 살펴보겠습니다.   
+코드 편집기 탭으로 돌아가서 다음 코드 줄을 찾습니다.    
+```java
+ for (Transaction transaction : transactions) {
+     CosmosItemResponse<Transaction> result = transactionContainer.createItem(transaction).block();
+     logger.info("Item Created {}", result.getItem().getId());
+ }
+```   
+
+위 코드 부분을 아래 코드로 변경합니다. 
+```java
+ Flux<Transaction> interactionsFlux = Flux.fromIterable(transactions);
+ List<CosmosItemResponse<Transaction>> results = 
+     interactionsFlux.flatMap(interaction -> {
+         return transactionContainer.createItem(interaction);
+ })
+ .collectList()
+ .block();
+
+ results.forEach(result -> logger.info("Item Created\t{}",result.getItem().getId()));
+```   
+> 위 코드는 생성 작업을 가능한 한 병렬로 실행하려고 시도할 것입니다. 컨테이너는 400RU/s로 구성되어 있습니다.    
+> 이 구현에서는 Reactor 팩토리 메서드 Flux.fromIterable을 사용하여 트랜잭션 목록에서 Reactive Flux interactionFlux를 생성합니다.
+그런 다음 이전 요청이 완료될 때까지 기다리지 않고 연속적인 createItem 요청을 발행하는 Reactive Streams 파이프라인에서 interactionFlux를 게시자로 사용합니다. 따라서 이것은 비동기 구현입니다. 이 코드 블록 끝에 있는 for-each 루프는 요청 결과를 반복하고 각각에 대한 알림을 인쇄합니다. 이러한 요청은 거의 병렬로 실행되므로 Azure Cosmos DB 컨테이너에 할당된 처리량이 요청 볼륨을 처리하기에 충분하지 않기 때문에 문서 수를 늘리면 예외적인 시나리오가 빠르게 발생해야 합니다.
+
+
+
+
 
