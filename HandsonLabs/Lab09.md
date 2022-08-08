@@ -108,7 +108,7 @@ Before
  CosmosItemResponse<Person> response = peopleContainer.createItem(person).block();
 
  logger.info("First item insert: {} RUs", response.getRequestCharge());
-```   
+```
 After   
 ```java
  List<Person> children = new ArrayList<Person>();
@@ -131,6 +131,12 @@ import com.azure.cosmos.handsonlabs.common.datatypes.Family;
 -->
 
 
+11. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.   
+
+12. Cosmos DB 데이터 탐색기에서 아래 쿼리를 수행하여 결과를 확인 합니다.   
+```sql
+ SELECT * FROM coll WHERE IS_DEFINED(coll.relatives)
+```   
 
 
 
