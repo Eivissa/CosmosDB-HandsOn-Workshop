@@ -10,3 +10,91 @@
 2. Visual Studio를 엽니다.
 
 3. your\home\directory\Documents\CosmosLabs 폴더를 오픈 합니다. 
+
+## 2. Examining Response Headers
+Azure Cosmos DB는 요청 및 서버 측에서 발생한 작업에 대한 추가 메타데이터를 제공할 수 있는 다양한 응답 헤더를 반환합니다.   
+Java SDK는 이러한 헤더 중 많은 부분을 ResourceResponse<> 클래스의 속성으로 제공합니다.   
+
+# 1. Observe RU Charge for Large Item
+
+1. Lab09Main.java 파일 오픈 후 Main 메소드 내용을 아래 코드로 변경합니다.   
+```java
+ CosmosAsyncClient client = new CosmosClientBuilder()
+             .endpoint(endpointUri)
+             .key(primaryKey)
+             .consistencyLevel(ConsistencyLevel.EVENTUAL)
+             .contentResponseOnWriteEnabled(true)
+             .buildAsyncClient();
+
+ database = client.getDatabase("FinancialDatabase");
+ peopleContainer = database.getContainer("PeopleCollection");
+ transactionContainer = database.getContainer("TransactionCollection");         
+
+ client.close();
+
+```   
+
+2. 아래 import 구문을 수정합니다.   
+Before   
+```java
+import com.azure.cosmos.ConnectionPolicy;
+```   
+After   
+```java
+import com.azure.cosmos.implementation.ConnectionPolicy;
+```   
+
+3. 아래 import 구문을 삭제합니다.   
+```java
+import com.azure.cosmos.models.CosmosAsyncItemResponse;
+```   
+
+4. Person 클래스를 추가합니다.   
+```java
+import com.azure.cosmos.handsonlabs.common.datatypes.Person;
+```   
+
+5. Person 클래스 사용을 위해 아래 코드를 추가합니다.
+```java
+Person person = new Person(); 
+```
+
+6. person 변수를 CosmosAsyncContainer 인스턴스에서 createItem 메소들 사용해 입력하는 아래 코드를 추가합니다.
+```java
+CosmosItemResponse<Person> response = peopleContainer.createItem(person).block();
+```   
+
+7. 데이터 생성시 소모된 RU를 출력하기 위해 ItemResponse<> 인스턴스의 RequestCharge 속성 값을 출력합니다.   
+```java
+logger.info("{} RUs", response.getRequestCharge());
+```   
+
+8. 완성된 main 메소드 코드는 아래와 같습니다.   
+```java
+ public static void main(String[] args) {
+    
+     CosmosAsyncClient client = new CosmosClientBuilder()
+             .endpoint(endpointUri)
+             .key(primaryKey)
+             .consistencyLevel(ConsistencyLevel.EVENTUAL)
+             .contentResponseOnWriteEnabled(true)
+             .buildAsyncClient();
+
+     database = client.getDatabase("FinancialDatabase");
+     peopleContainer = database.getContainer("PeopleCollection");
+     transactionContainer = database.getContainer("TransactionCollection");
+        
+     Person person = new Person();
+     CosmosItemResponse<Person> response =
+     peopleContainer.createItem(person).block();
+        
+     logger.info("First item insert: {} RUs", response.getRequestCharge());
+
+     client.close();        
+ }
+```   
+
+9. Lab09Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.
+
+
+
