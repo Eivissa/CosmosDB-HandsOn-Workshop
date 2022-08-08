@@ -15,7 +15,7 @@
 Azure Cosmos DB는 요청 및 서버 측에서 발생한 작업에 대한 추가 메타데이터를 제공할 수 있는 다양한 응답 헤더를 반환합니다.   
 Java SDK는 이러한 헤더 중 많은 부분을 ResourceResponse<> 클래스의 속성으로 제공합니다.   
 
-# 1. Observe RU Charge for Large Item
+### 1. Observe RU Charge for Large Item
 
 1. Lab09Main.java 파일 오픈 후 Main 메소드 내용을 아래 코드로 변경합니다.   
 ```java
@@ -34,11 +34,12 @@ Java SDK는 이러한 헤더 중 많은 부분을 ResourceResponse<> 클래스�
 
 ```   
 
-2. 아래 import 구문을 수정합니다.   
+2. 아래 import 구문을 수정합니다.
+
 Before   
 ```java
 import com.azure.cosmos.ConnectionPolicy;
-```   
+```
 After   
 ```java
 import com.azure.cosmos.implementation.ConnectionPolicy;
@@ -140,7 +141,7 @@ import com.azure.cosmos.handsonlabs.common.datatypes.Family;
  SELECT * FROM coll WHERE IS_DEFINED(coll.relatives)
 ```   
 
-# Tune Index Policy
+### 2. Tune Index Policy
 
 1. Azure Cosmos DB 블레이드에서 왼쪽에 있는 데이터 탐색기 링크를 찾아 클릭합니다.   
 
@@ -231,4 +232,9 @@ SELECT * FROM coll WHERE IS_DEFINED(coll.relatives) ORDER BY coll.relatives.Spou
 
 
 ## 3. Troubleshooting Requests
+먼저 Java SDK를 사용하여 컨테이너에 할당된 용량을 초과하는 요청을 발행합니다.   
+요청 단위 소비는 초당 속도로 평가됩니다. 프로비저닝된 요청 단위 비율을 초과하는 애플리케이션의 경우 비율이 프로비저닝된 처리량 수준 아래로 떨어질 때까지 요청 비율이 제한됩니다.   
+요청에 속도가 제한되면 서버는 HTTP 상태 코드 429 RequestRateTooLargeException으로 요청을 선제적으로 종료하고 x-ms-retry-after-ms 헤더를 반환합니다. 헤더는 클라이언트가 요청을 재시도하기 전에 기다려야 하는 시간(밀리초)을 나타냅니다.   
+예제 애플리케이션에서 요청의 속도 제한을 관찰할 것입니다.   
+
 
