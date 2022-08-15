@@ -56,8 +56,8 @@ private static String endpointUri = "<your uri>";
 private static String primaryKey = "<your key>";
 ```
 3. 앞서 만든 Cosmos DB의 접근 주소(URI)와 키값이 필요합니다.
-endpointUri 변수의 경우 자리 값을 URI 값으로 바꾸고 primaryKey 변수의 경우 값을 Azure Cosmos DB 계정의 PRIMARY KEY 값으로 바꿉니다. 
-아직 값이 없는 경우 이 지침을 사용하여 이 값을 가져옵니다.
+endpointUri 변수의 경우 자리 값을 URI 값으로 바꾸고 primaryKey 변수의 경우 값을 Azure Cosmos DB 계정의 PRIMARY KEY 값으로 바꿉니다.    
+아직 값이 없는 경우 이 지침을 사용하여 이 값을 가져옵니다.   
 [Cosmos DB 엔드포인트, Key 확인](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/PreLab_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1.md#5-azure-%EB%B0%B0%ED%8F%AC-%EA%B2%B0%EA%B3%BC-%ED%99%95%EC%9D%B8)   
     > URI 샘플  
     >> private static String endpointUri = "https://cosmosacct.documents.azure.com:443/";   
