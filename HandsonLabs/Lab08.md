@@ -171,7 +171,7 @@ public enum ActionType {
 }
 ```
 
-6. CartAction.java 파일에 아래 코드로 다. 
+6. CartAction.java 파일에 아래 코드로 채웁니다. 
 ```java
 package com.azure.cosmos.handsonlabs.common.datatypes;
 
