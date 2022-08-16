@@ -30,6 +30,7 @@ Set-ExecutionPolicy Unrestricted -Scope Process
 <br></br>
 ## 3. 리소스 배포 스크립트 수정
 1번에서 git clone 한 리포지터리 labs\java\setup\labSetup.ps1 스크립트를 아래 링크의 내용으로 변경   
+Azure Powershell에서 지원되지 않는 파라미터의 변경사항을 수정 반영했습니다.   
    
 - https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/tree/main/HandsonLabs/Files/labSetup.ps1
 
