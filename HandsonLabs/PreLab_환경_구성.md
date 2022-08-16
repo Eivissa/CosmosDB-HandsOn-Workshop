@@ -23,7 +23,7 @@ Set-ExecutionPolicy Unrestricted -Scope Process
 .\labCodeSetup.ps1
 ```
 (실행결과)   
-![image](https://user-images.githubusercontent.com/44718680/182066913-759cfdc9-4407-4cf9-a47f-b16d5112a40d.png)
+<img src="https://user-images.githubusercontent.com/44718680/182066913-759cfdc9-4407-4cf9-a47f-b16d5112a40d.png"  width="600" height="200"/>   
 
 
 
