@@ -16,14 +16,14 @@ Lab0x 폴더들의 경로는 C:\Users\\[*사용자명*]\Documents\CosmosLabs\src
     <img src="https://user-images.githubusercontent.com/44718680/182083771-7fdd3600-882f-4ca9-945e-a79629791b31.png"  width="400" height="600"/>
 
 4. 로딩된 프로젝트 파일 확인   
-    <img src="https://user-images.githubusercontent.com/44718680/182101365-03086fbf-d394-4489-bdbd-fa4c401fbfb7.png"  width="620" height="500"/>   
+    <img src="https://user-images.githubusercontent.com/44718680/182101365-03086fbf-d394-4489-bdbd-fa4c401fbfb7.png"  width="620" height="450"/>   
 
 5. pom.xml 파일에서 azure-cosmos의 dependency의 버전을 *LATEST* 로 변경   
 
     변경전   
-     ![image](https://user-images.githubusercontent.com/44718680/182099756-ccc4c95b-9c45-4039-9533-b8c35b459a15.png)   
+     <img src="https://user-images.githubusercontent.com/44718680/182099756-ccc4c95b-9c45-4039-9533-b8c35b459a15.png"  width="800" height="350"/>        
     변경후   
-     ![image](https://user-images.githubusercontent.com/44718680/182100655-4d913de1-c949-4c50-a60b-321c5db2c2ac.png)   
+     <img src="https://user-images.githubusercontent.com/44718680/182100655-4d913de1-c949-4c50-a60b-321c5db2c2ac.png"  width="800" height="350"/>   
 
 6. handsonlabs\lab01\ 폴더의 Lab01Main.java 파일 오픈
     ![image](https://user-images.githubusercontent.com/44718680/182088478-72367395-6d0f-4953-a1c5-5562ad1e6dce.png)   
