@@ -174,11 +174,7 @@ logger.info("Container Id:\t{}",customContainer.getId());
  List<IncludedPath> includedPaths = new ArrayList<>();
  IncludedPath includedPath = new IncludedPath("/*");
  includedPaths.add(includedPath);
- indexingPolicy.setIncludedPaths(includedPaths);  
-
- CosmosContainerProperties containerProperties = 
-     new CosmosContainerProperties("CustomCollection", "/type");
- return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(2000));    
+ indexingPolicy.setIncludedPaths(includedPaths);   
 ```
 4. 인덱싱 정책을 실제 적용하기 위해 CosmosContainerProperties 부분을 수정합니다. 
 ```java
