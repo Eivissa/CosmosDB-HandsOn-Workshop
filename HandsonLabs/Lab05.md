@@ -129,7 +129,10 @@ import com.google.common.collect.Lists;
 4. Lab05Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다. 
 
 5. Cosmos DB 데이터 탐색기에서 아래 쿼리를 수행하여 결과를 확인 합니다.
+```sql
+   SELECT f.description, f.manufacturerName, f.servings FROM foods f WHERE f.foodGroup = 'Sweets' and IS_DEFINED(f.description) and IS_DEFINED(f.manufacturerName) and IS_DEFINED(f.servings)
 
+```
 ## 3. Execute a Query Against Multiple Azure Cosmos DB Partitions
 
 1. 앞서 작성한 코드를 복사하여 중복되도록 붙여 넣습니다.
