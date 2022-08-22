@@ -37,6 +37,7 @@ Azure Powershell에서 지원되지 않는 파라미터의 변경사항을 수�
 
 <br></br>
 ## 4. Lab에 사용될 리소스 배포(Powershell)
+주의: MFA 사용 설정이 되어 있어야 함, 구독 Resource providers에 Microsoft.DocumentDB
 ```powershell
 Connect-AzAccount
 
