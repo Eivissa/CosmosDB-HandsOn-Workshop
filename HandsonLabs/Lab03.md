@@ -96,7 +96,7 @@ SELECT *
 FROM food
 WHERE food.foodGroup = "Snacks" and food.id = "19015"
 ```   
-![image](https://user-images.githubusercontent.com/44718680/191158005-855d7db1-38c0-45ff-84b3-6923a72da9b8.png)   
+![image](https://user-images.githubusercontent.com/44718680/191158186-1736bfbf-d293-42c7-b1c9-7327a700bef8.png)   
 
 
 
