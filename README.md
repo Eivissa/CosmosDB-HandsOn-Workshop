@@ -54,7 +54,7 @@ Visual Studio 메뉴에서 File->Preferences->settings 클릭
 -->
 <br></br>
 ### 4. 파워쉘 모듈 설치   
-Azure 파워쉘 모듈이 설치되지 않은 경우 설치 해야 함   
+Azure 파워쉘 모듈이 설치되지 않은 경우 설치 해야 함(설치 확인 명령 : Get-InstalledModule)    
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
