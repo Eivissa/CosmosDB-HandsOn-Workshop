@@ -345,7 +345,7 @@ SELECT * FROM c WHERE IS_STRING(c.foodGroup) and IS_STRING(c.manufacturerName) O
 이제 쿼리를 실행할 수 있습니다.    
 실습을 완료한 후 [복합 인덱스 정의](https://docs.microsoft.com/en-us/azure/cosmos-db/how-to-manage-indexing-policy#composite-indexing-policy-examples)에 대해 자세히 알아볼 수 있습니다.   
 
-
+<!--
 ## 4. Adding a spatial index   
 
 ### 4.1. Create a new container with volcano data   
@@ -374,13 +374,69 @@ Container throughput : Manual, 5000
 3. [volcano.json](https://azurecosmosdb.github.io/labs/java/setup/VolcanoData.json) 파일을 다운로드 합니다.
 
 
+
+### 4.3. Create geo-spatial indexes in the Volcanoes container
+Azure Portal에서 VolcanoesContainer로 다시 이동하고 Scale & Settings 링크를 클릭합니다.    
+인덱싱 정책 섹션에서 기존 json 파일을 다음으로 바꿉니다.   
+
+지리 공간 인덱싱은 기본적으로 비활성화되어 있습니다. 
+이 인덱싱 정책은 Points, Polygons, MultiPolygon 및 LineStrings를 포함하여 가능한 모든 GeoJSON 유형에 대해 지리 공간 인덱싱을 켭니다. 
+범위 인덱스 및 복합 인덱스와 유사하게 지리 공간 인덱스에 대한 정밀도 설정이 없습니다.
+
+[Geo-spatial query 알아보기](https://docs.microsoft.com/en-us/azure/cosmos-db/geospatial#introduction-to-spatial-data) 
+
+### 4.4. Query the Volcano Data
+Azure Portal에서 VolcanoesContainer로 다시 이동하고 새 SQL 쿼리를 클릭합니다.    
+다음 SQL 쿼리를 붙여넣고 쿼리 실행을 선택합니다.
+```sql
+SELECT *
+FROM volcanoes v
+WHERE ST_DISTANCE(v.Location, {
+"type": "Point",
+"coordinates": [-122.19, 47.36]
+}) < 100 * 1000
+AND v.Type = "Stratovolcano"
+AND v["Last Known Eruption"] = "Last known eruption from 1800-1899, inclusive"
+```
+이 작업에 대한 쿼리 통계를 관찰합니다. 
+컨테이너에 Points에 대한 지리 공간 인덱스가 있기 때문에 이 쿼리는 소량의 RU를 사용했습니다.
+
+### 4.5. Query sample polygon data
+
+```sql 
+SELECT *
+FROM volcanoes v
+WHERE ST_WITHIN(v.Location, {
+    "type":"Polygon",
+    "coordinates":[[
+        [-123.8, 48.8],
+        [-123.8, 44.8],
+        [-119.8, 44.8],
+        [-119.8, 48.8],
+        [-123.8, 48.8]
+    ]]
+    })
+```
+
+
+```sql
+SELECT *
+FROM volcanoes v
+WHERE ST_WITHIN(v.Location, {
+    "type":"Polygon",
+    "coordinates":[[
+        [-123.8, 48.8],
+        [-119.8, 48.8],
+        [-119.8, 44.8],
+        [-123.8, 44.8],
+        [-123.8, 48.8]
+    ]]
+    })
+```
+-->
+
+
+
+
 Next Lab : [Building a Java Console App on Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab05.md#building-a-java-console-app-on-azure-cosmos-db)   
 [목차로 돌아가기](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop#8-java-lab-guides)
-
-
-
-
-
-
-
-
