@@ -353,3 +353,15 @@ SELECT * FROM c WHERE IS_STRING(c.foodGroup) and IS_STRING(c.manufacturerName) O
 
 
 
+
+
+Next Lab : [Building a Java Console App on Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab05.md#building-a-java-console-app-on-azure-cosmos-db)   
+[목차로 돌아가기](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop#8-java-lab-guides)
+
+
+
+
+
+
+
+
