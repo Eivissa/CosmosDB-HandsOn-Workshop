@@ -110,9 +110,245 @@ FoodCollection 내에서 문서에는 다음 스키마가 있습니다(간단성
 ```
 
 마지막으로 \*와 ?의 차이점을 이해하는 것이 중요합니다.    
-\* 문자는 Azure Cosmos DB가 해당 특정 노드를 넘어서는 모든 경로를 인덱싱해야 함을 나타냅니다.   
-? 문자는 Azure Cosmos DB가 이 노드를 넘어서는 더 이상 경로를 인덱싱하지 않아야 함을 나타냅니다. 위의 예에서 NutritionValue 아래에는 추가 경로가 없습니다.   
+\* 문자는 Azure Cosmos DB가 해당 특정 노드를 넘어서는 모든 경로를 인덱싱해야 함을 나타냅니다.    
+? 문자는 Azure Cosmos DB가 이 노드를 넘어서는 더 이상 경로를 인덱싱하지 않아야 함을 나타냅니다. 
+위의 예에서 NutritionValue 아래에는 추가 경로가 없습니다.   
 문서를 수정하고 여기에 경로를 추가하는 경우 위의 예에서 와일드카드 문자 '\*'를 사용하면 이름을 명시적으로 언급하지 않고도 속성이 인덱싱됩니다.  
+
+
+### 2.3. Understand query requirements   
+인덱싱 정책을 수정하기 전에 데이터가 컬렉션에 어떻게 사용되는지 이해하는 것이 중요합니다.   
+워크로드가 쓰기 작업이 많거나 문서가 큰 경우 필요한 경로만 인덱싱해야 합니다. 이렇게 하면 삽입, 업데이트 및 삭제에 필요한 RU의 양이 크게 줄어듭니다.   
+
+다음 쿼리가 FoodCollection 컨테이너에서 실행되는 유일한 읽기 작업이라고 가정해 보겠습니다.   
+
+Query #1
+```sql 
+SELECT * FROM c WHERE c.manufacturerName = <manufacturerName>
+```
+Query #2
+```sql
+SELECT * FROM c WHERE c.foodGroup = <foodGroup>
+```
+이러한 쿼리는 manufacturerName 및 foodGroup에 각각 범위 인덱스를 정의하기만 하면 됩니다. 이러한 속성만 인덱싱하도록 인덱싱 정책을 수정할 수 있습니다.
+
+### 2.4. Edit the indexing policy by including paths
+Azure Portal에서 FoodCollection으로 다시 이동하고 Scale & Settings 링크를 클릭합니다. 
+인덱싱 정책 섹션에서 내용을 다음으로 바꿉니다.
+```json
+{
+        "indexingMode": "consistent",
+        "includedPaths": [
+            {
+                "path": "/manufacturerName/*"
+            },
+            {
+                "path": "/foodGroup/*"
+            }
+        ],
+        "excludedPaths": [
+            {
+                "path": "/*"
+            }
+        ]
+    }
+```
+이 새로운 인덱싱 정책은 ManufacturerName 및 foodGroup 속성에 대해서만 범위 인덱스를 생성합니다. 
+다른 모든 속성에서 범위 인덱스를 제거합니다. 
+저장을 클릭합니다. 
+
+컨테이너를 다시 인덱싱하는 동안 쓰기 성능은 영향을 받지 않습니다. 그러나 쿼리는 불완전한 결과를 반환할 수 있습니다.   
+
+1. 새 인덱싱 정책을 정의한 후 FoodCollection으로 이동하여 새 SQL 쿼리 추가 아이콘을 선택합니다. 다음 SQL 쿼리를 붙여넣고 쿼리 실행을 선택합니다.   
+```sql
+SELECT * FROM c WHERE c.manufacturerName = "Kellogg, Co."
+```
+
+쿼리 통계 탭으로 이동합니다. 인덱스에서 일부 속성을 제거한 후에도 이 쿼리의 RU 요금이 낮다는 점을 관찰해야 합니다.   
+manufacturerName은 쿼리에서 필터로 사용된 유일한 속성이었기 때문에 필요한 유일한 인덱스였습니다.   
+
+이제 쿼리 텍스트를 다음으로 바꾸고 쿼리 실행을 선택합니다.
+```sql
+SELECT * FROM c WHERE c.description = "Bread, blue corn, somiviki (Hopi)"
+```
+단일 문서만 반환되는 경우에도 이 쿼리는 RU 요금이 매우 높다는 점을 관찰해야 합니다.   
+이는 현재 description 속성에 대해 정의된 범위 인덱스가 없기 때문입니다.   
+
+또한 아래의 쿼리 메트릭을 관찰하십시오.   
+![image](https://user-images.githubusercontent.com/44718680/191183610-00baacf8-b55f-494d-bf93-570f09182e24.png)   
+Retrieved document count가 8618 Index hit document count가 0 입니다.
+인덱스를 사용할 수 없으므로 8618건의 데이터를 모두 검색했습니다.
+
+### 2.4. Edit the indexing policy by excluding paths
+인덱싱할 특정 경로를 수동으로 포함하는 것 외에도 특정 경로를 제외할 수 있습니다. 
+대부분의 경우 이 접근 방식을 사용하면 기본적으로 문서의 모든 새 속성을 인덱싱할 수 있으므로 더 간단할 수 있습니다. 
+쿼리에 절대 사용하지 않을 속성이 있는 경우 이 경로를 명시적으로 제외해야 합니다.
+
+description 속성을 제외한 모든 경로를 인덱싱하는 인덱싱 정책을 생성합니다.
+
+Azure Portal에서 FoodCollection으로 다시 이동하고 Scale & Settings 링크를 클릭합니다. 
+인덱싱 정책 섹션에서 내용을 다음으로 바꿉니다.
+```sql
+{
+        "indexingMode": "consistent",
+        "includedPaths": [
+            {
+                "path": "/*"
+            }
+        ],
+        "excludedPaths": [
+            {
+                "path": "/description/*"
+            }
+        ]
+    }
+```
+이 새로운 인덱싱 정책은 설명을 제외한 모든 속성에 대해 범위 인덱스를 생성합니다. 
+저장을 클릭합니다.   
+
+컨테이너를 다시 인덱싱하는 동안 쓰기 성능은 영향을 받지 않습니다. 그러나 쿼리는 불완전한 결과를 반환할 수 있습니다.   
+
+새 인덱싱 정책을 정의한 후 FoodCollection으로 이동하여 새 SQL 쿼리 추가 아이콘을 선택합니다. 다음 SQL 쿼리를 붙여넣고 쿼리 실행을 선택합니다.   
+```sql
+SELECT * FROM c WHERE c.manufacturerName = "Kellogg, Co."
+```
+쿼리 통계 탭으로 이동합니다. manufacturerName 이름이 인덱싱되기 때문에 이 쿼리의 RU 요금이 여전히 낮다는 점을 관찰해야 합니다.   
+
+이제 쿼리 텍스트를 다음으로 바꾸고 쿼리 실행을 선택합니다.   
+```sql
+SELECT * FROM c WHERE c.description = "Bread, blue corn, somiviki (Hopi)"
+```
+단일 문서만 반환되는 경우에도 이 쿼리는 RU 요금이 매우 높다는 점을 관찰해야 합니다.   
+인덱싱 정책에서 description 속성이 명시적으로 제외되기 때문입니다.   
+
+
+## 3. Adding a Composite Index
+여러 속성을 기준으로 정렬하는 ORDER BY 쿼리의 경우 복합 인덱스가 필요합니다.   
+복합 인덱스는 여러 속성에 정의되며 수동으로 만들어야 합니다.   
+
+1. Azure Cosmos DB 블레이드에서 블레이드 왼쪽에 있는 데이터 탐색기(Data Explorer) 링크를 찾아 클릭합니다.
+2. 데이터 탐색기 섹션에서 NutritionDatabase 데이터베이스 노드를 확장한 다음 FoodCollection 컨테이너 노드를 확장합니다.
+3. 아이콘을 선택하여 새 SQL 쿼리를 추가합니다. 다음 SQL 쿼리를 붙여넣고 쿼리 실행을 선택합니다.
+```sql
+    SELECT * FROM c WHERE IS_STRING(c.foodGroup) and IS_STRING(c.manufacturerName) ORDER BY c.foodGroup ASC, c.manufacturerName ASC
+```
+
+이 쿼리는 다음 오류와 함께 실패합니다.
+```
+"The order by query does not have a corresponding composite index that it can be served from."
+```
+
+하나의 속성으로 ORDER BY 절이 있는 쿼리를 실행하려면 기본 범위 인덱스로 충분합니다.   
+ORDER BY 절에 여러 속성이 있는 쿼리에는 복합 인덱스가 필요합니다.   
+
+FoodCollection 노드 내에서 Scale & Settings 링크를 클릭합니다. 
+인덱싱 정책 섹션에서 복합 인덱스를 추가합니다.
+
+인덱싱 정책을 다음 텍스트로 바꿉니다.
+```json
+{
+    "indexingMode": "consistent",
+    "automatic": true,
+    "includedPaths": [
+        {
+            "path": "/manufacturerName/*"
+        },
+        {
+            "path": "/foodGroup/*"
+        }
+    ],
+    "excludedPaths": [
+        {
+            "path": "/*"
+        },
+        {
+            "path": "/\"_etag\"/?"
+        }
+    ],
+    "compositeIndexes": [
+        [
+            {
+                "path": "/foodGroup",
+                "order": "ascending"
+            },
+            {
+                "path": "/manufacturerName",
+                "order": "ascending"
+            }
+        ]
+    ]
+}
+```
+이 새 인덱싱 정책을 저장합니다.    
+
+이 인덱싱 정책은 다음 ORDER BY 쿼리를 허용하는 복합 인덱스를 정의합니다.   
+데이터 탐색기의 기존 열려 있는 쿼리 탭에서 실행하여 각각을 테스트합니다.    
+복합 인덱스에서 속성의 순서를 정의할 때 ORDER BY 절의 순서와 정확히 일치하거나 모든 경우에 반대 값이어야 합니다.   
+
+```sql
+SELECT * FROM c WHERE IS_STRING(c.foodGroup) and IS_STRING(c.manufacturerName) ORDER BY c.foodGroup ASC, c.manufacturerName ASC
+```
+```sql
+SELECT * FROM c WHERE IS_STRING(c.foodGroup) and IS_STRING(c.manufacturerName) ORDER BY c.foodGroup DESC, c.manufacturerName DESC
+```   
+
+이제 현재 복합 인덱스가 지원하지 않는 다음 쿼리를 실행해 보십시오.   
+```sql
+SELECT * FROM c WHERE IS_STRING(c.foodGroup) and IS_STRING(c.manufacturerName) ORDER BY c.foodGroup DESC, c.manufacturerName ASC
+```
+이 쿼리는 추가 복합 인덱스 없이는 실행되지 않습니다.    
+추가 복합 인덱스를 포함하도록 인덱싱 정책을 수정할 수 있습니다.   
+```json
+{
+    "indexingMode": "consistent",
+    "automatic": true,
+    "includedPaths": [
+        {
+            "path": "/manufacturerName/*"
+        },
+        {
+            "path": "/foodGroup/*"
+        }
+    ],
+    "excludedPaths": [
+        {
+            "path": "/*"
+        },
+        {
+            "path": "/\"_etag\"/?"
+        }
+    ],
+    "compositeIndexes": [
+        [
+            {
+                "path": "/foodGroup",
+                "order": "ascending"
+            },
+            {
+                "path": "/manufacturerName",
+                "order": "ascending"
+            }
+        ],
+        [
+            {
+                "path": "/foodGroup",
+                "order": "descending"
+            },
+            {
+                "path": "/manufacturerName",
+                "order": "ascending"
+            }
+        ]
+    ]
+}
+```
+이제 쿼리를 실행할 수 있습니다.    
+실습을 완료한 후 [복합 인덱스 정의](https://docs.microsoft.com/en-us/azure/cosmos-db/how-to-manage-indexing-policy#composite-indexing-policy-examples)에 대해 자세히 알아볼 수 있습니다.   
+
+
+
+
+
 
 
 
