@@ -22,8 +22,10 @@
     * Java Home 설정   
  
 ![image](https://user-images.githubusercontent.com/44718680/191147471-fd831c5f-9a0b-4460-887b-7452c2488bec.png)   
+<br></br>
     * Maven 윈도우 Path 추가   
 ![image](https://user-images.githubusercontent.com/44718680/191148108-9fb7878c-fb3a-4329-a2bd-2ead61724730.png)   
+<br></br>
     * Visual Studio Maven, JAVA 경로 설정   
 Visual Studio 메뉴에서 File->Preferences->settings 클릭   
 <img src="Images/vscode setting_1.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>   
