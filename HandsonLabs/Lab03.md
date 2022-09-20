@@ -84,10 +84,11 @@ Azure Data Factory를 사용하여 Azure Blob Storage의 Nutrition.json 파일�
 
 ## 2. Running your first query    
 ### Open Data Explorer   
-1. Azure Cosmos DB 블레이드에서 블레이드 왼쪽에 있는 데이터 탐색기 링크를 찾아 클릭합니다.   
+1. Azure Cosmos DB 블레이드에서 블레이드 왼쪽에 있는 데이터 탐색기(Data Explorer) 링크를 찾아 클릭합니다.   
 2. 데이터 탐색기 섹션에서 NutritionDatabase 데이터베이스 노드를 확장한 다음 FoodCollection 컨테이너 노드를 확장합니다.   
-3. FoodCollection 노드 내에서 항목 링크를 클릭합니다.   
-4. 컨테이너 내의 항목을 봅니다. 이러한 문서에 배열을 포함하여 많은 속성이 있는 방법을 관찰하십시오.   
+3. FoodCollection 노드 내에서 항목(Items) 링크를 클릭합니다.   
+4. 컨테이너 내의 데이터를 확인합니다.    
 5. 새 SQL 쿼리를 클릭합니다. 다음 SQL 쿼리를 붙여넣고 쿼리 실행을 선택합니다.   
+![image](https://user-images.githubusercontent.com/44718680/191157793-bc110179-eee6-4f00-b423-a811b9cf5122.png)
 
 
