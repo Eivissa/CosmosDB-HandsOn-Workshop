@@ -346,13 +346,32 @@ SELECT * FROM c WHERE IS_STRING(c.foodGroup) and IS_STRING(c.manufacturerName) O
 실습을 완료한 후 [복합 인덱스 정의](https://docs.microsoft.com/en-us/azure/cosmos-db/how-to-manage-indexing-policy#composite-indexing-policy-examples)에 대해 자세히 알아볼 수 있습니다.   
 
 
+## 4. Adding a spatial index   
 
+### 4.1. Create a new container with volcano data   
+먼저 새 데이터베이스 안에 volcanoes 이라는 새 Cosmos 컨테이너를 만듭니다.   
+Azure Cosmos DB는 GeoJSON 형식의 데이터 쿼리를 지원합니다.   
+이 실습에서는 이 형식으로 지정된 이 컨테이너에 샘플 데이터를 업로드합니다.    
+이 volcano.json 샘플 데이터는 기존 영양 데이터 세트보다 지리 공간 쿼리에 더 적합합니다.    
+데이터 세트에는 전 세계의 많은 화산에 대한 좌표와 기본 정보가 포함되어 있습니다.     
 
+이 실습에서는 몇 가지 샘플 문서만 업로드하면 됩니다.   
+1. Azure Cosmos DB 블레이드에서 데이터 탐색기(Data Explorer) 링크를 찾아 클릭합니다.   
+2. 새 컨테이너 추가 아이콘을 선택하십시오.   
+![image](https://user-images.githubusercontent.com/44718680/191235306-da8b3a2f-7643-4f6b-ab8c-5812d3aeba8f.png)
+3. 컨테이너 생성을 위한 팝업창에 아래와 같이 옵션을 선택하고 생성합니다.   
+Database id : VolcanoDatabase    
+Container id : VolcanoContainer    
+Partition key : /Country   
+Container throughput : Manual, 5000   
+![image](https://user-images.githubusercontent.com/44718680/191235775-a7e2523e-389e-49c6-adae-2cfcf8790b0a.png)
 
-
-
-
-
+### 4.2. Upload Sample Data   
+샘플 데이터를 업로드하면 Azure Cosmos DB는 "Point", "Polygon" 또는 "LineString" 유형의 모든 GeoJSON 데이터에 대한 지리 공간 인덱스를 자동으로 만듭니다.   
+1. Azure Portal에서 VolcanoesContainer로 돌아가서 항목 섹션을 클릭합니다.   
+2. 업로드 항목 선택   
+![image](https://user-images.githubusercontent.com/44718680/191236900-3fbb65de-6698-4255-8770-187bdacc1e83.png)
+3. [volcano.json](https://azurecosmosdb.github.io/labs/java/setup/VolcanoData.json) 파일을 다운로드 합니다.
 
 
 Next Lab : [Building a Java Console App on Azure Cosmos DB](https://github.com/Eivissa/CosmosDB-HandsOn-Workshop/blob/main/HandsonLabs/Lab05.md#building-a-java-console-app-on-azure-cosmos-db)   
