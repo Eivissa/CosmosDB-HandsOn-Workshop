@@ -308,7 +308,7 @@ FROM food f
 WHERE EXISTS(SELECT VALUE t FROM t IN f.tags WHERE t.name = 'orange')
 ```   
 EXISTS 사용의 주요 이점은 ARRAY_CONTAINS가 허용하는 단순한 동등 필터가 아니라 EXISTS 함수에 복잡한 필터를 가질 수 있다는 것입니다.   
-다음은 예입니다.
+
 
 
 
