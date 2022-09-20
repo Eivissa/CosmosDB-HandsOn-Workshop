@@ -129,8 +129,37 @@ food.version
 FROM food
 WHERE (food.manufacturerName = "The Coca-Cola Company" AND food.version > 0)
 ```
-이 쿼리는 manufacturerName = "The Coca-Cola Company"가 있고 version이 0보다 큰 항목에 대한 id, description, servings, tags, foodGroup, manufacturerName을 반환합니다.
+이 쿼리는 manufacturerName = "The Coca-Cola Company"가 있고 version이 0보다 큰 항목에 대한 id, description, tags, foodGroup, version을 반환합니다.
 
+## 5. Advanced projection
+Azure Cosmos DB는 결과 JSON에서 여러 형태의 변환을 지원합니다.   
+가장 간단한 방법 중 하나는 결과를 반환할 때 AS 별칭 지정 키워드를 사용하여 JSON 요소의 별칭을 지정하는 것입니다.   
+   
+아래 쿼리를 실행하면 요소 이름이 변환된 것을 볼 수 있습니다.   
+또한 프로젝션은 WHERE 절로 지정된 모든 항목에 대해 제공 배열의 첫 번째 요소에만 액세스합니다.   
+```sql
+SELECT food.description,
+food.foodGroup,
+food.servings[0].description AS servingDescription,
+food.servings[0].weightInGrams AS servingWeight
+FROM food
+WHERE food.foodGroup = "Fruits and Fruit Juices"
+AND food.servings[0].description = "cup"
+```   
+
+## 6. ORDER BY clause   
+Azure Cosmos DB는 하나 이상의 속성을 기반으로 결과를 정렬하기 위해 ORDER BY 절 추가를 지원합니다.   
+
+```sql
+SELECT food.description, 
+food.foodGroup, 
+food.servings[0].description AS servingDescription,
+food.servings[0].weightInGrams AS servingWeight
+FROM food
+WHERE food.foodGroup = "Fruits and Fruit Juices" AND food.servings[0].description = "cup"
+ORDER BY food.servings[0].weightInGrams DESC
+```   
+이후 인덱싱 랩에서 또는 [문서](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-query-order-by)를 읽으면 Order By 절에 필요한 인덱스를 구성하는 방법에 대해 자세히 알아볼 수 있습니다.   
 
 
 
