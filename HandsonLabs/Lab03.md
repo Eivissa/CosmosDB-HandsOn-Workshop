@@ -161,6 +161,90 @@ ORDER BY food.servings[0].weightInGrams DESC
 ```   
 이후 인덱싱 랩에서 또는 [문서](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-query-order-by)를 읽으면 Order By 절에 필요한 인덱스를 구성하는 방법에 대해 자세히 알아볼 수 있습니다.   
 
+## 7. Limiting query result size   
+Azure Cosmos DB는 TOP 키워드를 지원합니다.   
+TOP은 쿼리에서 반환되는 값의 수를 제한하는 데 사용할 수 있습니다. 아래 쿼리를 실행하여 상위 20개 결과를 확인하세요.   
+```sql
+SELECT TOP 20 food.id,
+food.description,
+food.tags,
+food.foodGroup
+FROM food
+WHERE food.foodGroup = "Snacks"
+```   
+OFFSET LIMIT 절은 건너뛰고 쿼리에서 일부 값을 가져오는 선택적 절입니다.    
+아래 예제는 10번째 데이터 부터 10개의 데이터를 가져오는 예제 입니다.   
+```sql
+SELECT food.id,
+food.description,
+food.tags,
+food.foodGroup
+FROM food
+WHERE food.foodGroup = "Snacks"
+ORDER BY food.id
+OFFSET 10 LIMIT 10
+```   
+OFFSET LIMIT를 ORDER BY 절과 함께 사용하면 정렬된 결과에서 데이터를 가져옵니다.
+
+## 8. More advanced filtering   
+쿼리에 IN 및 BETWEEN 키워드를 사용해 봅니다.   
+IN은 지정된 값이 주어진 목록의 요소와 일치하는지 확인하는 데 사용할 수 있으며 BETWEEN은 값 범위에 대해 쿼리를 실행하는 데 사용할 수 있습니다.    
+```sql
+SELECT food.id,
+       food.description,
+       food.tags,
+       food.foodGroup,
+       food.version
+FROM food
+WHERE food.foodGroup IN ("Poultry Products", "Sausages and Luncheon Meats")
+    AND (food.id BETWEEN "05740" AND "07050")
+```
+
+## 9. More advanced projection
+Azure Cosmos DB는 쿼리 내에서 JSON 프로젝션을 지원합니다.   
+속성 이름이 수정된 새 JSON 개체를 쿼리해 보겠습니다.    
+아래 쿼리를 실행하여 결과를 확인하세요.   
+```sql
+SELECT { 
+"Company": food.manufacturerName,
+"Brand": food.commonName,
+"Serving Description": food.servings[0].description,
+"Serving in Grams": food.servings[0].weightInGrams,
+"Food Group": food.foodGroup 
+} AS Food
+FROM food
+WHERE food.id = "21421"
+```   
+
+## 10. JOIN within your documents   
+Azure Cosmos DB의 JOIN은 문서 내 자체 조인을 지원합니다.    
+Azure Cosmos DB는 문서 또는 컨테이너 간의 JOIN을 지원하지 않습니다.    
+
+이전 쿼리 예제에서 우리는 food.servings 배열의 첫 번째 결과를 반환했습니다.   
+아래의 조인 구문을 사용하여 배열 내의 모든 항목에 대한 결과에 항목을 반환할 수 있습니다.   
+```sql
+SELECT
+food.id as FoodID,
+serving.description as ServingDescription
+FROM food
+JOIN serving IN food.servings
+WHERE food.id = "03226"
+```   
+JOIN은 배열 내의 속성을 필터링해야 하는 경우에 유용합니다.    
+문서 내 JOIN 뒤에 필터가 있는 아래 예제를 실행합니다.   
+```sql
+SELECT VALUE COUNT(1)
+FROM c
+JOIN t IN c.tags
+JOIN s IN c.servings
+WHERE t.name = 'infant formula' AND s.amount > 1
+```
+
+
+
+
+
+
 
 
 
