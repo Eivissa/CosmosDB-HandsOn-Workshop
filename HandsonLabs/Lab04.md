@@ -364,7 +364,7 @@ Database id : VolcanoDatabase
 Container id : VolcanoContainer    
 Partition key : /Country   
 Container throughput : Manual, 5000   
-![image](https://user-images.githubusercontent.com/44718680/191235775-a7e2523e-389e-49c6-adae-2cfcf8790b0a.png)
+   <img src="https://user-images.githubusercontent.com/44718680/191235775-a7e2523e-389e-49c6-adae-2cfcf8790b0a.png"  width="500" height="1000"/>
 
 ### 4.2. Upload Sample Data   
 샘플 데이터를 업로드하면 Azure Cosmos DB는 "Point", "Polygon" 또는 "LineString" 유형의 모든 GeoJSON 데이터에 대한 지리 공간 인덱스를 자동으로 만듭니다.   
