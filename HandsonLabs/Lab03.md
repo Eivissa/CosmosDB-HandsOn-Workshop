@@ -77,7 +77,7 @@ Azure Data Factory를 사용하여 Azure Blob Storage의 Nutrition.json 파일�
    NutritionDatabase 데이터베이스 노드를 확장한 다음 FoodCollection 컨테이너 노드를 확장합니다.   
 ![image](https://user-images.githubusercontent.com/44718680/191155412-c4394f7f-b28f-492a-b442-cfe16ecc5c36.png)   
 
-5. FoodCollection 노드 내에서 항목 링크를 클릭하여 컨테이너에 있는 데이터를 확인합니다.   
+5. FoodCollection 노드 내에서 항목(Items) 링크를 클릭하여 컨테이너에 있는 데이터를 확인합니다.   
 ![image](https://user-images.githubusercontent.com/44718680/191155516-c447922b-587d-4df8-8a7e-fc36fe81e401.png)
 
 
