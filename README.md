@@ -20,7 +20,9 @@
    
 * Visual Studio Code 환경설정   
     * Java Home 설정   
-<img src="Images/javahome2.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>       
+ 
+![image](https://user-images.githubusercontent.com/44718680/191147471-fd831c5f-9a0b-4460-887b-7452c2488bec.png)   
+<!-- <img src="Images/javahome2.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/> -->       
     * Maven 윈도우 Path 추가   
 <img src="Images/mvn_path.jpg" title="px(픽셀) 크기 설정" alt="vscode_setting_1"></img><br/>   
     * Visual Studio Maven, JAVA 경로 설정   
