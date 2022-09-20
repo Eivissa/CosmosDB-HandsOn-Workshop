@@ -98,6 +98,40 @@ WHERE food.foodGroup = "Snacks" and food.id = "19015"
 ```   
 ![image](https://user-images.githubusercontent.com/44718680/191158186-1736bfbf-d293-42c7-b1c9-7327a700bef8.png)   
 
+쿼리가 id가 "19015"이고 foodGroup이 "Snacks"인 단일 문서를 반환한 것을 볼 수 있습니다.   
+이 항목의 구조는 이 섹션의 나머지 부분에서 작업할 FoodCollection 컨테이너 내의 항목을 나타내므로 살펴봐야 합니다.   
+
+
+## 3. Dot and quoted property projection accessors   
+항목의 ID만 반환하려면 새 SQL 쿼리를 클릭하여 아래 쿼리를 실행할 수 있습니다.   
+```sql 
+SELECT food.id
+FROM food
+WHERE food.foodGroup = "Snacks" and food.id = "19015"
+```   
+아래와 같은 방법으로도 쿼리할 수 있습니다.
+```sql
+SELECT food["id"]
+FROM food
+WHERE food["foodGroup"] = "Snacks" and food["id"] = "19015"
+```   
+
+## 4. WHERE clauses
+WHERE 절을 살펴보겠습니다. WHERE 절에 산술, 비교 및 논리 연산자를 포함한 복잡한 스칼라 표현식을 추가할 수 있습니다.
+
+1. 새 SQL 쿼리를 클릭하여 아래 쿼리를 실행합니다. 다음 SQL 쿼리를 붙여넣고 쿼리 실행을 클릭합니다.   
+```sql
+SELECT food.id,
+food.description,
+food.tags,
+food.foodGroup,
+food.version
+FROM food
+WHERE (food.manufacturerName = "The Coca-Cola Company" AND food.version > 0)
+```
+이 쿼리는 manufacturerName = "The Coca-Cola Company"가 있고 version이 0보다 큰 항목에 대한 id, description, servings, tags, foodGroup, manufacturerName을 반환합니다.
+
+
 
 
 
