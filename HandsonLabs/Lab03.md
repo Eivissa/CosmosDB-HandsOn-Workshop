@@ -89,7 +89,7 @@ Azure Data Factory를 사용하여 Azure Blob Storage의 Nutrition.json 파일�
 3. FoodCollection 노드 내에서 항목(Items) 링크를 클릭합니다.   
 4. 컨테이너 내의 데이터를 확인합니다.    
 5. 새 SQL 쿼리를 클릭합니다.   
-![image](https://user-images.githubusercontent.com/44718680/191157793-bc110179-eee6-4f00-b423-a811b9cf5122.png)   
+![image](https://user-images.githubusercontent.com/44718680/191158132-1699a21e-2a8f-4b4e-895e-ad887835e189.png)   
 6. 다음 SQL 쿼리를 붙여넣고 쿼리 실행을 선택합니다.   
 ```sql
 SELECT *
