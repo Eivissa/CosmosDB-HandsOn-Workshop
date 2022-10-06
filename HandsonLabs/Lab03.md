@@ -42,7 +42,7 @@ Azure Data Factory를 사용하여 Azure Blob Storage의 Nutrition.json 파일�
 ![image](https://user-images.githubusercontent.com/44718680/182303717-1b3e3256-80dd-498b-a5ed-a85f6e444eb3.png)
 
 11. 연결된 서비스의 이름을 targetcosmosdb로 지정하고 Azure 구독 및 Cosmos DB 계정을 선택합니다. 
-    이전에 만든 Cosmos DB NutritionDatabase도 선택 합니다.
+    이전에 만든 Cosmos DB NutritionDatabase 를 선택 합니다.
     만들기를 클릭합니다.
 ![image](https://user-images.githubusercontent.com/44718680/191155007-48caef1a-0b66-47c4-b96a-d4899089c6fe.png)
 
