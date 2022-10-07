@@ -141,7 +141,7 @@ readItem 함수를 통해 조회한 데이터가 출력됩니다.
 <BR></BR>
 ### 3. Execute a Query Against Multiple Azure Cosmos DB Partitions
 
-1. 앞서 작성한 코드를 복사하여 중복되도록 붙여 넣습니다.
+1. 아래와 같이 앞서 작성한 코드를 복사하여 중복되도록 붙여 넣습니다.
 ```java
         String sqlA = "SELECT f.description, f.manufacturerName, f.servings FROM foods f WHERE f.foodGroup = 'Sweets' and IS_DEFINED(f.description) and IS_DEFINED(f.manufacturerName) and IS_DEFINED(f.servings)";
         
