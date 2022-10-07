@@ -104,9 +104,9 @@ readItem 함수를 통해 조회한 데이터가 출력됩니다.
    String sqlA = "SELECT f.description, f.manufacturerName, f.servings FROM foods f WHERE f.foodGroup = 'Sweets' and IS_DEFINED(f.description) and IS_DEFINED(f.manufacturerName) and IS_DEFINED(f.servings)";
 
 ```
-이 쿼리는 foodGroup이 Sweets 값으로 설정된 모든 음식을 선택합니다. 
-또한 description, manufacturerName 및 servings 속성이 정의된 문서만 선택합니다.
-이 쿼리에는 WHERE 절에 파티션 키가 있기 때문에 이 쿼리는 단일 파티션 내에서 실행할 수 있습니다.
+이 쿼리는 foodGroup이 Sweets 값으로 설정된 모든 음식을 선택합니다.   
+또한 description, manufacturerName 및 servings 속성이 정의된 문서만 선택합니다.   
+이 쿼리에는 WHERE 절에 파티션 키가 있기 때문에 이 쿼리는 단일 파티션 내에서 실행할 수 있습니다.   
 참고: https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql/sql-query-is-defined 
 
 3. 아래 코드를 쿼리 정의 밑에 추가합니다.
