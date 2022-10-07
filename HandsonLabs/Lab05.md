@@ -84,7 +84,8 @@ readItem 함수를 통해 조회한 데이터가 출력됩니다.
 ```sql
   SELECT c.description FROM c WHERE c.foodGroup = "Sweets"
 ```
-
+<BR></BR>
+<BR></BR>
 ### 2. Execute a Query Against a Single Azure Cosmos DB Partition
 1. 다음으로 코드를 추가 해야 할 부분을 확인합니다.  
 ```java
@@ -135,7 +136,9 @@ readItem 함수를 통해 조회한 데이터가 출력됩니다.
 ```sql
    SELECT f.description, f.manufacturerName, f.servings FROM foods f WHERE f.foodGroup = 'Sweets' and IS_DEFINED(f.description) and IS_DEFINED(f.manufacturerName) and IS_DEFINED(f.servings)
 
-```
+```   
+<BR></BR>
+<BR></BR>
 ### 3. Execute a Query Against Multiple Azure Cosmos DB Partitions
 
 1. 앞서 작성한 코드를 복사하여 중복되도록 붙여 넣습니다.
