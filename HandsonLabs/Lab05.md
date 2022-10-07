@@ -1,6 +1,8 @@
 # Building a Java Console App on Azure Cosmos DB
-## 1. Build A Simple Java Console App
+이전에는 Azure Portal의 Data Explorer를 사용하여 Azure Cosmos DB 컨테이너를 쿼리했습니다.    
+이제 Java SDK를 사용하여 유사한 쿼리를 실행할 것입니다.   
 
+### 1. Read a single Document in Azure Cosmos DB Using readItem()
 1. 앞서 다른 폴더로 이동 시켜두었던 Labs 폴더중에 lab05 폴더를 원래의 자리로 이동 시켜 줍니다.   
    C:\Users\\[*사용자명*]\Documents\CosmosLabs\src\main\java\com\azure\cosmos\handsonlabs 아래로 이동.   
    <img src="https://user-images.githubusercontent.com/44718680/182311971-22ab44a9-ede6-45ff-a406-1a5b05f29f12.png"  width="600" height="330"/>
@@ -72,7 +74,8 @@ import com.google.common.collect.Lists;
         client.close();    
 ```
 
-9. Lab05Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다. 
+9. Lab05Main.java파일을 우클릭하고 Run Java를 수행하여 결과를 확인 합니다.   
+readItem 함수를 통해 조회한 데이터가 출력됩니다.
 
 10. Cosmos DB 데이터 탐색기에서 아래 쿼리를 수행하여 결과를 확인 합니다.
 ```sql
@@ -82,7 +85,7 @@ import com.google.common.collect.Lists;
   SELECT c.description FROM c WHERE c.foodGroup = "Sweets"
 ```
 
-## 2. Execute a Query Against a Single Azure Cosmos DB Partition
+### 2. Execute a Query Against a Single Azure Cosmos DB Partition
 1. 다음으로 코드를 추가 해야 할 부분을 확인합니다.  
 ```java
  container.readItem("19130", new PartitionKey("Sweets"), Food.class)
@@ -133,7 +136,7 @@ import com.google.common.collect.Lists;
    SELECT f.description, f.manufacturerName, f.servings FROM foods f WHERE f.foodGroup = 'Sweets' and IS_DEFINED(f.description) and IS_DEFINED(f.manufacturerName) and IS_DEFINED(f.servings)
 
 ```
-## 3. Execute a Query Against Multiple Azure Cosmos DB Partitions
+### 3. Execute a Query Against Multiple Azure Cosmos DB Partitions
 
 1. 앞서 작성한 코드를 복사하여 중복되도록 붙여 넣습니다.
 ```java
