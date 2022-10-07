@@ -9,7 +9,7 @@ Azure Cosmos DB는 스키마 또는 인덱스 관리를 처리할 필요 없이 
 인덱스에서 속성 추가 또는 제거를 제어하려는 경우 Azure Portal 또는 SQL API SDK를 통해 수정할 수 있습니다.   
 
 Azure Cosmos DB는 데이터를 트리 형식으로 나타내는 Inverted 인덱스를 사용합니다.    
-작동 방식에 대한 간략한 소개를 보려면 실습을 계속하기 전에 [인덱싱 개요](https://docs.microsoft.com/en-us/azure/cosmos-db/index-overview)를 읽으십시오.   
+작동 방식에 대한 간략한 소개를 보려면 실습을 계속하기 전에 [인덱싱 개요](https://docs.microsoft.com/ko-kr/azure/cosmos-db/index-overview)를 읽으십시오.   
 
 ## 2. Customizing the indexing policy    
 이 실습 섹션에서는 FoodCollection에 대한 인덱싱 정책을 보고 수정합니다.   
@@ -343,7 +343,7 @@ SELECT * FROM c WHERE IS_STRING(c.foodGroup) and IS_STRING(c.manufacturerName) O
 }
 ```
 이제 쿼리를 실행할 수 있습니다.    
-실습을 완료한 후 [복합 인덱스 정의](https://docs.microsoft.com/en-us/azure/cosmos-db/how-to-manage-indexing-policy#composite-indexing-policy-examples)에 대해 자세히 알아볼 수 있습니다.   
+실습을 완료한 후 [복합 인덱스 정의](https://docs.microsoft.com/ko-kr/azure/cosmos-db/how-to-manage-indexing-policy#composite-indexing-policy-examples)에 대해 자세히 알아볼 수 있습니다.   
 
 <!--
 ## 4. Adding a spatial index   
