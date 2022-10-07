@@ -393,8 +393,10 @@ public class Lab01Main {
 ```
 
 6. Lab01Main.java를 실행하여 결과를 확인 합니다.
-- Azure portal에서 데이터 건수를 확인 합니다. 
-
+- Azure portal에서 데이터 건수를 확인 합니다.    
+```sql
+SELECT count(1) FROM c
+```
 
 ## 2. 여러가지 유형의 데이터 생성 
 1. 필요한 라이브러리 사용을 위해 아래 코드를 추가 합니다.
