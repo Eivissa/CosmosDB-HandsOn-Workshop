@@ -159,7 +159,7 @@ FROM food
 WHERE food.foodGroup = "Fruits and Fruit Juices" AND food.servings[0].description = "cup"
 ORDER BY food.servings[0].weightInGrams DESC
 ```   
-이후 인덱싱 랩에서 또는 [문서](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-query-order-by)를 읽으면 Order By 절에 필요한 인덱스를 구성하는 방법에 대해 자세히 알아볼 수 있습니다.   
+이후 인덱싱 랩에서 또는 [문서](https://docs.microsoft.com//azure/cosmos-db/sql-query-order-by)를 읽으면 Order By 절에 필요한 인덱스를 구성하는 방법에 대해 자세히 알아볼 수 있습니다.   
 
 ## 7. Limiting query result size   
 Azure Cosmos DB는 TOP 키워드를 지원합니다.   
@@ -244,7 +244,7 @@ WHERE t.name = 'infant formula' AND s.amount > 1
 ## 11. System functions   
 Azure Cosmos DB는 일반적인 작업을 위한 여러 기본 제공 기능을 지원합니다.   
 ABS, FLOOR 및 ROUND와 같은 수학 함수와 IS_ARRAY, IS_BOOL 및 IS_DEFINED와 같은 유형 검사 기능을 다룹니다.   
-[지원되는 시스템 기능](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-query-system-functions)에 대해 링크에서 자세히 알아보십시오.   
+[지원되는 시스템 기능](https://docs.microsoft.com/ko-kr/azure/cosmos-db/sql-query-system-functions)에 대해 링크에서 자세히 알아보십시오.   
 
 일부 시스템 기능의 사용 예를 보려면 아래 쿼리를 실행하십시오.   
 ```sql
