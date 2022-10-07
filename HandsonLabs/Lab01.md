@@ -237,8 +237,6 @@ public class Lab01Main {
         includedPaths.add(includedPath);
         indexingPolicy.setIncludedPaths(includedPaths);  
        
-
-
         client.createDatabaseIfNotExists("EntertainmentDatabase").flatMap(databaseResponse -> {
             targetDatabase = client.getDatabase(databaseResponse.getProperties().getId());
             CosmosContainerProperties containerProperties = 
