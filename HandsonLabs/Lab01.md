@@ -182,10 +182,93 @@ logger.info("Container Id:\t{}",customContainer.getId());
      new CosmosContainerProperties("CustomCollection", "/type");
  containerProperties.setIndexingPolicy(indexingPolicy);
  return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(2000));    
+```   
+
+5. 완성 코드
+```java
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+package com.azure.cosmos.handsonlabs.lab01;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import com.github.javafaker.Faker;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import com.azure.cosmos.handsonlabs.common.datatypes.ViewMap;
+import com.azure.cosmos.models.*;
+
+import com.azure.cosmos.ConsistencyLevel;
+import com.azure.cosmos.CosmosAsyncClient;
+import com.azure.cosmos.CosmosAsyncDatabase;
+import com.azure.cosmos.CosmosAsyncContainer;
+import com.azure.cosmos.CosmosClientBuilder;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+
+public class Lab01Main {
+    private static CosmosAsyncDatabase targetDatabase;
+    private static CosmosAsyncContainer customContainer;
+    private static AtomicBoolean resourcesCreated = new AtomicBoolean(false);
+    protected static Logger logger = LoggerFactory.getLogger(Lab01Main.class.getSimpleName());
+    private static String endpointUri = "";
+    private static String primaryKey = "";
+    public static void main(String[] args) {
+        CosmosAsyncClient client = new CosmosClientBuilder()
+        .endpoint(endpointUri)
+        .key(primaryKey)
+        .consistencyLevel(ConsistencyLevel.EVENTUAL)
+        .contentResponseOnWriteEnabled(true)
+        .buildAsyncClient();
+
+        IndexingPolicy indexingPolicy = new IndexingPolicy();
+        indexingPolicy.setIndexingMode(IndexingMode.CONSISTENT);
+        indexingPolicy.setAutomatic(true);
+        List<IncludedPath> includedPaths = new ArrayList<>();
+        IncludedPath includedPath = new IncludedPath("/*");
+        includedPaths.add(includedPath);
+        indexingPolicy.setIncludedPaths(includedPaths);  
+       
+
+
+        client.createDatabaseIfNotExists("EntertainmentDatabase").flatMap(databaseResponse -> {
+            targetDatabase = client.getDatabase(databaseResponse.getProperties().getId());
+            CosmosContainerProperties containerProperties = 
+            new CosmosContainerProperties("CustomCollection", "/type");
+        containerProperties.setIndexingPolicy(indexingPolicy);
+        return targetDatabase.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(2000));    
+        }).flatMap(containerResponse -> {
+            customContainer = targetDatabase.getContainer(containerResponse.getProperties().getId());
+            return Mono.empty();
+        }).subscribe(voidItem -> {}, err -> {}, () -> {
+            resourcesCreated.set(true);
+        });
+        
+        while (!resourcesCreated.get());
+        
+        logger.info("Database Id:\t{}",targetDatabase.getId());
+        logger.info("Container Id:\t{}",customContainer.getId()); 
+
+    client.close();      
+    }
+}
 ```
+
 5. 변경된 부분을 확인하기 위해 Azure portal에서 Cosmos DB리소스의 EntertainmentDatabase 데이터베이스를 삭제 후 해당 코드를 다시 수행해 봅니다. (Run Java)
 <br></br>
 <br></br>
+
+
+
+
 # 예제 2. Populate a Container with Items using the SDK
 ## 1. 데이터 생성 
 테스트 데이터 생성 코드를 작성해 보겠습니다.
