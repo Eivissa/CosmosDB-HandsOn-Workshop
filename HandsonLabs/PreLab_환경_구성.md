@@ -37,10 +37,13 @@ Azure Powershell에서 지원되지 않는 파라미터의 변경사항을 수�
 
 <br></br>
 ## 4. Lab에 사용될 리소스 배포(Powershell)   
-```diff
-- 주의: Azure Portal 계정에 MFA 사용 설정이 되어 있어야 함, 
-- 구독 Resource providers에 Microsoft.DocumentDB, Microsoft.StreamAnalytics 등록되어 있어야 함   
-```
+주의: Azure Portal 계정에 MFA 사용 설정이 되어 있어야 함.   
+[사용자별 MFA 활성화](https://learn.microsoft.com/ko-kr/azure/active-directory/authentication/howto-mfa-userstates#view-the-status-for-a-user)   
+[보안 기본값 설정 사용](https://learn.microsoft.com/ko-kr/azure/active-directory/fundamentals/concept-fundamentals-security-defaults#enabling-security-defaults)
+
+구독 Resource providers에 Microsoft.DocumentDB, Microsoft.StreamAnalytics 등록되어 있어야 함    
+[Resource providers화활성화](https://learn.microsoft.com/ko-kr/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal)
+
 ```powershell
 Connect-AzAccount
 
